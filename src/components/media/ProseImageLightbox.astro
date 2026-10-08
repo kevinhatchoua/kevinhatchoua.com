@@ -1,0 +1,87 @@
+<div
+	id="prose-image-lightbox"
+	class="prose-lightbox"
+	hidden
+	aria-hidden="true"
+	role="dialog"
+	aria-modal="true"
+	aria-label="Expanded image"
+>
+	<button type="button" class="prose-lightbox__backdrop" aria-label="Close expanded image"></button>
+	<div class="prose-lightbox__panel">
+		<button type="button" class="prose-lightbox__close" aria-label="Close expanded image">
+			<span aria-hidden="true">×</span>
+		</button>
+		<img class="prose-lightbox__img" alt="" decoding="async" />
+	</div>
+</div>
+
+<script>
+	function initProseImageLightbox() {
+		const lightbox = document.getElementById('prose-image-lightbox');
+		if (!lightbox) return;
+
+		const backdrop = lightbox.querySelector<HTMLButtonElement>('.prose-lightbox__backdrop');
+		const closeBtn = lightbox.querySelector<HTMLButtonElement>('.prose-lightbox__close');
+		const lightboxImg = lightbox.querySelector<HTMLImageElement>('.prose-lightbox__img');
+		if (!backdrop || !closeBtn || !lightboxImg) return;
+
+		let activeSource: HTMLImageElement | null = null;
+
+		const close = () => {
+			lightbox.hidden = true;
+			lightbox.setAttribute('aria-hidden', 'true');
+			document.body.classList.remove('prose-lightbox-open');
+			lightboxImg.removeAttribute('src');
+			lightboxImg.alt = '';
+			activeSource = null;
+		};
+
+		const open = (img: HTMLImageElement) => {
+			activeSource = img;
+			lightboxImg.src = img.currentSrc || img.src;
+			lightboxImg.alt = img.alt || '';
+			lightbox.hidden = false;
+			lightbox.setAttribute('aria-hidden', 'false');
+			document.body.classList.add('prose-lightbox-open');
+			closeBtn.focus();
+		};
+
+		const toggle = (img: HTMLImageElement) => {
+			if (!lightbox.hidden && activeSource === img) {
+				close();
+				return;
+			}
+			open(img);
+		};
+
+		document.querySelectorAll<HTMLImageElement>('.prose-detail img').forEach((img) => {
+			if (img.closest('.not-prose') || img.dataset.proseLightboxBound === 'true') return;
+			img.dataset.proseLightboxBound = 'true';
+			img.classList.add('prose-img-expandable');
+			img.tabIndex = 0;
+			img.setAttribute('role', 'button');
+			const label = img.alt ? `Expand image: ${img.alt}` : 'Expand image';
+			img.setAttribute('aria-label', label);
+
+			img.addEventListener('click', () => toggle(img));
+			img.addEventListener('keydown', (event) => {
+				if (event.key === 'Enter' || event.key === ' ') {
+					event.preventDefault();
+					toggle(img);
+				}
+			});
+		});
+
+		backdrop.addEventListener('click', close);
+		closeBtn.addEventListener('click', close);
+		lightboxImg.addEventListener('click', close);
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && !lightbox.hidden) close();
+		});
+	}
+
+	initProseImageLightbox();
+	document.addEventListener('astro:page-load', initProseImageLightbox);
+</script>

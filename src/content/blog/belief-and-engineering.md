@@ -6,7 +6,6 @@ draft: false
 tags:
   - Design thinking
   - Thought leadership
-  - UX design
 ---
 
 In UX design, we sometimes get stuck in the realm of belief when we're really facing an engineering challenge.

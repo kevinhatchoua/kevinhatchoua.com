@@ -1,6 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import PostMeta from '../components/blog/PostMeta.astro';
+import SequentialNav from '../components/nav/SequentialNav.astro';
+import type { SequentialNeighbors } from '../utils/sequentialNav';
 
 interface Props {
 	title: string;
@@ -8,9 +10,10 @@ interface Props {
 	pubDate: Date;
 	updatedDate?: Date;
 	tags: string[];
+	sequential?: SequentialNeighbors;
 }
 
-const { title, description, pubDate, updatedDate, tags } = Astro.props;
+const { title, description, pubDate, updatedDate, tags, sequential } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -23,8 +26,9 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
 				<PostMeta pubDate={pubDate} updatedDate={updatedDate} tags={tags} />
 			</div>
 		</header>
-		<div class="prose">
+		<div class="prose prose-detail">
 			<slot />
 		</div>
+		{sequential && <SequentialNav prev={sequential.prev} next={sequential.next} kind="post" />}
 	</article>
 </BaseLayout>

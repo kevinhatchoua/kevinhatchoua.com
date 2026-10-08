@@ -1,17 +1,21 @@
 ---
 import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { sequentialNeighbors } from '../../utils/sequentialNav';
 
 export async function getStaticPaths() {
-	const entries = await getCollection('blog', ({ data }) => !data.draft);
+	const entries = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
 	return entries.map((entry) => ({
 		params: { slug: entry.id },
-		props: { entry },
+		props: { entry, entries },
 	}));
 }
 
-const { entry } = Astro.props;
+const { entry, entries } = Astro.props;
 const { Content } = await render(entry);
+const sequential = sequentialNeighbors(entries, entry.id, 'blog');
 ---
 
 <BlogPostLayout
@@ -20,6 +24,7 @@ const { Content } = await render(entry);
 	pubDate={entry.data.pubDate}
 	updatedDate={entry.data.updatedDate}
 	tags={entry.data.tags}
+	sequential={sequential}
 >
 	<Content />
 </BlogPostLayout>

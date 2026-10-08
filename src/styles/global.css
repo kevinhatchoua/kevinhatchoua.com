@@ -75,12 +75,193 @@
 		}
 
 		& img {
-			@apply my-8 w-full rounded-xl border border-border bg-canvas-elevated;
+			@apply my-5 mx-auto block h-auto w-auto max-w-[min(100%,13rem)] rounded-md object-contain;
+		}
+
+		& img[src*='.jpg'],
+		& img[src*='.jpeg'],
+		& img[src*='.webp'] {
+			@apply max-w-[min(100%,34rem)];
+		}
+
+		& img[src*='smallest-viable-audience'],
+		& img[src*='metrics-abeckett'] {
+			@apply max-w-[min(100%,28rem)];
+		}
+
+		& img[src*='la-parisienne/'],
+		& img[src*='mayflower/'],
+		& img[src*='/hrd/'] {
+			@apply max-w-[min(100%,42rem)];
+		}
+
+		& img[src*='hrd/dashboard-'] {
+			@apply max-w-[min(100%,48rem)];
+		}
+
+		& img[src*='hrd/client-overview'] {
+			@apply max-w-[min(100%,48rem)];
+		}
+
+		& img[src*='mass-gov-promotional/'] {
+			@apply max-w-[min(100%,42rem)];
+		}
+
+		& img[src*='mass-gov-promotional/process-final-product'],
+		& img[src*='mass-gov-promotional/client-overview'],
+		& img[src*='mass-gov-promotional/community-compact'],
+		& img[src*='mass-gov-promotional/technology-careers'] {
+			@apply max-w-[min(100%,48rem)];
+		}
+
+		& img[src*='eotss-servicenow/'] {
+			@apply max-w-[min(100%,42rem)];
+		}
+
+		& img[src*='eotss-servicenow/it-support-portal'],
+		& img[src*='eotss-servicenow/eotss-service-catalog'],
+		& img[src*='eotss-servicenow/service-catalog-popular'],
+		& img[src*='eotss-servicenow/dashboards-overview'],
+		& img[src*='eotss-servicenow/asset-overview'],
+		& img[src*='eotss-servicenow/data-migration'],
+		& img[src*='eotss-servicenow/servicenow-tips'] {
+			@apply max-w-[min(100%,48rem)];
+		}
+
+		& img[src*='eotss-servicenow/commonwealth-seal'] {
+			@apply max-w-[min(100%,10rem)];
+		}
+
+		& img[src*='seachange/'] {
+			@apply max-w-[min(100%,42rem)];
+		}
+
+		& img[src*='seachange/client-overview'],
+		& img[src*='seachange/process-final-product'],
+		& img[src*='seachange/consumer-ui'],
+		& img[src*='seachange/deliverable'] {
+			@apply max-w-[min(100%,48rem)];
+		}
+
+		& img[src*='fit-with-nina/'] {
+			@apply max-w-[min(100%,42rem)];
+		}
+
+		& img[src*='fit-with-nina/logo'] {
+			@apply max-w-[min(100%,22rem)];
+		}
+
+		& img[src*='fit-with-nina/process-final-product'],
+		& img[src*='fit-with-nina/welcome-page'],
+		& img[src*='fit-with-nina/about-page'],
+		& img[src*='fit-with-nina/deliverable-home'],
+		& img[src*='fit-with-nina/branding-trx'] {
+			@apply max-w-[min(100%,48rem)];
+		}
+
+		& img[src*='mayflower/process-final-product'] {
+			@apply max-w-[min(100%,48rem)];
+		}
+
+		& img[src*='mayflower/commonwealth-seal'] {
+			@apply max-w-[min(100%,10rem)];
 		}
 
 		& em {
-			@apply text-sm text-ink-subtle not-italic;
+			@apply mt-2 block text-center text-sm text-ink-subtle not-italic;
 		}
+
+		&.prose-detail img {
+			@apply max-w-[min(100%,22.75rem)];
+		}
+
+		&.prose-detail img[src*='.jpg'],
+		&.prose-detail img[src*='.jpeg'],
+		&.prose-detail img[src*='.webp'] {
+			@apply max-w-[min(100%,59.5rem)];
+		}
+
+		&.prose-detail img[src*='smallest-viable-audience'],
+		&.prose-detail img[src*='metrics-abeckett'] {
+			@apply max-w-[min(100%,49rem)];
+		}
+
+		&.prose-detail img[src*='la-parisienne/'],
+		&.prose-detail img[src*='mayflower/'],
+		&.prose-detail img[src*='/hrd/'],
+		&.prose-detail img[src*='mass-gov-promotional/'],
+		&.prose-detail img[src*='eotss-servicenow/'],
+		&.prose-detail img[src*='seachange/'],
+		&.prose-detail img[src*='fit-with-nina/'] {
+			@apply max-w-[min(100%,73.5rem)];
+		}
+
+		&.prose-detail img[src*='hrd/dashboard-'],
+		&.prose-detail img[src*='hrd/client-overview'],
+		&.prose-detail img[src*='mass-gov-promotional/process-final-product'],
+		&.prose-detail img[src*='mass-gov-promotional/client-overview'],
+		&.prose-detail img[src*='mass-gov-promotional/community-compact'],
+		&.prose-detail img[src*='mass-gov-promotional/technology-careers'],
+		&.prose-detail img[src*='eotss-servicenow/it-support-portal'],
+		&.prose-detail img[src*='eotss-servicenow/eotss-service-catalog'],
+		&.prose-detail img[src*='eotss-servicenow/service-catalog-popular'],
+		&.prose-detail img[src*='eotss-servicenow/dashboards-overview'],
+		&.prose-detail img[src*='eotss-servicenow/asset-overview'],
+		&.prose-detail img[src*='eotss-servicenow/data-migration'],
+		&.prose-detail img[src*='eotss-servicenow/servicenow-tips'],
+		&.prose-detail img[src*='seachange/client-overview'],
+		&.prose-detail img[src*='seachange/process-final-product'],
+		&.prose-detail img[src*='seachange/consumer-ui'],
+		&.prose-detail img[src*='seachange/deliverable'],
+		&.prose-detail img[src*='fit-with-nina/process-final-product'],
+		&.prose-detail img[src*='fit-with-nina/welcome-page'],
+		&.prose-detail img[src*='fit-with-nina/about-page'],
+		&.prose-detail img[src*='fit-with-nina/deliverable-home'],
+		&.prose-detail img[src*='fit-with-nina/branding-trx'],
+		&.prose-detail img[src*='mayflower/process-final-product'] {
+			@apply max-w-[min(100%,84rem)];
+		}
+
+		&.prose-detail img[src*='eotss-servicenow/commonwealth-seal'],
+		&.prose-detail img[src*='mayflower/commonwealth-seal'] {
+			@apply max-w-[min(100%,17.5rem)];
+		}
+
+		&.prose-detail img[src*='fit-with-nina/logo'] {
+			@apply max-w-[min(100%,38.5rem)];
+		}
+
+		& img.prose-img-expandable {
+			@apply cursor-zoom-in transition-shadow hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus;
+		}
+	}
+
+	.prose-lightbox {
+		@apply fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8;
+	}
+
+	.prose-lightbox[hidden] {
+		display: none !important;
+	}
+
+	.prose-lightbox__backdrop {
+		@apply absolute inset-0 cursor-zoom-out border-0 bg-ink/80 backdrop-blur-sm;
+	}
+
+	.prose-lightbox__panel {
+		@apply relative z-10 flex max-h-[min(92vh,100%)] max-w-[min(96vw,88rem)] items-center justify-center;
+	}
+
+	.prose-lightbox__img {
+		@apply max-h-[min(88vh,100%)] max-w-full cursor-zoom-out rounded-lg object-contain shadow-2xl;
+	}
+
+	.prose-lightbox__close {
+		@apply absolute -right-2 -top-2 z-20 flex size-10 items-center justify-center rounded-full border border-border bg-canvas-elevated text-2xl leading-none text-ink shadow-md transition-colors hover:bg-canvas hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:-right-3 sm:-top-3;
+	}
+
+	body.prose-lightbox-open {
+		@apply overflow-hidden;
 	}
 
 	.page-shell {

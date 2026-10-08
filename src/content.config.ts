@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { blogFilterTags } from './utils/site';
 
 const blog = defineCollection({
 	loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
@@ -9,7 +10,11 @@ const blog = defineCollection({
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		draft: z.boolean().default(false),
-		tags: z.array(z.string()).default([]),
+		tags: z
+			.array(z.enum(blogFilterTags))
+			.min(1, 'Add at least one blog category tag')
+			.max(4, 'Use at most four tags per post'),
+		thumbnail: z.string().optional(),
 	}),
 });
 

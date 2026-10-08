@@ -5,7 +5,6 @@ pubDate: 2023-11-27
 draft: false
 tags:
   - Design thinking
-  - Thought leadership
   - UX design
 ---
 

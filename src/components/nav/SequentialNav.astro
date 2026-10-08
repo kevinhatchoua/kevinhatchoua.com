@@ -1,0 +1,53 @@
+---
+import type { SequentialNeighbor } from '../../utils/sequentialNav';
+
+interface Props {
+	prev: SequentialNeighbor | null;
+	next: SequentialNeighbor | null;
+	kind: 'post' | 'project';
+}
+
+const { prev, next, kind } = Astro.props;
+
+const kindLabel = kind === 'post' ? 'post' : 'project';
+---
+
+{
+	(prev || next) && (
+		<nav
+			class="mt-12 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-stretch sm:justify-between sm:gap-6"
+			aria-label={`${kind === 'post' ? 'Blog' : 'Work'} navigation`}
+		>
+			{prev ? (
+				<a
+					href={prev.href}
+					class="group flex min-w-0 flex-1 flex-col rounded-xl border border-border bg-canvas-elevated px-4 py-3 no-underline transition-colors hover:border-accent hover:text-accent sm:max-w-[48%]"
+				>
+					<span class="text-xs font-semibold uppercase tracking-widest text-ink-subtle group-hover:text-accent">
+						← Previous {kindLabel}
+					</span>
+					<span class="mt-1 font-display text-base font-semibold leading-snug text-ink group-hover:text-accent">
+						{prev.title}
+					</span>
+				</a>
+			) : (
+				<div class="hidden flex-1 sm:block" aria-hidden="true" />
+			)}
+			{next ? (
+				<a
+					href={next.href}
+					class="group flex min-w-0 flex-1 flex-col rounded-xl border border-border bg-canvas-elevated px-4 py-3 text-right no-underline transition-colors hover:border-accent hover:text-accent sm:max-w-[48%] sm:ml-auto"
+				>
+					<span class="text-xs font-semibold uppercase tracking-widest text-ink-subtle group-hover:text-accent">
+						Next {kindLabel} →
+					</span>
+					<span class="mt-1 font-display text-base font-semibold leading-snug text-ink group-hover:text-accent">
+						{next.title}
+					</span>
+				</a>
+			) : (
+				<div class="hidden flex-1 sm:block" aria-hidden="true" />
+			)}
+		</nav>
+	)
+}

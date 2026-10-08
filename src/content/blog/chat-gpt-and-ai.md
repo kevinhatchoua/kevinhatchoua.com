@@ -4,9 +4,10 @@ description: I love to see people asking questions as opposed to blind adoption.
 pubDate: 2023-03-04
 draft: false
 tags:
-  - Design thinking
+  - AI
   - Thought leadership
   - UX design
+  - Design thinking
 ---
 
 I love to see people asking questions as opposed to blind adoption. Technology, particularly those with the potential to shape the way we live should be deeply scrutinized.

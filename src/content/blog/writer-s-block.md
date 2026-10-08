@@ -4,9 +4,8 @@ description: Harlan Ellison authored more than 1,800 stories, essays, articles, 
 pubDate: 2023-03-11
 draft: false
 tags:
-  - Design thinking
   - Thought leadership
-  - UX design
+  - Design thinking
 ---
 
 Harlan Ellison authored more than 1,800 stories, essays, articles, and screenplays in his lifetime.

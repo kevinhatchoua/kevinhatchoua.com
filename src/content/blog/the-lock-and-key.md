@@ -4,9 +4,8 @@ description: In UX design, focus on user outcomes first, then craft the solution
 pubDate: 2023-06-29
 draft: false
 tags:
-  - Design thinking
-  - Thought leadership
   - UX design
+  - Design thinking
 ---
 
 In the world of user experience (UX) design, our primary goal is to create meaningful and valuable experiences for our users. It's essential to consider the user's needs, expectations, and desired outcomes throughout the design process. In this context, there is an insightful analogy that reminds us of the importance of focusing on user outcomes rather than simply crafting solutions.

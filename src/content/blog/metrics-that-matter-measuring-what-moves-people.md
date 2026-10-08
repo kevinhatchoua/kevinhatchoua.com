@@ -4,9 +4,8 @@ description: What happens when we build something and it works as intended? What
 pubDate: 2025-06-17
 draft: false
 tags:
-  - Design thinking
-  - Thought leadership
   - UX design
+  - Design thinking
 ---
 
 What happens when we build something and it works as intended? What happens when it doesn't?

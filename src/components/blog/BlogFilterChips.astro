@@ -1,0 +1,64 @@
+---
+import { blogFilters } from '../../utils/site';
+---
+
+<div class="mb-8 w-full" id="blog-filters" role="group" aria-label="Filter posts by topic">
+	<div
+		class="filter-track-scroll overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden"
+	>
+		<div
+			id="blog-filters-track"
+			class="filter-track relative mx-auto flex w-full min-w-max flex-row flex-nowrap items-stretch md:min-w-full"
+		>
+			<div
+				id="blog-filter-indicator"
+				class="filter-indicator pointer-events-none absolute left-0 top-0 rounded-full bg-md-primary shadow-sm"
+				aria-hidden="true"
+			>
+			</div>
+			{
+				blogFilters.map((filter, index) => (
+					<button
+						type="button"
+						class="filter-chip"
+						data-blog-filter={filter.id}
+						data-active={index === 0 ? 'true' : 'false'}
+						aria-pressed={index === 0 ? 'true' : 'false'}
+					>
+						<span>{filter.label}</span>
+					</button>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<script>
+	function initBlogFilterBar() {
+		const track = document.getElementById('blog-filters-track');
+		if (!track) return;
+
+		const positionIndicator = () => {
+			const pill = document.getElementById('blog-filter-indicator');
+			const active = track.querySelector<HTMLElement>('[data-blog-filter][data-active="true"]');
+			if (!pill || !active) return;
+
+			pill.style.width = `${active.offsetWidth}px`;
+			pill.style.height = `${active.offsetHeight}px`;
+			pill.style.transform = `translate3d(${active.offsetLeft}px, ${active.offsetTop}px, 0)`;
+		};
+
+		(window as Window & { syncBlogFilterIndicator?: () => void }).syncBlogFilterIndicator =
+			positionIndicator;
+
+		const resizeObserver = new ResizeObserver(() => positionIndicator());
+		resizeObserver.observe(track);
+		track.querySelectorAll('[data-blog-filter]').forEach((chip) => resizeObserver.observe(chip));
+
+		window.addEventListener('resize', positionIndicator, { passive: true });
+		requestAnimationFrame(positionIndicator);
+	}
+
+	initBlogFilterBar();
+	document.addEventListener('astro:page-load', initBlogFilterBar);
+</script>

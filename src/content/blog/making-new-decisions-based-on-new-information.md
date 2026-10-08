@@ -4,9 +4,8 @@ description: Adaptation is crucial for success in a constantly changing world.
 pubDate: 2023-04-25
 draft: false
 tags:
-  - Design thinking
   - Thought leadership
-  - UX design
+  - Design thinking
 ---
 
 Adaptation is crucial for success in a constantly changing world. As circumstances and contexts change and evolve, we must adjust our decisions and course of action accordingly.

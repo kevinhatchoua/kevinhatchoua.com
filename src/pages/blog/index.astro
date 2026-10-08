@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogFilterChips from '../../components/blog/BlogFilterChips.astro';
 import PostList from '../../components/blog/PostList.astro';
 import { getCollection } from 'astro:content';
+import { resolveBlogThumbnail } from '../../utils/blog';
+import { blogTagToFilterId } from '../../utils/site';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -12,20 +15,32 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 		pubDate: post.data.pubDate,
 		updatedDate: post.data.updatedDate,
 		tags: post.data.tags,
+		thumbnail: resolveBlogThumbnail(post),
+		filterIds: [
+			...new Set(
+				post.data.tags.map((tag) => blogTagToFilterId[tag]).filter((id): id is string => Boolean(id)),
+			),
+		],
 	}));
 ---
 
-<BaseLayout title="Blog" description="Writing on design, teaching, and making.">
-	<section class="page-shell section-gap max-w-3xl">
+<BaseLayout title="Blog" description="Writing on design, craft, and community.">
+	<section class="page-shell section-gap max-w-4xl">
 		<header>
 			<h1 class="text-display-lg">Blog</h1>
 			<p class="mt-4 text-lg text-ink-muted">
-				Markdown posts live in <code class="text-sm">src/content/blog</code>. Drafts stay hidden when
-				<code class="text-sm">draft: true</code>.
+				Essays on design, leadership, and the work of building things people choose.
 			</p>
 		</header>
-		<div class="mt-12">
-			{posts.length === 0 ? <p class="text-ink-muted">No posts yet.</p> : <PostList posts={posts} />}
+		<div class="mt-10">
+			{posts.length === 0 ? (
+				<p class="text-ink-muted">No posts yet.</p>
+			) : (
+				<>
+					<BlogFilterChips />
+					<PostList posts={posts} />
+				</>
+			)}
 		</div>
 	</section>
 </BaseLayout>

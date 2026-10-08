@@ -4,9 +4,7 @@ description: We are used to building for the masses, the standard, and the avera
 pubDate: 2023-03-28
 draft: false
 tags:
-  - Design thinking
   - Thought leadership
-  - UX design
 ---
 
 We are used to building for the masses, the standard, and the average.

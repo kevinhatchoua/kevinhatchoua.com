@@ -10,6 +10,7 @@ import ContributionsSidebar from '../components/home/ContributionsSidebar.astro'
 import HomeIntro from '../components/home/HomeIntro.astro';
 import { getCollection } from 'astro:content';
 import { getLatestContributions } from '../utils/github';
+import { resolveBlogThumbnail } from '../utils/blog';
 
 const studies = (await getCollection('work', ({ data }) => !data.draft)).sort(
 	(a, b) => b.data.order - a.data.order || b.data.year - a.data.year,
@@ -33,6 +34,7 @@ const blogPosts = (await getCollection('blog', ({ data }) => !data.draft))
 		title: post.data.title,
 		href: `/blog/${post.id}`,
 		pubDate: post.data.pubDate,
+		thumbnail: resolveBlogThumbnail(post),
 	}));
 
 const contributions = await getLatestContributions();

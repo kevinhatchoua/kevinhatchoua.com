@@ -27,3 +27,27 @@ export const categoryToFilterId: Record<string, string> = {
 	Mentorship: 'mentorship',
 	'UX Strategy': 'ux-strategy',
 };
+
+export const blogFilterTags = [
+	'Design thinking',
+	'Thought leadership',
+	'UX design',
+	'AI',
+] as const;
+
+export type BlogFilterTag = (typeof blogFilterTags)[number];
+
+export const blogFilters = [
+	{ id: 'all', label: 'All Posts' },
+	{ id: 'design-thinking', label: 'Design thinking' },
+	{ id: 'thought-leadership', label: 'Thought leadership' },
+	{ id: 'ux-design', label: 'UX design' },
+	{ id: 'ai', label: 'AI' },
+] as const;
+
+export const blogTagToFilterId: Record<BlogFilterTag, string> = {
+	'Design thinking': 'design-thinking',
+	'Thought leadership': 'thought-leadership',
+	'UX design': 'ux-design',
+	AI: 'ai',
+};

@@ -1,21 +1,30 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilterBadgeLink from '../../components/ui/FilterBadgeLink.astro';
+import SequentialNav from '../../components/nav/SequentialNav.astro';
 import { getCollection, render } from 'astro:content';
+import { homeProjectFilterHref } from '../../utils/filterLinks';
+import { sequentialNeighbors } from '../../utils/sequentialNav';
+import { categoryToFilterId } from '../../utils/site';
 
 export async function getStaticPaths() {
-	const entries = await getCollection('work', ({ data }) => !data.draft);
+	const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
+		(a, b) => b.data.order - a.data.order || b.data.year - a.data.year,
+	);
 	return entries.map((entry) => ({
 		params: { slug: entry.id },
-		props: { entry },
+		props: { entry, entries },
 	}));
 }
 
-const { entry } = Astro.props;
+const { entry, entries } = Astro.props;
 const { Content } = await render(entry);
+const sequential = sequentialNeighbors(entries, entry.id, 'work');
+const categoryFilterId = categoryToFilterId[entry.data.category] ?? 'ux-strategy';
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
-	<article class="page-shell section-gap max-w-3xl">
+	<article class="page-shell section-gap max-w-4xl">
 		{
 			entry.data.heroImage && (
 				<div class="mb-10 overflow-hidden rounded-2xl border border-md-outline-variant shadow-sm">
@@ -33,23 +42,31 @@ const { Content } = await render(entry);
 			<p class="text-sm font-medium uppercase tracking-widest text-ink-subtle">Case study</p>
 			<h1 class="mt-3 text-display-lg">{entry.data.title}</h1>
 			<p class="mt-4 text-lg text-ink-muted">{entry.data.description}</p>
-			<p class="mt-4 text-sm text-ink-subtle">
-				{entry.data.year}
-				<span class="mx-2" aria-hidden="true">·</span>
-				{entry.data.role}
+			<p class="mt-4 flex flex-wrap items-center gap-3 text-sm text-ink-subtle">
+				<span>
+					{entry.data.year}
+					<span class="mx-2" aria-hidden="true">·</span>
+					{entry.data.role}
+				</span>
+				<FilterBadgeLink
+					href={homeProjectFilterHref(categoryFilterId)}
+					label={entry.data.category}
+					variant="pill"
+				/>
 			</p>
 			{
 				entry.data.externalUrl && (
 					<p class="mt-4">
 						<a href={entry.data.externalUrl} rel="noopener noreferrer" target="_blank">
-							View live project
+							{entry.data.externalUrl.includes('youtube') ? 'Watch on YouTube' : 'View live project'}
 						</a>
 					</p>
 				)
 			}
 		</header>
-		<div class="prose">
+		<div class="prose prose-detail">
 			<Content />
 		</div>
+		<SequentialNav prev={sequential.prev} next={sequential.next} kind="project" />
 	</article>
 </BaseLayout>

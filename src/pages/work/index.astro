@@ -38,6 +38,7 @@ const studies = (await getCollection('work', ({ data }) => !data.draft)).sort(
 						description={study.data.description}
 						year={study.data.year}
 						role={study.data.role}
+						category={study.data.category}
 						href={`/work/${study.id}`}
 						tags={study.data.tags}
 						heroImage={study.data.heroImage}

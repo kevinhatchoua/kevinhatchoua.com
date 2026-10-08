@@ -1,0 +1,26 @@
+---
+interface Props {
+	href: string;
+	label: string;
+	variant?: 'pill' | 'chip' | 'overlay';
+}
+
+const { href, label, variant = 'pill' } = Astro.props;
+
+const variantClass = {
+	pill: 'rounded-full border border-border px-2.5 py-0.5 text-xs text-ink-muted hover:border-accent hover:text-accent',
+	chip: 'border border-border px-3 py-0.5 text-xs font-medium text-ink-muted hover:border-accent hover:text-accent',
+	overlay:
+		'rounded-full bg-md-surface/95 px-3 py-1 font-sans text-xs font-semibold text-md-primary shadow-sm hover:bg-md-surface hover:text-md-primary',
+}[variant];
+---
+
+<a
+	href={href}
+	class:list={[
+		'inline-block no-underline transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+		variantClass,
+	]}
+>
+	{label}
+</a>

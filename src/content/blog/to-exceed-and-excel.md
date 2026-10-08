@@ -4,9 +4,7 @@ description: Is it more important to surpass expectations or to outdo and outper
 pubDate: 2023-02-23
 draft: false
 tags:
-  - Design thinking
   - Thought leadership
-  - UX design
 ---
 
 Is it more important to surpass expectations or to outdo and outperform?

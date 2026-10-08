@@ -1,5 +1,5 @@
 ---
-import PostMeta from './PostMeta.astro';
+import BlogPostRow from './BlogPostRow.astro';
 
 export interface PostEntry {
 	slug: string;
@@ -8,6 +8,8 @@ export interface PostEntry {
 	pubDate: Date;
 	updatedDate?: Date;
 	tags: string[];
+	thumbnail: string;
+	filterIds: string[];
 }
 
 interface Props {
@@ -17,26 +19,98 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<ul class="divide-y divide-border border-y border-border">
-	{
-		posts.map((post) => (
-			<li class="py-8 first:pt-0 last:pb-0">
-				<article>
-					<h2 class="font-display text-2xl">
-						<a href={`/blog/${post.slug}`} class="text-ink no-underline hover:text-accent">
-							{post.title}
-						</a>
-					</h2>
-					<p class="mt-2 max-w-2xl text-ink-muted">{post.description}</p>
-					<div class="mt-4">
-						<PostMeta
-							pubDate={post.pubDate}
-							updatedDate={post.updatedDate}
-							tags={post.tags}
-						/>
-					</div>
-				</article>
-			</li>
-		))
+<div id="blog-posts">
+	<ul
+		class="divide-y divide-md-outline-variant/60 border-y border-md-outline-variant/60"
+		id="blog-post-list"
+		role="list"
+	>
+		{
+			posts.map((post) => (
+				<li
+					data-blog-post
+					data-categories={post.filterIds.join(',')}
+					hidden={false}
+				>
+					<BlogPostRow
+						href={`/blog/${post.slug}`}
+						title={post.title}
+						description={post.description}
+						pubDate={post.pubDate}
+						updatedDate={post.updatedDate}
+						tags={post.tags}
+						thumbnail={post.thumbnail}
+					/>
+				</li>
+			))
+		}
+	</ul>
+	<p class="sr-only" id="blog-posts-status" aria-live="polite"></p>
+</div>
+
+<script>
+	function initBlogPostFilters() {
+		const root = document.getElementById('blog-posts');
+		if (!root) return;
+
+		const posts = [...root.querySelectorAll<HTMLElement>('[data-blog-post]')];
+		const filterRoot = document.getElementById('blog-filters');
+		const status = document.getElementById('blog-posts-status');
+
+		let activeFilter =
+			new URLSearchParams(window.location.search).get('filter')?.trim() || 'all';
+
+		function syncFilterUrl(next: string) {
+			const url = new URL(window.location.href);
+			if (!next || next === 'all') {
+				url.searchParams.delete('filter');
+			} else {
+				url.searchParams.set('filter', next);
+			}
+			window.history.replaceState({}, '', url);
+		}
+
+		function postMatches(el: HTMLElement) {
+			if (activeFilter === 'all') return true;
+			const categories = el.dataset.categories?.split(',').filter(Boolean) ?? [];
+			return categories.includes(activeFilter);
+		}
+
+		function updateChips(next: string) {
+			if (!filterRoot) return;
+			filterRoot.querySelectorAll<HTMLButtonElement>('[data-blog-filter]').forEach((chip) => {
+				const isActive = chip.dataset.blogFilter === next;
+				chip.dataset.active = isActive ? 'true' : 'false';
+				chip.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+			});
+			(window as Window & { syncBlogFilterIndicator?: () => void }).syncBlogFilterIndicator?.();
+		}
+
+		function render() {
+			let visibleCount = 0;
+			posts.forEach((post) => {
+				const show = postMatches(post);
+				post.hidden = !show;
+				if (show) visibleCount += 1;
+			});
+			if (status) {
+				status.textContent = `Showing ${visibleCount} of ${posts.length} posts`;
+			}
+		}
+
+		filterRoot?.addEventListener('click', (event) => {
+			const target = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-blog-filter]');
+			if (!target?.dataset.blogFilter) return;
+			activeFilter = target.dataset.blogFilter;
+			syncFilterUrl(activeFilter);
+			updateChips(activeFilter);
+			render();
+		});
+
+		updateChips(activeFilter);
+		render();
 	}
-</ul>
+
+	initBlogPostFilters();
+	document.addEventListener('astro:page-load', initBlogPostFilters);
+</script>
