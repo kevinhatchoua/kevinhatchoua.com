@@ -1,0 +1,92 @@
+---
+import { site } from '../../utils/site';
+import SiteBrand from '../site/SiteBrand.astro';
+import ThemeToggle from '../site/ThemeToggle.astro';
+
+type ActiveNav = 'projects' | 'blog' | 'contact' | 'about';
+
+interface Props {
+	active?: ActiveNav;
+}
+
+const { active = 'projects' } = Astro.props;
+
+const navItems: { key: ActiveNav; href: string; label: string; external?: boolean }[] = [
+	{ key: 'projects', href: '/', label: 'Projects' },
+	{ key: 'blog', href: '/blog', label: 'Blog' },
+	{ key: 'contact', href: '/contact', label: 'Contact' },
+];
+---
+
+<header
+	class="sticky top-0 z-50 border-b border-md-outline-variant bg-md-surface"
+>
+	<div
+		class="mx-auto flex h-14 max-w-7xl items-center justify-between gap-6 px-4 md:h-16 md:px-8"
+	>
+		<SiteBrand />
+		<nav aria-label="Primary">
+			<ul class="flex flex-wrap items-center gap-1 sm:gap-2">
+				{
+					navItems.map((item) => {
+						const isActive = active === item.key;
+						return (
+							<li>
+								<a
+									href={item.href}
+									class:list={[
+										'inline-flex min-h-12 min-w-12 items-center justify-center rounded-full px-4 font-sans text-sm font-medium no-underline transition-colors duration-200',
+										isActive
+											? 'bg-md-primary-container text-md-on-primary-container'
+											: 'text-md-on-surface-variant hover:bg-md-surface-container-high hover:text-md-on-surface',
+									]}
+									aria-current={isActive ? 'page' : undefined}
+								>
+									{item.label}
+								</a>
+							</li>
+						);
+					})
+				}
+				<li>
+					<a
+						href={site.githubUrl}
+						class="inline-flex min-h-12 items-center gap-1.5 rounded-full px-4 font-sans text-sm font-medium text-md-on-surface-variant no-underline transition-colors duration-200 hover:bg-md-surface-container-high hover:text-md-on-surface"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						GitHub
+						<svg
+							class="size-4 shrink-0 opacity-70"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							aria-hidden="true"
+						>
+							<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+							<polyline points="15 3 21 3 21 9"></polyline>
+							<line x1="10" y1="14" x2="21" y2="3"></line>
+						</svg>
+						<span class="sr-only">(opens in new tab)</span>
+					</a>
+				</li>
+				<li>
+					<a
+						href="/about"
+						class:list={[
+							'inline-flex min-h-12 min-w-12 items-center justify-center rounded-full px-4 font-sans text-sm font-medium no-underline transition-colors duration-200',
+							active === 'about'
+								? 'bg-md-primary-container text-md-on-primary-container'
+								: 'text-md-on-surface-variant hover:bg-md-surface-container-high hover:text-md-on-surface',
+						]}
+						aria-current={active === 'about' ? 'page' : undefined}
+					>
+						About me
+					</a>
+				</li>
+				<ThemeToggle variant="masthead" />
+			</ul>
+		</nav>
+	</div>
+</header>

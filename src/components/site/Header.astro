@@ -1,0 +1,95 @@
+---
+import { site } from '../../utils/site';
+import SiteBrand from './SiteBrand.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+	overlay?: boolean;
+}
+
+const { overlay = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<header
+	class:list={[
+		'z-50 w-full',
+		overlay
+			? 'absolute inset-x-0 top-0 border-none bg-gradient-to-b from-ink/60 via-ink/20 to-transparent'
+			: 'sticky top-0 border-b border-border bg-canvas',
+	]}
+>
+	<div class="editorial-shell flex h-16 items-center justify-between gap-6 sm:h-[4.5rem]">
+		<SiteBrand invert={overlay} />
+		<nav aria-label="Primary">
+			<ul class="flex flex-wrap items-center gap-1 sm:gap-2">
+				{
+					site.nav.map((item) => {
+						const isActive =
+							item.href === '/'
+								? currentPath === '/'
+								: currentPath.startsWith(item.href);
+						return (
+							<li>
+								<a
+									href={item.href}
+									class:list={[
+										'nav-link rounded-md px-3 py-2 text-sm font-medium no-underline',
+										overlay
+											? isActive
+												? 'bg-canvas/15 text-canvas'
+												: 'text-canvas/85 hover:bg-canvas/10 hover:text-canvas'
+											: isActive
+												? 'text-ink bg-accent-soft/60'
+												: 'text-ink-muted hover:text-ink hover:bg-canvas-elevated',
+									]}
+									aria-current={isActive ? 'page' : undefined}
+								>
+									{item.label}
+								</a>
+							</li>
+						);
+					})
+				}
+				<li>
+					<a
+						href={site.githubUrl}
+						class="nav-link inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-ink-muted no-underline hover:bg-canvas-elevated hover:text-ink"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						GitHub
+						<svg
+							class="size-3.5 opacity-70"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							aria-hidden="true"
+						>
+							<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+							<polyline points="15 3 21 3 21 9"></polyline>
+							<line x1="10" y1="14" x2="21" y2="3"></line>
+						</svg>
+						<span class="sr-only">(opens in new tab)</span>
+					</a>
+				</li>
+				<li>
+					<a
+						href="/about"
+						class:list={[
+							'nav-link rounded-md px-3 py-2 text-sm font-medium no-underline',
+							currentPath === '/about' || currentPath.startsWith('/about/')
+								? 'text-ink bg-accent-soft/60'
+								: 'text-ink-muted hover:text-ink hover:bg-canvas-elevated',
+						]}
+						aria-current={currentPath.startsWith('/about') ? 'page' : undefined}
+					>
+						About me
+					</a>
+				</li>
+				<ThemeToggle variant="header" overlay={overlay} />
+			</ul>
+		</nav>
+	</div>
+</header>

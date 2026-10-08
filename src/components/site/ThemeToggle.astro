@@ -1,0 +1,96 @@
+---
+interface Props {
+	variant?: 'masthead' | 'header';
+	overlay?: boolean;
+}
+
+const { variant = 'masthead', overlay = false } = Astro.props;
+
+const mastheadBtn =
+	'inline-flex min-h-12 min-w-12 items-center justify-center rounded-full text-md-on-surface-variant transition-colors duration-200 hover:bg-md-surface-container-high hover:text-md-on-surface';
+
+const headerBtn = overlay
+	? 'nav-link inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-canvas/85 hover:bg-canvas/10 hover:text-canvas'
+	: 'nav-link inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-ink-muted hover:bg-canvas-elevated hover:text-ink';
+
+const btnClass = variant === 'masthead' ? mastheadBtn : headerBtn;
+---
+
+<li>
+	<button
+		type="button"
+		class:list={['theme-toggle', btnClass]}
+		data-theme-toggle
+		aria-label="Activate dark mode"
+	>
+		<svg
+			class="theme-toggle__icon theme-toggle__icon--moon size-5"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1.75"
+			aria-hidden="true"
+		>
+			<path
+				d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5Z"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			></path>
+		</svg>
+		<svg
+			class="theme-toggle__icon theme-toggle__icon--sun size-5"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="1.75"
+			aria-hidden="true"
+		>
+			<circle cx="12" cy="12" r="4"></circle>
+			<path
+				d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+				stroke-linecap="round"
+			></path>
+		</svg>
+	</button>
+</li>
+
+<script>
+	const STORAGE_KEY = 'theme';
+
+	function getPreferredTheme(): 'light' | 'dark' {
+		return localStorage.getItem(STORAGE_KEY) === 'dark' ? 'dark' : 'light';
+	}
+
+	function applyTheme(theme: 'light' | 'dark') {
+		document.documentElement.classList.toggle('dark', theme === 'dark');
+		document.documentElement.style.colorScheme = theme;
+		document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((btn) => {
+			const isDark = theme === 'dark';
+			btn.setAttribute('aria-label', isDark ? 'Activate light mode' : 'Activate dark mode');
+			btn.setAttribute('aria-pressed', String(isDark));
+		});
+	}
+
+	function initThemeToggle() {
+		const win = window as Window & { __themeToggleBound?: boolean };
+		if (win.__themeToggleBound) {
+			applyTheme(getPreferredTheme());
+			return;
+		}
+		win.__themeToggleBound = true;
+
+		applyTheme(getPreferredTheme());
+
+		document.addEventListener('click', (event) => {
+			const target = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-theme-toggle]');
+			if (!target) return;
+			const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+			localStorage.setItem(STORAGE_KEY, next);
+			applyTheme(next);
+		});
+
+	}
+
+	initThemeToggle();
+	document.addEventListener('astro:page-load', initThemeToggle);
+</script>

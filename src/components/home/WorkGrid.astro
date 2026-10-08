@@ -1,0 +1,153 @@
+---
+import { categoryToFilterId } from '../../utils/site';
+
+export interface WorkGridProject {
+	id: string;
+	title: string;
+	description: string;
+	year: number;
+	role: string;
+	category: string;
+	href: string;
+	heroImage?: string;
+}
+
+interface Props {
+	projects: WorkGridProject[];
+}
+
+const { projects } = Astro.props;
+
+const fallbackThumb =
+	'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80';
+const imageVersion = '3';
+
+function heroSrc(path?: string) {
+	if (!path) return fallbackThumb;
+	const joiner = path.includes('?') ? '&' : '?';
+	return `${path}${joiner}v=${imageVersion}`;
+}
+
+function isLogoStyle(path: string) {
+	return path.endsWith('.svg') || path.includes('-logo.');
+}
+---
+
+<div id="home-projects" data-project-count={projects.length}>
+	<ul class="grid grid-cols-1 gap-6 md:grid-cols-2" id="home-project-list" role="list">
+		{
+			projects.map((project) => {
+				const filterId = categoryToFilterId[project.category] ?? 'ux-strategy';
+				const image = heroSrc(project.heroImage);
+				const logoStyle = project.heroImage ? isLogoStyle(project.heroImage) : false;
+				return (
+					<li
+						class="project-card-wrapper"
+						data-project-card
+						data-project-id={project.id}
+						data-category={filterId}
+					>
+						<article
+							class="project-card group flex h-full flex-col overflow-hidden rounded-2xl border border-md-outline-variant bg-md-surface-container-lowest shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+						>
+							<a href={project.href} class="flex h-full flex-col no-underline text-inherit">
+								<div class="relative aspect-[16/10] overflow-hidden bg-md-surface-container">
+									<img
+										src={image}
+										alt=""
+										class:list={[
+											'h-full w-full transition-transform duration-500 group-hover:scale-[1.03]',
+											logoStyle ? 'object-contain p-6' : 'object-cover',
+										]}
+										loading="lazy"
+										decoding="async"
+									/>
+									<span
+										class="absolute left-3 top-3 rounded-full bg-md-surface/95 px-3 py-1 font-sans text-xs font-semibold text-md-primary shadow-sm"
+									>
+										{project.category}
+									</span>
+								</div>
+								<div class="flex flex-1 flex-col p-5">
+									<p class="font-sans text-xs font-medium text-md-on-surface-variant">
+										{project.year}
+										<span class="mx-2 text-md-outline" aria-hidden="true">·</span>
+										{project.role}
+									</p>
+									<h3 class="mt-2 font-display text-xl font-semibold leading-snug text-md-on-surface group-hover:text-md-primary">
+										{project.title}
+									</h3>
+									<p class="mt-2 flex-1 font-sans text-sm leading-relaxed text-md-on-surface-variant">
+										{project.description}
+									</p>
+									<span
+										class="mt-4 inline-flex min-h-12 w-fit items-center font-sans text-sm font-semibold text-md-primary"
+									>
+										Read →
+									</span>
+								</div>
+							</a>
+						</article>
+					</li>
+				);
+			})
+		}
+	</ul>
+	<p class="sr-only" id="home-projects-status" aria-live="polite"></p>
+</div>
+
+<script>
+	function initHomeProjects() {
+		const root = document.getElementById('home-projects');
+		if (!root) return;
+
+		const cards = [...root.querySelectorAll<HTMLElement>('[data-project-card]')];
+		const filterRoot = document.getElementById('home-filters');
+		const status = document.getElementById('home-projects-status');
+
+		let activeFilter = 'all';
+
+		function filteredCards() {
+			return cards.filter((card) => {
+				if (activeFilter === 'all') return true;
+				return card.dataset.category === activeFilter;
+			});
+		}
+
+		function updateChips(next: string) {
+			if (!filterRoot) return;
+			filterRoot.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((chip) => {
+				const isActive = chip.dataset.filter === next;
+				chip.dataset.active = isActive ? 'true' : 'false';
+				chip.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+			});
+			(window as Window & { syncHomeFilterIndicator?: () => void }).syncHomeFilterIndicator?.();
+		}
+
+		function render() {
+			const visible = filteredCards();
+			cards.forEach((card) => {
+				const show = visible.includes(card);
+				card.hidden = !show;
+				card.classList.toggle('project-card-reveal', show);
+			});
+			if (status) {
+				status.textContent = `Showing ${visible.length} of ${cards.length} projects`;
+			}
+		}
+
+		filterRoot?.addEventListener('click', (event) => {
+			const target = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-filter]');
+			if (!target?.dataset.filter) return;
+			activeFilter = target.dataset.filter;
+			updateChips(activeFilter);
+			render();
+		});
+
+		updateChips(activeFilter);
+		render();
+	}
+
+	initHomeProjects();
+	document.addEventListener('astro:page-load', initHomeProjects);
+</script>

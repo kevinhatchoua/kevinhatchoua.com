@@ -1,0 +1,71 @@
+---
+import Button from '../ui/Button.astro';
+
+const heroImage =
+	'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=2400&q=80';
+---
+
+<section
+	class="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden bg-ink"
+	aria-label="Introduction"
+>
+	<div class="absolute inset-0 overflow-hidden" data-parallax data-parallax-rate="0.22">
+		<div class="absolute inset-0" data-parallax-inner>
+			<img
+				src={heroImage}
+				alt=""
+				class="image-cover min-h-[115%] w-full opacity-90"
+				loading="eager"
+				decoding="async"
+			/>
+		</div>
+		<div
+			class="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/15"
+			aria-hidden="true"
+		>
+		</div>
+		<div
+			class="absolute inset-0 bg-gradient-to-r from-ink/70 via-transparent to-transparent"
+			aria-hidden="true"
+		>
+		</div>
+	</div>
+
+	<div class="relative z-10 editorial-shell pb-16 pt-32 sm:pb-24 sm:pt-40">
+		<p
+			class="hero-enter text-xs font-semibold uppercase tracking-[0.35em] text-canvas/70 sm:text-sm"
+		>
+			Community · Craft · Courage
+		</p>
+		<h1
+			class="hero-enter-delay mt-6 max-w-[14ch] font-display text-display-hero font-semibold tracking-tight text-canvas"
+		>
+			Design for<br />
+			<span class="italic font-normal text-canvas/95">real people.</span>
+		</h1>
+		<p class="hero-enter-delay mt-8 max-w-xl text-lg text-canvas/85 sm:text-xl">
+			EIR for UX at BU, mentor at QCC, board member at UXPA Boston. Snowboarder, cook, painter,
+			family-first. This site is an editorial field journal: work, teaching, and the life that
+			feeds both.
+		</p>
+		<div class="hero-enter-delay mt-12 flex flex-wrap gap-4">
+			<Button href="/work" class="!bg-canvas !text-ink hover:!bg-canvas-elevated">
+				Explore work
+			</Button>
+			<Button
+				href="/contact"
+				variant="ghost"
+				class="!border-canvas/40 !text-canvas hover:!bg-canvas/10"
+			>
+				Say hello
+			</Button>
+		</div>
+	</div>
+
+	<div
+		class="pointer-events-none absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 sm:block"
+		aria-hidden="true"
+	>
+		<div class="h-12 w-px bg-gradient-to-b from-transparent via-canvas/50 to-canvas/80"></div>
+	</div>
+</section>

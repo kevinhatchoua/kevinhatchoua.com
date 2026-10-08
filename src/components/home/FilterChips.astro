@@ -1,0 +1,66 @@
+---
+import { homeFilters } from '../../utils/site';
+import FilterChipIcon from './FilterChipIcon.astro';
+---
+
+<div class="mb-6 w-full" id="home-filters" role="group" aria-label="Filter projects by category">
+	<div
+		class="filter-track-scroll overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden"
+	>
+		<div
+			id="home-filters-track"
+			class="filter-track relative mx-auto flex w-full min-w-max flex-row flex-nowrap items-stretch md:min-w-full"
+		>
+			<div
+				id="home-filter-indicator"
+				class="filter-indicator pointer-events-none absolute left-0 top-0 rounded-full bg-md-primary shadow-sm"
+				aria-hidden="true"
+			>
+			</div>
+			{
+				homeFilters.map((filter, index) => (
+					<button
+						type="button"
+						class="filter-chip"
+						data-filter={filter.id}
+						data-active={index === 0 ? 'true' : 'false'}
+						aria-pressed={index === 0 ? 'true' : 'false'}
+					>
+						<FilterChipIcon id={filter.id} />
+						<span>{filter.label}</span>
+					</button>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<script>
+	function initFilterBar() {
+		const track = document.getElementById('home-filters-track');
+		if (!track) return;
+
+		const positionIndicator = () => {
+			const pill = document.getElementById('home-filter-indicator');
+			const active = track.querySelector<HTMLElement>('[data-filter][data-active="true"]');
+			if (!pill || !active) return;
+
+			pill.style.width = `${active.offsetWidth}px`;
+			pill.style.height = `${active.offsetHeight}px`;
+			pill.style.transform = `translate3d(${active.offsetLeft}px, ${active.offsetTop}px, 0)`;
+		};
+
+		(window as Window & { syncHomeFilterIndicator?: () => void }).syncHomeFilterIndicator =
+			positionIndicator;
+
+		const resizeObserver = new ResizeObserver(() => positionIndicator());
+		resizeObserver.observe(track);
+		track.querySelectorAll('[data-filter]').forEach((chip) => resizeObserver.observe(chip));
+
+		window.addEventListener('resize', positionIndicator, { passive: true });
+		requestAnimationFrame(positionIndicator);
+	}
+
+	initFilterBar();
+	document.addEventListener('astro:page-load', initFilterBar);
+</script>

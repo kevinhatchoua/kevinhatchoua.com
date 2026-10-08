@@ -1,0 +1,61 @@
+---
+import { formatBlogDate } from '../../utils/format';
+
+export interface BlogSidebarPost {
+	title: string;
+	href: string;
+	pubDate: Date;
+}
+
+interface Props {
+	posts: BlogSidebarPost[];
+}
+
+const { posts } = Astro.props;
+---
+
+<aside aria-labelledby="latest-blogs-heading">
+	<div
+		class="overflow-hidden rounded-2xl border border-md-outline-variant bg-md-surface-container-lowest shadow-sm"
+	>
+		<div class="border-b border-md-outline-variant/60 px-5 py-4">
+			<h2 id="latest-blogs-heading" class="font-display text-xl font-semibold text-md-on-surface">
+				Latest blogs
+			</h2>
+			<p class="mt-1 font-sans text-sm text-md-on-surface-variant">Notes on craft and community.</p>
+		</div>
+
+		<ul class="max-h-[550px] overflow-y-auto px-2 py-2 [scrollbar-width:thin]" role="list">
+			{
+				posts.map((post) => (
+					<li class="border-b border-md-outline-variant/40 last:border-b-0">
+						<a
+							href={post.href}
+							class="group flex min-h-12 flex-col justify-center gap-1 rounded-xl px-3 py-3 no-underline transition-colors hover:bg-md-surface-container-high"
+						>
+							<time
+								datetime={post.pubDate.toISOString()}
+								class="font-sans text-xs font-medium uppercase tracking-wide text-md-on-surface-variant"
+							>
+								{formatBlogDate(post.pubDate)}
+							</time>
+							<span class="font-sans text-sm font-medium leading-snug text-md-on-surface group-hover:text-md-primary">
+								{post.title}
+							</span>
+							<span class="font-sans text-xs font-semibold text-md-primary">read →</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+
+		<div class="border-t border-md-outline-variant/60 px-5 py-4">
+			<a
+				href="/blog"
+				class="inline-flex min-h-12 items-center font-sans text-sm font-semibold text-md-primary no-underline hover:text-md-primary-hover"
+			>
+				View all blogs →
+			</a>
+		</div>
+	</div>
+</aside>

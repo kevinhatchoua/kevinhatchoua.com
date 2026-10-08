@@ -1,0 +1,20 @@
+---
+interface Props {
+	as?: 'div' | 'article';
+	class?: string;
+	hover?: boolean;
+}
+
+const { as: Tag = 'div', class: className, hover = false } = Astro.props;
+const classes = [
+	'rounded-lg border border-border bg-canvas-elevated p-6 shadow-sm',
+	hover ? 'card-hover' : '',
+	className,
+]
+	.filter(Boolean)
+	.join(' ');
+---
+
+<Tag class={classes}>
+	<slot />
+</Tag>

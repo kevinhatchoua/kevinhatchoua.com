@@ -1,0 +1,95 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	year: number;
+	role: string;
+	href: string;
+	tags?: string[];
+	heroImage?: string;
+	index: number;
+}
+
+const { title, description, year, role, href, tags = [], heroImage, index } = Astro.props;
+
+const fallbackImage =
+	'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=2000&q=80';
+const image = heroImage ?? fallbackImage;
+const reversed = index % 2 === 1;
+---
+
+<article class="group relative">
+	<a href={href} class="block no-underline text-inherit">
+		<div
+			class:list={[
+				'grid grid-cols-12 gap-4 lg:gap-6',
+				reversed ? 'lg:[direction:rtl]' : '',
+			]}
+		>
+			<div
+				class:list={[
+					'relative col-span-12 overflow-hidden lg:col-span-8',
+					reversed ? 'lg:[direction:ltr]' : '',
+				]}
+				data-reveal
+			>
+				<div class="editorial-bleed lg:mx-0 lg:w-full" data-parallax data-parallax-rate="0.08">
+					<div class="relative aspect-[16/10] lg:aspect-[16/9]" data-parallax-inner>
+						<img
+							src={image}
+							alt=""
+							class="image-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+							loading="lazy"
+							decoding="async"
+						/>
+						<div
+							class="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent opacity-80"
+							aria-hidden="true"
+						>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div
+				class:list={[
+					'relative z-10 col-span-12 flex flex-col justify-center lg:col-span-4',
+					reversed ? 'lg:[direction:ltr]' : '',
+					index === 0 ? 'lg:-mt-24' : 'lg:-mt-16',
+				]}
+				data-reveal
+				data-reveal-delay="1"
+			>
+				<div
+					class:list={[
+						'bg-canvas-elevated/95 p-8 shadow-soft backdrop-blur-sm lg:max-w-md',
+						reversed ? 'lg:mr-auto' : 'lg:-ml-12',
+					]}
+				>
+					<div class="flex flex-wrap items-baseline justify-between gap-3 text-sm">
+						<span class="text-ink-subtle">{year}</span>
+						<span class="font-medium text-accent">{role}</span>
+					</div>
+					<h2 class="mt-4 font-display text-3xl leading-tight sm:text-4xl group-hover:text-accent">
+						{title}
+					</h2>
+					<p class="mt-4 text-ink-muted">{description}</p>
+					{
+						tags.length > 0 && (
+							<ul class="mt-6 flex flex-wrap gap-2" aria-label="Topics">
+								{tags.map((tag) => (
+									<li class="border border-border px-3 py-0.5 text-xs font-medium text-ink-muted">
+										{tag}
+									</li>
+								))}
+							</ul>
+						)
+					}
+					<p class="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+						Read case study →
+					</p>
+				</div>
+			</div>
+		</div>
+	</a>
+</article>

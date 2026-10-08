@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/contact/ContactForm.astro';
+---
+
+<BaseLayout
+	title="Contact"
+	description="Get in touch with Kevin Hatchoua — no public email or phone on this site."
+>
+	<section class="page-shell section-gap max-w-xl">
+		<header>
+			<h1 class="text-display-lg">Contact</h1>
+			<p class="mt-4 text-lg text-ink-muted">
+				Share a note about collaboration, speaking, or mentoring. I will reply when I can.
+			</p>
+		</header>
+		<div class="mt-10">
+			<ContactForm />
+		</div>
+	</section>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+/** Scroll reveals and subtle parallax; respects prefers-reduced-motion. */
+---
+
+<script>
+	function initScrollStory() {
+		const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		const reveals = document.querySelectorAll('[data-reveal]');
+		if (reveals.length) {
+			if (reduce) {
+				reveals.forEach((el) => el.classList.add('is-revealed'));
+			} else {
+				const io = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('is-revealed');
+								io.unobserve(entry.target);
+							}
+						}
+					},
+					{ rootMargin: '0px 0px -6% 0px', threshold: 0.06 },
+				);
+				reveals.forEach((el) => io.observe(el));
+			}
+		}
+
+		const parallaxRoots = document.querySelectorAll('[data-parallax]');
+		if (reduce || !parallaxRoots.length) return;
+
+		let ticking = false;
+		const updateParallax = () => {
+			const vh = window.innerHeight;
+			parallaxRoots.forEach((root) => {
+				const inner = root.querySelector('[data-parallax-inner]') ?? root;
+				const rect = root.getBoundingClientRect();
+				const progress = (vh - rect.top) / (vh + rect.height);
+				const rate = Number(root.getAttribute('data-parallax-rate') ?? '0.15');
+				const y = (progress - 0.5) * 120 * rate;
+				inner.style.transform = `translate3d(0, ${y}px, 0) scale(1.08)`;
+			});
+			ticking = false;
+		};
+
+		const onScroll = () => {
+			if (!ticking) {
+				ticking = true;
+				requestAnimationFrame(updateParallax);
+			}
+		};
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		updateParallax();
+	}
+
+	initScrollStory();
+	document.addEventListener('astro:page-load', initScrollStory);
+</script>

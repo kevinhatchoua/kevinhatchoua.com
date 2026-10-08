@@ -1,0 +1,42 @@
+---
+import PostMeta from './PostMeta.astro';
+
+export interface PostEntry {
+	slug: string;
+	title: string;
+	description: string;
+	pubDate: Date;
+	updatedDate?: Date;
+	tags: string[];
+}
+
+interface Props {
+	posts: PostEntry[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul class="divide-y divide-border border-y border-border">
+	{
+		posts.map((post) => (
+			<li class="py-8 first:pt-0 last:pb-0">
+				<article>
+					<h2 class="font-display text-2xl">
+						<a href={`/blog/${post.slug}`} class="text-ink no-underline hover:text-accent">
+							{post.title}
+						</a>
+					</h2>
+					<p class="mt-2 max-w-2xl text-ink-muted">{post.description}</p>
+					<div class="mt-4">
+						<PostMeta
+							pubDate={post.pubDate}
+							updatedDate={post.updatedDate}
+							tags={post.tags}
+						/>
+					</div>
+				</article>
+			</li>
+		))
+	}
+</ul>

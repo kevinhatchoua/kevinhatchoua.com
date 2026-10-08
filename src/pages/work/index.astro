@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkSpread from '../../components/work/WorkSpread.astro';
+import { getCollection } from 'astro:content';
+
+const studies = (await getCollection('work', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.order - a.data.order || b.data.year - a.data.year,
+);
+---
+
+<BaseLayout title="Work" description="Selected design work and case studies by Kevin Hatchoua.">
+	<section class="relative overflow-hidden border-b border-border/80 bg-canvas pb-8 pt-20 sm:pt-28">
+		<div class="editorial-shell">
+			<div class="grid grid-cols-12 gap-y-6" data-reveal>
+				<p class="col-span-12 text-sm font-semibold uppercase tracking-[0.28em] text-accent lg:col-span-3">
+					Selected work
+				</p>
+				<div class="col-span-12 lg:col-span-9">
+					<h1 class="text-display-hero max-w-[12ch] font-semibold">Stories worth<br />slowing down for.</h1>
+					<p class="mt-8 max-w-2xl text-lg text-ink-muted">
+						Case studies as editorial spreads: full-bleed imagery, asymmetric type, and the human
+						problem at the center. Add markdown under
+						<code class="text-sm text-ink">src/content/work</code>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="editorial-shell space-y-24 py-20 sm:space-y-32 sm:py-28">
+		{
+			studies.length === 0 ? (
+				<p class="text-ink-muted" data-reveal>No published case studies yet.</p>
+			) : (
+				studies.map((study, index) => (
+					<WorkSpread
+						title={study.data.title}
+						description={study.data.description}
+						year={study.data.year}
+						role={study.data.role}
+						href={`/work/${study.id}`}
+						tags={study.data.tags}
+						heroImage={study.data.heroImage}
+						index={index}
+					/>
+				))
+			)
+		}
+	</section>
+</BaseLayout>

@@ -1,0 +1,102 @@
+---
+export type FilterIconId =
+	| 'all'
+	| 'aix'
+	| 'art'
+	| 'brand-design'
+	| 'design-system'
+	| 'mentorship'
+	| 'ux-strategy';
+
+interface Props {
+	id: FilterIconId;
+}
+
+const { id } = Astro.props;
+
+const svgClass = 'size-5 shrink-0';
+const stroke = 1.75;
+---
+
+{
+	id === 'all' && (
+		<svg class={svgClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+			<rect x="3" y="3" width="7" height="7" rx="1.5" stroke-width={stroke} />
+			<rect x="14" y="3" width="7" height="7" rx="1.5" stroke-width={stroke} />
+			<rect x="3" y="14" width="7" height="7" rx="1.5" stroke-width={stroke} />
+			<rect x="14" y="14" width="7" height="7" rx="1.5" stroke-width={stroke} />
+		</svg>
+	)
+}
+{
+	id === 'aix' && (
+		<svg class={svgClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+			<rect x="4" y="4" width="16" height="16" rx="3" stroke-width={stroke} />
+			<path
+				d="M9 9.5h6M9 12.5h4M9 15.5h5"
+				stroke-width={stroke}
+				stroke-linecap="round"
+			/>
+			<circle cx="16.5" cy="8.5" r="1.25" fill="currentColor" stroke="none" />
+		</svg>
+	)
+}
+{
+	id === 'design-system' && (
+		<svg class={svgClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+			<rect x="3" y="3" width="8" height="8" rx="1.5" stroke-width={stroke} />
+			<rect x="13" y="3" width="8" height="8" rx="1.5" stroke-width={stroke} />
+			<rect x="3" y="13" width="8" height="8" rx="1.5" stroke-width={stroke} />
+			<path d="M13 17h8M17 13v8" stroke-width={stroke} stroke-linecap="round" />
+		</svg>
+	)
+}
+{
+	id === 'ux-strategy' && (
+		<svg class={svgClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+			<path d="M4 6h16M4 12h10M4 18h16" stroke-width={stroke} stroke-linecap="round" />
+			<circle cx="18" cy="12" r="2.5" stroke-width={stroke} />
+		</svg>
+	)
+}
+{
+	id === 'mentorship' && (
+		<svg class={svgClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+			<circle cx="9" cy="8" r="3" stroke-width={stroke} />
+			<path
+				d="M3.5 19.5c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"
+				stroke-width={stroke}
+				stroke-linecap="round"
+			/>
+			<circle cx="17" cy="9" r="2.5" stroke-width={stroke} />
+			<path
+				d="M14.5 19.5c.4-2.2 1.8-3.5 3.5-3.5 1.4 0 2.6.7 3.2 2.2"
+				stroke-width={stroke}
+				stroke-linecap="round"
+			/>
+		</svg>
+	)
+}
+{
+	id === 'art' && (
+		<svg class={svgClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+			<path
+				d="M12 3c-4 0-7 2.5-7 6.5 0 2.2 1.2 4 3 5.2-.3.9-.5 1.8-.5 2.8 0 .6.4 1 1 1h6c.6 0 1-.4 1-1 0-1-.2-1.9-.5-2.8 1.8-1.2 3-3 3-5.2C19 5.5 16 3 12 3Z"
+				stroke-width={stroke}
+				stroke-linejoin="round"
+			/>
+			<circle cx="8.5" cy="8" r="1" fill="currentColor" stroke="none" />
+			<circle cx="12" cy="6.5" r="1" fill="currentColor" stroke="none" />
+			<circle cx="15.5" cy="8.5" r="1" fill="currentColor" stroke="none" />
+		</svg>
+	)
+}
+{
+	id === 'brand-design' && (
+		<svg class={svgClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+			<rect x="3" y="7" width="18" height="10" rx="2" stroke-width={stroke} />
+			<path d="M7 11h4M7 14h2.5" stroke-width={stroke} stroke-linecap="round" />
+			<circle cx="16.5" cy="12.5" r="2" stroke-width={stroke} />
+		</svg>
+	)
+}

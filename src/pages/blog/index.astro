@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/blog/PostList.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.map((post) => ({
+		slug: post.id,
+		title: post.data.title,
+		description: post.data.description,
+		pubDate: post.data.pubDate,
+		updatedDate: post.data.updatedDate,
+		tags: post.data.tags,
+	}));
+---
+
+<BaseLayout title="Blog" description="Writing on design, teaching, and making.">
+	<section class="page-shell section-gap max-w-3xl">
+		<header>
+			<h1 class="text-display-lg">Blog</h1>
+			<p class="mt-4 text-lg text-ink-muted">
+				Markdown posts live in <code class="text-sm">src/content/blog</code>. Drafts stay hidden when
+				<code class="text-sm">draft: true</code>.
+			</p>
+		</header>
+		<div class="mt-12">
+			{posts.length === 0 ? <p class="text-ink-muted">No posts yet.</p> : <PostList posts={posts} />}
+		</div>
+	</section>
+</BaseLayout>

@@ -1,0 +1,129 @@
+---
+/** Contextual scroll down / back to top; visible while scrolling, fades after idle. */
+---
+
+<div class="scroll-jump" data-scroll-jump hidden>
+	<button type="button" class="scroll-jump__btn" data-scroll-jump-btn>
+		<span class="sr-only" data-scroll-jump-label>Scroll down</span>
+		<svg
+			class="scroll-jump__icon"
+			data-scroll-jump-icon-down
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			aria-hidden="true"
+		>
+			<path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+		</svg>
+		<svg
+			class="scroll-jump__icon scroll-jump__icon--hidden"
+			data-scroll-jump-icon-up
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			aria-hidden="true"
+		>
+			<path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+		</svg>
+	</button>
+</div>
+
+<script>
+	const BOTTOM_THRESHOLD = 64;
+	const BELOW_THRESHOLD = 96;
+	const IDLE_MS = 1100;
+
+	function initScrollJump() {
+		const win = window as Window & { __scrollJumpBound?: boolean };
+		if (win.__scrollJumpBound) return;
+		win.__scrollJumpBound = true;
+
+		const root = document.querySelector<HTMLElement>('[data-scroll-jump]');
+		const btn = document.querySelector<HTMLButtonElement>('[data-scroll-jump-btn]');
+		const label = document.querySelector<HTMLElement>('[data-scroll-jump-label]');
+		const iconDown = document.querySelector<SVGElement>('[data-scroll-jump-icon-down]');
+		const iconUp = document.querySelector<SVGElement>('[data-scroll-jump-icon-up]');
+
+		if (!root || !btn || !label || !iconDown || !iconUp) return;
+
+		let idleTimer: ReturnType<typeof setTimeout> | undefined;
+		let mode: 'down' | 'up' | null = null;
+
+		const pageScrollable = () =>
+			document.documentElement.scrollHeight > window.innerHeight + BOTTOM_THRESHOLD;
+
+		const atBottom = () =>
+			window.scrollY + window.innerHeight >=
+			document.documentElement.scrollHeight - BOTTOM_THRESHOLD;
+
+		const hasContentBelow = () =>
+			window.scrollY + window.innerHeight <
+			document.documentElement.scrollHeight - BELOW_THRESHOLD;
+
+		const resolveMode = (): 'down' | 'up' | null => {
+			if (!pageScrollable()) return null;
+			if (atBottom()) return 'up';
+			if (hasContentBelow()) return 'down';
+			return null;
+		};
+
+		const setMode = (next: 'down' | 'up' | null) => {
+			mode = next;
+			if (!next) {
+				root.hidden = true;
+				root.classList.remove('is-visible');
+				return;
+			}
+			root.hidden = false;
+			const isUp = next === 'up';
+			label.textContent = isUp ? 'Back to top' : 'Scroll down';
+			iconDown.classList.toggle('scroll-jump__icon--hidden', isUp);
+			iconUp.classList.toggle('scroll-jump__icon--hidden', !isUp);
+		};
+
+		const hide = () => {
+			root.classList.remove('is-visible');
+		};
+
+		const show = () => {
+			if (!mode) return;
+			root.classList.add('is-visible');
+		};
+
+		const scheduleHide = () => {
+			if (idleTimer) clearTimeout(idleTimer);
+			idleTimer = setTimeout(hide, IDLE_MS);
+		};
+
+		const onScroll = () => {
+			setMode(resolveMode());
+			show();
+			scheduleHide();
+		};
+
+		btn.addEventListener('click', () => {
+			const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (mode === 'up') {
+				window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+			} else if (mode === 'down') {
+				const step = Math.max(window.innerHeight * 0.82, 320);
+				window.scrollBy({ top: step, behavior: reduce ? 'auto' : 'smooth' });
+			}
+			scheduleHide();
+		});
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', () => {
+			setMode(resolveMode());
+			if (!mode) hide();
+		});
+
+		setMode(resolveMode());
+		hide();
+	}
+
+	initScrollJump();
+	document.addEventListener('astro:page-load', initScrollJump);
+</script>

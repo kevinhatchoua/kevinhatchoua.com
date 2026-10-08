@@ -1,0 +1,46 @@
+---
+interface Props {
+	src: string;
+	alt: string;
+	caption?: string;
+	aspect?: 'portrait' | 'landscape' | 'square';
+	objectPosition?: string;
+	variant?: 'hero' | 'story' | 'accent';
+	class?: string;
+}
+
+const {
+	src,
+	alt,
+	caption,
+	aspect = 'landscape',
+	objectPosition = 'center',
+	variant = 'story',
+	class: className,
+} = Astro.props;
+
+const aspectClass =
+	aspect === 'portrait'
+		? 'aspect-[4/5]'
+		: aspect === 'square'
+			? 'aspect-square'
+			: 'aspect-[5/4]';
+---
+
+<figure
+	class:list={['about-photo', `about-photo--${variant}`, className]}
+	data-reveal
+>
+	<div class:list={['about-photo__frame', aspectClass]}>
+		<div class="about-photo__ring" aria-hidden="true"></div>
+		<img
+			src={src}
+			alt={alt}
+			class="about-photo__img"
+			style={`object-position: ${objectPosition}`}
+			loading="lazy"
+			decoding="async"
+		/>
+	</div>
+	{caption && <figcaption class="about-photo__caption">{caption}</figcaption>}
+</figure>

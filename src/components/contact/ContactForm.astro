@@ -1,0 +1,78 @@
+---
+const formId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID;
+const action = formId ? `https://formspree.io/f/${formId}` : undefined;
+---
+
+{
+	!action ? (
+		<div
+			class="rounded-lg border border-border bg-accent-soft/40 p-6 text-ink-muted"
+			role="status"
+		>
+			<p class="font-medium text-ink">Contact form not configured yet</p>
+			<p class="mt-2 text-sm">
+				Add <code class="rounded bg-canvas-elevated px-1">PUBLIC_FORMSPREE_FORM_ID</code> to your
+				<code class="rounded bg-canvas-elevated px-1">.env</code> (see <code class="rounded bg-canvas-elevated px-1">.env.example</code>).
+			</p>
+		</div>
+	) : (
+		<form
+			class="space-y-6"
+			method="POST"
+			action={action}
+			accept-charset="UTF-8"
+		>
+			<div class="hidden" aria-hidden="true">
+				<label>
+					Do not fill this out
+					<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+				</label>
+			</div>
+
+			<div>
+				<label for="name" class="block text-sm font-medium text-ink">Name</label>
+				<input
+					id="name"
+					name="name"
+					type="text"
+					required
+					autocomplete="name"
+					class="mt-2 w-full rounded-md border border-border bg-canvas-elevated px-4 py-2.5 text-ink placeholder:text-ink-subtle focus:border-accent focus:outline-none focus:ring-2 focus:ring-focus/30"
+				/>
+			</div>
+
+			<div>
+				<label for="email" class="block text-sm font-medium text-ink">Email</label>
+				<input
+					id="email"
+					name="email"
+					type="email"
+					required
+					autocomplete="email"
+					class="mt-2 w-full rounded-md border border-border bg-canvas-elevated px-4 py-2.5 text-ink placeholder:text-ink-subtle focus:border-accent focus:outline-none focus:ring-2 focus:ring-focus/30"
+				/>
+			</div>
+
+			<div>
+				<label for="message" class="block text-sm font-medium text-ink">Message</label>
+				<textarea
+					id="message"
+					name="message"
+					rows="6"
+					required
+					class="mt-2 w-full rounded-md border border-border bg-canvas-elevated px-4 py-2.5 text-ink placeholder:text-ink-subtle focus:border-accent focus:outline-none focus:ring-2 focus:ring-focus/30"
+				/>
+			</div>
+
+			<button
+				type="submit"
+				class="inline-flex items-center justify-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-canvas-elevated transition-colors hover:bg-accent-hover"
+			>
+				Send message
+			</button>
+			<p class="text-sm text-ink-subtle">
+				I read every note personally. No mailing list, no auto-reply theater.
+			</p>
+		</form>
+	)
+}

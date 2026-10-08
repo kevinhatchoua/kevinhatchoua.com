@@ -1,0 +1,32 @@
+---
+import { getSiteDisplayYear } from '../../utils/siteYear';
+
+const year = await getSiteDisplayYear();
+---
+
+<footer class="mt-auto border-t border-border">
+	<div class="page-shell flex flex-col gap-4 py-10 sm:flex-row sm:items-end sm:justify-between">
+		<p class="text-sm text-ink-muted">
+			<span class="font-sans font-semibold text-ink">Kevin Hatchoua</span>
+			<span class="mx-2 text-ink-subtle" aria-hidden="true">·</span>
+			<q class="italic text-ink-muted">Make things better, by making better things.</q>
+		</p>
+		<div class="flex flex-col gap-2 text-sm text-ink-subtle sm:items-end sm:text-right">
+			<p>© {year}</p>
+			<p class="inline-flex flex-wrap items-center gap-1">
+				<span>Made by Cursor, with a human touch</span>
+				<svg
+					class="size-3.5 shrink-0 text-md-primary"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					role="img"
+					aria-label="love"
+				>
+					<path
+						d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+					></path>
+				</svg>
+			</p>
+		</div>
+	</div>
+</footer>

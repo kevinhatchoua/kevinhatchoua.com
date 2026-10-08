@@ -1,0 +1,40 @@
+---
+const passions = [
+	{
+		title: 'Design practice',
+		body: 'Enterprise UX by day — with intention to keep this space personal, not dashboard-shaped.',
+	},
+	{
+		title: 'Teaching & mentoring',
+		body: 'Helping people grow their craft through critique, structure, and patience.',
+	},
+	{
+		title: 'Snow & line',
+		body: 'Snowboarding and drawing train the same muscle: balance, rhythm, and knowing when to stop.',
+	},
+	{
+		title: 'Color & surface',
+		body: 'Painting and writing are where ideas slow down enough to become something you can hold.',
+	},
+];
+---
+
+<section class="page-shell pb-20 sm:pb-28" aria-labelledby="passions-heading">
+	<div class="max-w-2xl">
+		<h2 id="passions-heading" class="text-display-md">Life beyond the deliverable</h2>
+		<p class="mt-4 text-ink-muted">
+			Replace these placeholders with your voice. The layout is built to hold professional story and
+			personal texture in the same breath.
+		</p>
+	</div>
+	<ul class="mt-12 grid gap-6 sm:grid-cols-2">
+		{
+			passions.map((item) => (
+				<li class="rounded-lg border border-border bg-canvas-elevated/50 p-6">
+					<h3 class="font-display text-xl">{item.title}</h3>
+					<p class="mt-2 text-ink-muted">{item.body}</p>
+				</li>
+			))
+		}
+	</ul>
+</section>

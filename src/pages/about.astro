@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Masthead from '../components/home/Masthead.astro';
+import AboutPhoto from '../components/about/AboutPhoto.astro';
+import Button from '../components/ui/Button.astro';
+
+const photos = {
+	hero: '/images/about/devconf-speaking.jpg',
+	uxpa: '/images/about/uxpa-community.jpg',
+	family: '/images/about/family-moment.jpg',
+	team: '/images/about/team-celebration.jpg',
+};
+---
+
+<BaseLayout
+	title="About me"
+	description="Kevin Hatchoua on design, public service, open source, and community."
+	hideSiteHeader
+>
+	<Masthead active="about" />
+
+	<article class="about-page">
+		<header class="about-hero mx-auto max-w-7xl px-4 pb-16 pt-10 md:px-8 md:pb-24 md:pt-14">
+			<div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+				<div class="lg:col-span-5" data-reveal>
+					<AboutPhoto
+						src={photos.hero}
+						alt="Kevin Hatchoua speaking at DevConf, applauding at a conference podium"
+						caption="Sharing ideas in the open at DevConf."
+						aspect="portrait"
+						objectPosition="center 22%"
+						variant="hero"
+					/>
+				</div>
+				<div class="lg:col-span-7" data-reveal data-reveal-delay="1">
+					<p class="font-sans text-sm font-semibold uppercase tracking-[0.2em] text-md-primary">
+						About me
+					</p>
+					<h1 class="mt-4 font-display text-4xl font-semibold leading-tight text-md-on-surface md:text-5xl">
+						Community, craft, and design that stays human.
+					</h1>
+					<p class="mt-6 font-sans text-lg leading-relaxed text-md-on-surface-variant">
+						I am Kevin Hatchoua, a catalyst for change and Senior User Experience Designer at Red Hat.
+						Since moving to the United States from Cameroon as a child, I have been fueled by a simple
+						commitment: empower children, expand opportunity, and narrow disparities between
+						communities.
+					</p>
+					<p class="mt-4 font-sans text-base leading-relaxed text-md-on-surface-variant">
+						Today I shape discover, learn, try, and onboarding journeys across the open hybrid cloud,
+						contribute to the PatternFly design system, and support inclusion through Red Hat
+						B.U.I.L.D. Off the clock you will find me mentoring through BU Spark!, volunteering with
+						UXPA Boston, and serving on the boards of Virtual Activism and AfriHope.
+					</p>
+					<div class="mt-8 flex flex-wrap gap-3">
+						<Button href="/contact">Get in touch</Button>
+						<Button href="/" variant="ghost">View projects</Button>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<section class="about-chapter border-t border-md-outline-variant/50 bg-md-surface-container-low">
+			<div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
+				<div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+					<div data-reveal>
+						<h2 class="font-display text-3xl font-semibold text-md-on-surface">Open collaboration at Red Hat</h2>
+						<div class="mt-6 space-y-4 font-sans text-md-on-surface-variant">
+							<p>
+								My Red Hat team is where open collaboration is everyday practice: designers, engineers,
+								product managers, and docs partners working in the open, sharing work early, and
+								improving it together. We succeed when feedback is welcome, assumptions are tested, and
+								everyone can contribute regardless of role or tenure.
+							</p>
+							<p>
+								Inclusivity and resiliency are how we sustain that pace. I help create rooms where people
+								can bring their full perspective, recover quickly when plans shift, and keep hybrid cloud
+								experiences coherent for customers who depend on us. That mindset carries into
+								PatternFly, B.U.I.L.D., and the cross-functional programs that shape how Red Hat shows up
+								for users.
+							</p>
+						</div>
+						<p class="mt-6">
+							<a
+								href="https://design.redhat.com/designer-stories/kevin-hatchoua.html"
+								class="font-sans text-sm font-semibold text-md-primary no-underline hover:text-md-primary-hover"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Red Hat Design designer story →
+							</a>
+						</p>
+					</div>
+					<AboutPhoto
+						src={photos.team}
+						alt="Kevin Hatchoua with his Red Hat team at a celebration"
+						caption="My Red Hat team: building in the open and celebrating milestones together."
+						objectPosition="center 35%"
+						variant="story"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section class="about-chapter">
+			<div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
+				<div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+					<AboutPhoto
+						src={photos.uxpa}
+						alt="Kevin Hatchoua volunteering at a UXPA Boston elections event"
+						caption="Volunteering Chair, UXPA Boston board."
+						objectPosition="center 20%"
+						variant="accent"
+						class="lg:order-1"
+					/>
+					<div class="lg:order-2" data-reveal data-reveal-delay="1">
+						<h2 class="font-display text-3xl font-semibold text-md-on-surface">Community in practice</h2>
+						<div class="mt-6 space-y-4 font-sans text-md-on-surface-variant">
+							<p>
+								As Volunteering Chair on the UXPA Boston board, I help New England's largest UX chapter
+								stay welcoming for emerging designers and sustainable for volunteers. Conference
+								programming, mentorship, and blind-reviewed speaker pipelines are how we lower barriers
+								and keep the craft generous.
+							</p>
+							<p>
+								My UXPA bio mirrors what I believe on every project: design and technology only matter
+								when they create real community impact. That is why nonprofit board service with Virtual
+								Activism and AfriHope stays central to how I work, not an aside on a resume.
+							</p>
+						</div>
+						<p class="mt-6">
+							<a
+								href="https://uxpaboston.org/board/kevin-hatchoua/"
+								class="font-sans text-sm font-semibold text-md-primary no-underline hover:text-md-primary-hover"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								UXPA Boston board profile →
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="about-chapter border-t border-md-outline-variant/50 bg-md-surface-container-low">
+			<div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
+				<div class="mx-auto max-w-3xl text-center" data-reveal>
+					<h2 class="font-display text-3xl font-semibold text-md-on-surface">Mentorship at BU Spark!</h2>
+					<p class="mt-6 font-sans text-lg leading-relaxed text-md-on-surface-variant">
+						Through Boston University's Spark! Experts in Residence program, I mentor CDS student teams on
+						human-centered computing: problem framing, research synthesis, prototype storytelling, and
+						stakeholder reviews that respect semester timelines. Spark! is where industry craft meets
+						student ambition, and where I get to pay forward the mentors who shaped me.
+					</p>
+					<p class="mt-6">
+						<a
+							href="https://www.bu.edu/spark/about/eirs/"
+							class="font-sans text-sm font-semibold text-md-primary no-underline hover:text-md-primary-hover"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							BU Spark! Experts in Residence →
+						</a>
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="about-chapter">
+			<div class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
+				<div class="grid grid-cols-1 items-end gap-12 lg:grid-cols-12">
+					<div class="lg:col-span-7" data-reveal>
+						<h2 class="font-display text-3xl font-semibold text-md-on-surface">Life away from the canvas</h2>
+						<p class="mt-6 font-sans text-lg leading-relaxed text-md-on-surface-variant">
+							The best ideas arrive when I am present with family: silly faces on a sunny day, long walks,
+							and reminders that the work is always in service of real people. I bring that same warmth
+							into facilitation, critique, and the rooms where decisions get made.
+						</p>
+						<p class="mt-6 font-sans text-md-on-surface-variant">
+							For the fuller professional timeline, including Red Hat, Mass.gov, and open source
+							contributions, see my
+							<a
+								href="https://www.linkedin.com/in/kevinhatchoua/"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="font-semibold text-md-primary"
+							>
+								LinkedIn profile</a
+							>.
+						</p>
+					</div>
+					<div class="lg:col-span-5" data-reveal data-reveal-delay="2">
+						<AboutPhoto
+							src={photos.family}
+							alt="Kevin Hatchoua with family outdoors on a bright day"
+							caption="Joy keeps the work honest."
+							aspect="square"
+							objectPosition="center 40%"
+							variant="story"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+	</article>
+</BaseLayout>

@@ -1,0 +1,161 @@
+---
+const blocks = {
+	classroom: {
+		label: 'The Classroom',
+		kicker: 'Teaching & community',
+		image:
+			'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1600&q=80',
+		body:
+			'Entrepreneur-in-Residence for UX at Boston University, Career Mentor at Quinsigamond Community College, and on the Board of Directors for UXPA Boston. I care about youth, access, and designers who show up for each other.',
+	},
+	canvas: {
+		label: 'The Canvas',
+		kicker: 'Enterprise UX, human stakes',
+		image:
+			'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1600&q=80',
+		body:
+			'By day I untangle complex product problems: clarity in the console, dignity in the workflow, research that earns its seat at the table. The work should feel as considered as a magazine spread, not a dashboard dump.',
+	},
+	human: {
+		label: 'The Human',
+		kicker: 'Family · snow · kitchen · color',
+		image:
+			'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=1600&q=80',
+		body:
+			'Free-spirited and family-driven. Snowboarding lines, Sunday cooking, paint on my hands, art on the wall. Adventure is how I stay honest about what matters when the pixels come off.',
+	},
+};
+---
+
+<section class="relative overflow-hidden bg-canvas py-24 sm:py-32" aria-labelledby="ecosystem-heading">
+	<div class="editorial-shell mb-16 max-w-3xl" data-reveal>
+		<p class="text-sm font-semibold uppercase tracking-[0.28em] text-accent">The ecosystem</p>
+		<h2 id="ecosystem-heading" class="mt-4 text-display-statement">
+			Three worlds,<br class="hidden sm:block" />
+			one practice.
+		</h2>
+		<p class="mt-6 text-lg text-ink-muted">
+			Not a grid of equal cards. A collage where teaching, craft, and life overlap the way they do
+			in real weeks.
+		</p>
+	</div>
+
+	<div class="editorial-shell">
+		<div class="grid grid-cols-12 gap-y-10 gap-x-4 lg:gap-x-6">
+			<!-- Block A: The Classroom -->
+			<article
+				class="relative z-10 col-span-12 md:col-span-7 lg:col-span-6"
+				data-reveal
+				data-reveal-delay="1"
+			>
+				<div
+					class="relative aspect-[4/5] overflow-hidden sm:aspect-[5/6] lg:aspect-[4/5]"
+					data-parallax
+					data-parallax-rate="0.1"
+				>
+					<div class="absolute inset-0" data-parallax-inner>
+						<img
+							src={blocks.classroom.image}
+							alt="Students collaborating in a bright classroom (placeholder)"
+							class="image-cover"
+							loading="lazy"
+							decoding="async"
+						/>
+					</div>
+				</div>
+				<div
+					class="relative -mt-16 ml-4 max-w-md bg-canvas-elevated/95 p-6 shadow-soft backdrop-blur-sm sm:-mt-24 sm:ml-8 sm:p-8 lg:-mt-28"
+				>
+					<p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+						{blocks.classroom.kicker}
+					</p>
+					<h3 class="mt-2 font-display text-3xl sm:text-4xl">{blocks.classroom.label}</h3>
+					<p class="mt-4 text-ink-muted">{blocks.classroom.body}</p>
+				</div>
+			</article>
+
+			<!-- Block B: The Canvas -->
+			<article
+				class="relative z-20 col-span-12 md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-8 md:-mt-32 lg:-mt-40"
+				data-reveal
+				data-reveal-delay="2"
+			>
+				<p
+					class="pointer-events-none absolute -right-2 top-8 z-0 hidden font-display text-[clamp(3rem,8vw,5.5rem)] leading-none text-accent-soft/80 lg:block"
+					aria-hidden="true"
+				>
+					Canvas
+				</p>
+				<div
+					class="relative aspect-[16/11] overflow-hidden md:aspect-[4/3]"
+					data-parallax
+					data-parallax-rate="0.14"
+				>
+					<div class="absolute inset-0" data-parallax-inner>
+						<img
+							src={blocks.canvas.image}
+							alt="Designer workspace with sketches and screens (placeholder)"
+							class="image-cover"
+							loading="lazy"
+							decoding="async"
+						/>
+					</div>
+				</div>
+				<div class="relative -mr-2 mt-6 max-w-lg md:absolute md:-left-12 md:bottom-6 md:mt-0 md:max-w-sm">
+					<p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+						{blocks.canvas.kicker}
+					</p>
+					<h3 class="mt-2 font-display text-3xl sm:text-4xl">{blocks.canvas.label}</h3>
+					<p class="mt-4 text-ink-muted">{blocks.canvas.body}</p>
+				</div>
+			</article>
+
+			<!-- Block C: The Human -->
+			<article
+				class="relative z-30 col-span-12 lg:col-span-7 lg:col-start-1 lg:-mt-20"
+				data-reveal
+				data-reveal-delay="3"
+			>
+				<div class="grid grid-cols-12 items-end gap-4">
+					<div class="col-span-12 sm:col-span-7">
+						<p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+							{blocks.human.kicker}
+						</p>
+						<h3 class="mt-2 font-display text-display-md sm:text-4xl">{blocks.human.label}</h3>
+						<p class="mt-4 max-w-md text-ink-muted">{blocks.human.body}</p>
+					</div>
+					<div
+						class="relative col-span-12 sm:col-span-5 sm:-mb-6 sm:-mt-16"
+						data-parallax
+						data-parallax-rate="0.12"
+					>
+						<div class="aspect-[3/4] overflow-hidden sm:translate-x-6" data-parallax-inner>
+							<img
+								src={blocks.human.image}
+								alt="Warm family moment outdoors (placeholder)"
+								class="image-cover"
+								loading="lazy"
+								decoding="async"
+							/>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+	</div>
+
+	<div class="editorial-bleed mt-28 border-y border-border/80 bg-ink py-14 text-canvas" data-reveal>
+		<div class="editorial-shell flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+			<p class="max-w-2xl font-display text-2xl sm:text-3xl leading-snug">
+				“Design is how I show up for community: the student who did not know UX was a career, the
+				team sweating the details, the family waiting at home.”
+			</p>
+			<a
+				href="/work"
+				class="shrink-0 text-sm font-semibold uppercase tracking-[0.2em] text-canvas no-underline hover:text-accent-soft"
+			>
+				View selected work →
+			</a>
+		</div>
+	</div>
+</section>

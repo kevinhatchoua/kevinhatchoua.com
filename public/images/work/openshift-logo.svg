@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" aria-label="OpenShift">
+  <circle cx="24" cy="24" r="20" fill="#EE0000"/>
+  <circle cx="24" cy="24" r="12" fill="#FFFFFF"/>
+  <circle cx="24" cy="24" r="6" fill="#EE0000"/>
+  <text x="52" y="32" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#1C1B1F">OpenShift</text>
+</svg>

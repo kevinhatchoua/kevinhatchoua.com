@@ -1,43 +1,47 @@
-# Astro Starter Kit: Minimal
+# kevinhatchou.com
 
-```sh
-npm create astro@latest -- --template minimal
+Personal portfolio and blog for Kevin Hatchoua. Built with Astro, Tailwind CSS 4, and git-based markdown content.
+
+## Stack
+
+- [Astro](https://astro.build) (static-first)
+- Tailwind CSS 4 via `@tailwindcss/vite`
+- Content collections: `src/content/blog`, `src/content/work`
+- Contact: [Formspree](https://formspree.io) (`PUBLIC_FORMSPREE_FORM_ID`)
+- Home page: GitHub public events for **Latest contributions** (optional `GITHUB_TOKEN`, `GITHUB_USERNAME`)
+
+## Local development
+
+```bash
+npm install
+cp .env.example .env   # add your Formspree form id
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open [http://localhost:4321](http://localhost:4321).
 
-## 🚀 Project Structure
+## Content
 
-Inside of your Astro project, you'll see the following folders and files:
+| Type | Path | Notes |
+|------|------|--------|
+| Blog posts | `src/content/blog/*.md` | Set `draft: true` to hide |
+| Case studies | `src/content/work/*.md` | `order` controls sort on `/work` |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Deploy (Vercel)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+1. Import this repo in Vercel.
+2. Framework preset: **Astro** (default build: `npm run build`, output: `dist`).
+3. Add environment variable `PUBLIC_FORMSPREE_FORM_ID`.
+4. Optional: `GITHUB_TOKEN` (fine-grained or classic PAT with no scopes needed for public events) to avoid API rate limits on the home page. Optional `GITHUB_USERNAME` (defaults to `kevinhatchoua`).
+5. Add custom domain `kevinhatchou.com` in Vercel → Domains.
+6. In GoDaddy DNS, point to Vercel per [their DNS docs](https://vercel.com/docs/projects/domains/add-a-domain) (typically `A` record to Vercel IP or `CNAME` for `www`).
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The home page (`/`) is server-rendered on Vercel so **Latest contributions** stays in sync with your public GitHub activity. All other routes remain static.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Privacy
 
-## 🧞 Commands
+No email, phone, or resume file is rendered on the site. Contact is form-only.
 
-All commands are run from the root of the project, from a terminal:
+## Design tokens
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Warm canvas, Open Sans with Helvetica Neue fallback, terracotta accent. See `src/styles/tokens.css`.

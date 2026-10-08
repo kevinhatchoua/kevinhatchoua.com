@@ -1,16 +1,61 @@
 ---
+export const prerender = false;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Masthead from '../components/home/Masthead.astro';
+import FilterChips from '../components/home/FilterChips.astro';
+import WorkGrid from '../components/home/WorkGrid.astro';
+import BlogSidebar from '../components/home/BlogSidebar.astro';
+import ContributionsSidebar from '../components/home/ContributionsSidebar.astro';
+import HomeIntro from '../components/home/HomeIntro.astro';
+import { getCollection } from 'astro:content';
+import { getLatestContributions } from '../utils/github';
+
+const studies = (await getCollection('work', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.order - a.data.order || b.data.year - a.data.year,
+);
+
+const projects = studies.map((study) => ({
+	id: study.id,
+	title: study.data.title,
+	description: study.data.description,
+	year: study.data.year,
+	role: study.data.role,
+	category: study.data.category,
+	href: `/work/${study.id}`,
+	heroImage: study.data.heroImage,
+}));
+
+const blogPosts = (await getCollection('blog', ({ data }) => !data.draft))
+	.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+	.slice(0, 5)
+	.map((post) => ({
+		title: post.data.title,
+		href: `/blog/${post.id}`,
+		pubDate: post.data.pubDate,
+	}));
+
+const contributions = await getLatestContributions();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+	title="Projects"
+	description="Selected UX strategy, mentorship, art, and brand design work by Kevin Hatchoua."
+	hideSiteHeader
+>
+	<Masthead active="projects" />
+	<HomeIntro />
+
+	<div class="mx-auto max-w-7xl px-4 pb-8 pt-0 md:px-8">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-12">
+			<div class="flex w-full min-w-0 flex-col md:col-span-8">
+				<FilterChips />
+				<WorkGrid projects={projects} />
+			</div>
+			<div class="flex flex-col gap-8 md:col-span-4 md:sticky md:top-[4.5rem] md:self-start">
+				<BlogSidebar posts={blogPosts} />
+				<ContributionsSidebar contributions={contributions} />
+			</div>
+		</div>
+	</div>
+</BaseLayout>
