@@ -73,6 +73,14 @@
 		& blockquote {
 			@apply border-l-2 border-accent-soft pl-5 italic text-ink-muted;
 		}
+
+		& img {
+			@apply my-8 w-full rounded-xl border border-border bg-canvas-elevated;
+		}
+
+		& em {
+			@apply text-sm text-ink-subtle not-italic;
+		}
 	}
 
 	.page-shell {

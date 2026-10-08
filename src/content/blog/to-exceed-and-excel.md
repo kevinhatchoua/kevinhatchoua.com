@@ -2,12 +2,23 @@
 title: To Exceed and Excel
 description: Is it more important to surpass expectations or to outdo and outperform?
 pubDate: 2023-02-23
-draft: False
+draft: false
 tags:
-  - essay
+  - Design thinking
+  - Thought leadership
+  - UX design
 ---
+
 Is it more important to surpass expectations or to outdo and outperform?
 
-![To Exceed and Excel](https://img1.wsimg.com/isteam/ip/8639b24b-5804-419c-af3d-29382d45e382/Success%402x.png)
+I argue both as it's important to tilt to context.
 
-_Originally published on [kevinhatchoua.com](https://kevinhatchoua.com/all-things/f/to-exceed-and-excel)._
+![Mountains and ruler icon symbolizing growth and measurement](/images/blog/to-exceed-and-excel.png)
+
+We live in increasingly competitive environments that constantly push us against ranks.
+
+It's attractive because it's popular, convenient, and measured. However, it is not impossible to do the bare minimum and still come out first.
+
+Rather we should seek to push beyond boundaries. Challenge the status quo. Do the unthinkable.
+
+This is where we grow. This is where innovation happens.

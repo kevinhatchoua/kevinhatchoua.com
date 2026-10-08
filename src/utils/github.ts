@@ -8,7 +8,8 @@ export interface GitHubContributionItem {
 const GITHUB_API = 'https://api.github.com';
 const DEFAULT_USERNAME = 'kevinhatchoua';
 const MAX_ITEMS = 5;
-const EVENTS_PER_PAGE = 30;
+const EVENTS_PER_PAGE = 100;
+const MAX_EVENT_PAGES = 3;
 
 const SKIPPED_EVENT_TYPES = new Set([
 	'WatchEvent',
@@ -47,6 +48,12 @@ function githubHeaders(): HeadersInit {
 
 function repoUrl(repoName: string): string {
 	return `https://github.com/${repoName}`;
+}
+
+function eventKindLabel(eventType: string): string {
+	return eventType
+		.replace(/Event$/, '')
+		.replace(/([a-z])([A-Z])/g, '$1 $2');
 }
 
 function eventToContribution(event: GitHubEvent): GitHubContributionItem | null {
@@ -157,8 +164,31 @@ function eventToContribution(event: GitHubEvent): GitHubContributionItem | null 
 				kind: 'Comment',
 			};
 		}
-		default:
-			return null;
+		default: {
+			const kind = eventKindLabel(event.type);
+			return {
+				title: `${kind} in ${repoName}`,
+				href: repoUrl(repoName),
+				occurredAt,
+				kind,
+			};
+		}
+	}
+}
+
+function collectContributions(events: GitHubEvent[], items: GitHubContributionItem[], seen: Set<string>) {
+	for (const event of events) {
+		if (SKIPPED_EVENT_TYPES.has(event.type)) continue;
+
+		const item = eventToContribution(event);
+		if (!item) continue;
+
+		const key = `${item.href}|${item.title}`;
+		if (seen.has(key)) continue;
+		seen.add(key);
+
+		items.push(item);
+		if (items.length >= MAX_ITEMS) return;
 	}
 }
 
@@ -166,37 +196,27 @@ export async function getLatestContributions(): Promise<GitHubContributionItem[]
 	const username = githubUsername();
 
 	try {
-		const response = await fetch(
-			`${GITHUB_API}/users/${encodeURIComponent(username)}/events/public?per_page=${EVENTS_PER_PAGE}`,
-			{ headers: githubHeaders() },
-		);
-
-		if (!response.ok) {
-			console.warn(`GitHub events request failed (${response.status}) for ${username}`);
-			return [];
-		}
-
-		const events = (await response.json()) as GitHubEvent[];
-		if (!Array.isArray(events)) return [];
-
 		const items: GitHubContributionItem[] = [];
 		const seen = new Set<string>();
 
-		for (const event of events) {
-			if (SKIPPED_EVENT_TYPES.has(event.type)) continue;
+		for (let page = 1; page <= MAX_EVENT_PAGES && items.length < MAX_ITEMS; page += 1) {
+			const response = await fetch(
+				`${GITHUB_API}/users/${encodeURIComponent(username)}/events/public?per_page=${EVENTS_PER_PAGE}&page=${page}`,
+				{ headers: githubHeaders() },
+			);
 
-			const item = eventToContribution(event);
-			if (!item) continue;
+			if (!response.ok) {
+				console.warn(`GitHub events request failed (${response.status}) for ${username}`);
+				break;
+			}
 
-			const key = `${item.href}|${item.title}`;
-			if (seen.has(key)) continue;
-			seen.add(key);
+			const events = (await response.json()) as GitHubEvent[];
+			if (!Array.isArray(events) || events.length === 0) break;
 
-			items.push(item);
-			if (items.length >= MAX_ITEMS) break;
+			collectContributions(events, items, seen);
 		}
 
-		return items;
+		return items.slice(0, MAX_ITEMS);
 	} catch (error) {
 		console.warn('Failed to load GitHub contributions', error);
 		return [];

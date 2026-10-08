@@ -17,7 +17,7 @@ const { title, description, pubDate, updatedDate, tags } = Astro.props;
 	<article class="page-shell section-gap max-w-3xl">
 		<header class="mb-10 border-b border-border pb-8">
 			<p class="text-sm font-medium uppercase tracking-widest text-ink-subtle">Blog</p>
-			<h1 class="mt-3 text-display-lg">{title}</h1>
+			<h1 class="mt-3 max-w-none text-display-lg text-balance">{title}</h1>
 			<p class="mt-4 text-lg text-ink-muted">{description}</p>
 			<div class="mt-6">
 				<PostMeta pubDate={pubDate} updatedDate={updatedDate} tags={tags} />
