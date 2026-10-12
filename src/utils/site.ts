@@ -9,9 +9,20 @@ export const site = {
 		{ href: '/', label: 'Projects' },
 		{ href: '/studio', label: 'Studio' },
 		{ href: '/blog', label: 'Blog' },
+		{ href: '/about', label: 'About me' },
 		{ href: '/contact', label: 'Contact' },
 	],
 } as const;
+
+export const studioFilters = [
+	{ id: 'all', label: 'All' },
+	{ id: 'doodles', label: 'Doodles & ink' },
+	{ id: 'illustration', label: 'Illustration' },
+	{ id: 'posters', label: 'Posters & print' },
+	{ id: 'motion', label: 'Motion' },
+] as const;
+
+export type StudioFilterId = (typeof studioFilters)[number]['id'];
 
 export const homeFilters = [
 	{ id: 'all', label: 'All' },

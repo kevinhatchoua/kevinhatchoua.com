@@ -1,0 +1,49 @@
+---
+/** Discourage casual save-as and drag-out of site imagery (not a security boundary). */
+---
+
+<script>
+	function protectImages() {
+		const blockImageContextMenu = (event: MouseEvent) => {
+			const target = event.target;
+			if (target instanceof HTMLImageElement) {
+				event.preventDefault();
+			}
+		};
+
+		const blockImageDrag = (event: DragEvent) => {
+			const target = event.target;
+			if (target instanceof HTMLImageElement) {
+				event.preventDefault();
+			}
+		};
+
+		document.addEventListener('contextmenu', blockImageContextMenu);
+		document.addEventListener('dragstart', blockImageDrag);
+
+		document.querySelectorAll('img').forEach((img) => {
+			img.setAttribute('draggable', 'false');
+			img.setAttribute('referrerpolicy', 'no-referrer');
+		});
+
+		const observer = new MutationObserver((mutations) => {
+			for (const mutation of mutations) {
+				for (const node of mutation.addedNodes) {
+					if (node instanceof HTMLImageElement) {
+						node.setAttribute('draggable', 'false');
+						node.setAttribute('referrerpolicy', 'no-referrer');
+					} else if (node instanceof HTMLElement) {
+						node.querySelectorAll('img').forEach((img) => {
+							img.setAttribute('draggable', 'false');
+							img.setAttribute('referrerpolicy', 'no-referrer');
+						});
+					}
+				}
+			}
+		});
+		observer.observe(document.body, { childList: true, subtree: true });
+	}
+
+	protectImages();
+	document.addEventListener('astro:page-load', protectImages);
+</script>

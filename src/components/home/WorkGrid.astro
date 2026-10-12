@@ -3,6 +3,7 @@ import FilterBadgeLink from '../ui/FilterBadgeLink.astro';
 import { homeProjectFilterHref } from '../../utils/filterLinks';
 import { categoryToFilterId } from '../../utils/site';
 import { isLogoStyleHero, resolveWorkHeroImage } from '../../utils/workHero';
+import { studioFilterIdsForArt } from '../../utils/studioArt';
 
 export interface WorkGridProject {
 	id: string;
@@ -13,6 +14,7 @@ export interface WorkGridProject {
 	category: string;
 	href: string;
 	heroImage?: string;
+	tags?: string[];
 }
 
 interface Props {
@@ -38,6 +40,9 @@ function heroSrc(path?: string) {
 		{
 			projects.map((project) => {
 				const filterId = categoryToFilterId[project.category] ?? 'ux-strategy';
+				const studioFilterIds = studio
+					? studioFilterIdsForArt(project.tags ?? [], project.id)
+					: [];
 				const resolvedHero = resolveWorkHeroImage(project.heroImage);
 				const image = heroSrc(project.heroImage);
 				const logoStyle = isLogoStyleHero(resolvedHero);
@@ -47,6 +52,7 @@ function heroSrc(path?: string) {
 						data-project-card
 						data-project-id={project.id}
 						data-category={filterId}
+						data-studio-filters={studio ? studioFilterIds.join(' ') : undefined}
 					>
 						<article
 							class="project-card group flex h-full flex-col overflow-hidden rounded-2xl border border-md-outline-variant bg-md-surface-container-lowest shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
@@ -56,6 +62,7 @@ function heroSrc(path?: string) {
 									<img
 										src={image}
 										alt=""
+										draggable="false"
 										class:list={[
 											'h-full w-full transition-transform duration-500 group-hover:scale-[1.03]',
 											logoStyle ? 'object-contain p-6' : 'object-cover',
@@ -136,13 +143,16 @@ function heroSrc(path?: string) {
 		if (!root) return;
 
 		const cards = [...root.querySelectorAll<HTMLElement>('[data-project-card]')];
-		const filterRoot = document.getElementById('home-filters');
+		const filterRoot =
+			document.getElementById('home-filters') ?? document.getElementById('studio-filters');
+		const isStudio = Boolean(document.getElementById('studio-filters'));
 		const status = document.getElementById('home-projects-status');
+		const filterParam = isStudio ? 'type' : 'filter';
 
 		let activeFilter =
-			new URLSearchParams(window.location.search).get('filter')?.trim() || 'all';
+			new URLSearchParams(window.location.search).get(filterParam)?.trim() || 'all';
 
-		if (activeFilter === 'art') {
+		if (!isStudio && activeFilter === 'art') {
 			window.location.replace('/studio');
 			return;
 		}
@@ -150,9 +160,9 @@ function heroSrc(path?: string) {
 		function syncFilterUrl(next: string) {
 			const url = new URL(window.location.href);
 			if (!next || next === 'all') {
-				url.searchParams.delete('filter');
+				url.searchParams.delete(filterParam);
 			} else {
-				url.searchParams.set('filter', next);
+				url.searchParams.set(filterParam, next);
 			}
 			window.history.replaceState({}, '', url);
 		}
@@ -160,6 +170,10 @@ function heroSrc(path?: string) {
 		function filteredCards() {
 			return cards.filter((card) => {
 				if (activeFilter === 'all') return true;
+				if (isStudio) {
+					const studioFilters = (card.dataset.studioFilters ?? '').split(/\s+/).filter(Boolean);
+					return studioFilters.includes(activeFilter);
+				}
 				return card.dataset.category === activeFilter;
 			});
 		}
@@ -171,7 +185,11 @@ function heroSrc(path?: string) {
 				chip.dataset.active = isActive ? 'true' : 'false';
 				chip.setAttribute('aria-pressed', isActive ? 'true' : 'false');
 			});
-			(window as Window & { syncHomeFilterIndicator?: () => void }).syncHomeFilterIndicator?.();
+			if (isStudio) {
+				(window as Window & { syncStudioFilterIndicator?: () => void }).syncStudioFilterIndicator?.();
+			} else {
+				(window as Window & { syncHomeFilterIndicator?: () => void }).syncHomeFilterIndicator?.();
+			}
 		}
 
 		function render() {

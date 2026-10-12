@@ -74,20 +74,6 @@ const currentPath = Astro.url.pathname;
 						<span class="sr-only">(opens in new tab)</span>
 					</a>
 				</li>
-				<li>
-					<a
-						href="/about"
-						class:list={[
-							'nav-link rounded-md px-3 py-2 text-sm font-medium no-underline',
-							currentPath === '/about' || currentPath.startsWith('/about/')
-								? 'text-ink bg-accent-soft/60'
-								: 'text-ink-muted hover:text-ink hover:bg-canvas-elevated',
-						]}
-						aria-current={currentPath.startsWith('/about') ? 'page' : undefined}
-					>
-						About me
-					</a>
-				</li>
 				<ThemeToggle variant="header" overlay={overlay} />
 			</ul>
 		</nav>

@@ -15,6 +15,7 @@ const navItems: { key: ActiveNav; href: string; label: string; external?: boolea
 	{ key: 'projects', href: '/', label: 'Projects' },
 	{ key: 'studio', href: '/studio', label: 'Studio' },
 	{ key: 'blog', href: '/blog', label: 'Blog' },
+	{ key: 'about', href: '/about', label: 'About me' },
 	{ key: 'contact', href: '/contact', label: 'Contact' },
 ];
 ---
@@ -70,20 +71,6 @@ const navItems: { key: ActiveNav; href: string; label: string; external?: boolea
 							<line x1="10" y1="14" x2="21" y2="3"></line>
 						</svg>
 						<span class="sr-only">(opens in new tab)</span>
-					</a>
-				</li>
-				<li>
-					<a
-						href="/about"
-						class:list={[
-							'inline-flex min-h-12 min-w-12 items-center justify-center rounded-full px-4 font-sans text-sm font-medium no-underline transition-colors duration-200',
-							active === 'about'
-								? 'bg-md-primary-container text-md-on-primary-container'
-								: 'text-md-on-surface-variant hover:bg-md-surface-container-high hover:text-md-on-surface',
-						]}
-						aria-current={active === 'about' ? 'page' : undefined}
-					>
-						About me
 					</a>
 				</li>
 				<ThemeToggle variant="masthead" />
