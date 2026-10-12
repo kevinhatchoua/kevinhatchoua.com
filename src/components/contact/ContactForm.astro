@@ -1,27 +1,20 @@
 ---
-const formId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID;
-const action = formId ? `https://formspree.io/f/${formId}` : undefined;
+// Basic HTML POST to Formspree (free tier). Form id is public in the browser; override via PUBLIC_FORMSPREE_FORM_ID.
+const formId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID?.trim() || 'mdealwbz';
+const site = import.meta.env.SITE ?? 'https://kevinhatchou.com';
+const thanksUrl = new URL('/contact/thanks', site).href;
+const action = `https://formspree.io/f/${formId}`;
 ---
 
-{
-	!action ? (
-		<div
-			class="rounded-lg border border-border bg-accent-soft/40 p-6 text-ink-muted"
-			role="status"
-		>
-			<p class="font-medium text-ink">Contact form not configured yet</p>
-			<p class="mt-2 text-sm">
-				Add <code class="rounded bg-canvas-elevated px-1">PUBLIC_FORMSPREE_FORM_ID</code> to your
-				<code class="rounded bg-canvas-elevated px-1">.env</code> (see <code class="rounded bg-canvas-elevated px-1">.env.example</code>).
-			</p>
-		</div>
-	) : (
-		<form
+<form
 			class="space-y-6"
 			method="POST"
 			action={action}
 			accept-charset="UTF-8"
 		>
+			<input type="hidden" name="_next" value={thanksUrl} />
+			<input type="hidden" name="_subject" value="kevinhatchou.com contact" />
+
 			<div class="hidden" aria-hidden="true">
 				<label>
 					Do not fill this out
@@ -73,6 +66,4 @@ const action = formId ? `https://formspree.io/f/${formId}` : undefined;
 			<p class="text-sm text-ink-subtle">
 				I read every note personally. No mailing list, no auto-reply theater.
 			</p>
-		</form>
-	)
-}
+</form>
