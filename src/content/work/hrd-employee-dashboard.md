@@ -51,7 +51,6 @@ Earlier Tableau views used muted greens and grays across separate race, gender, 
 
 The proposed **Employee Demographics – Executive Branch** layout groups quarterly trends, county distribution, race and gender breakdowns, and an overall gender split into one dashboard with consistent navy and cyan accents, filter controls, and a single narrative for transparency.
 
-![Final version: Employee Demographics executive branch dashboard](/images/work/hrd/dashboard-final.png)
 
 *Final version: unified dashboard with filters, map, and accessible color system.*
 

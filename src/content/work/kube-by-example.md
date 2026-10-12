@@ -36,7 +36,6 @@ Product screens from the KBE experience, highlighting lesson structure and in-fl
 - UX for navigation between examples and related resources.
 - Accessibility and readability passes on long-form instructional pages.
 
-![Kube by Example](/images/work/kube-by-example.png)
 
 ## Outcome
 

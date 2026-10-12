@@ -25,7 +25,6 @@ Wireframes, market research, and front-end design emphasizing product storytelli
 - IA for collections and lookbooks.
 - Visual design with period-appropriate typography nods.
 
-![Jeito Retro](/images/work/jeito-retro.png)
 
 ## Outcome
 

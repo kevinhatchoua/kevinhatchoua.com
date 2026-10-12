@@ -28,7 +28,6 @@ Authored wireframe patterns, annotated behaviors, and content notes tied to Patt
 - Library structure with usage guidance and accessibility callouts.
 - Feedback loops with designers embedded in product squads.
 
-![Wireframe library](/images/work/patternfly-wireframe-library.webp)
 
 ## Outcome
 

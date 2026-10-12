@@ -56,7 +56,6 @@ We deployed several changes for our Incident management, Asset management, Chang
 
 Meet with asset owners and stakeholders to determine possible builds for each role within ServiceNow, such as forms, configuration items, reports, dashboards, and portal views.
 
-![EOTSS IT Support service portal](/images/work/eotss-servicenow/it-support-portal.jpg)
 
 *IT Support portal: search, knowledge base, ticketing, and service catalog entry points.*
 

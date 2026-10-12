@@ -62,7 +62,6 @@ Conducted several rounds of testing with internal teams in the US and the Philip
 
 An easy to use and easy to implement components library built off Bootstrap and PatternFly.
 
-![2016 SeaChange style guide built on Bootstrap and PatternFly](/images/work/seachange/style-guide.png)
 
 *Style guide template with shared navigation, breadcrumbs, and popover patterns.*
 

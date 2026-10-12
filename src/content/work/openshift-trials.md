@@ -27,7 +27,6 @@ Mapped trial states, error paths, and upgrade moments. Paired UX with content st
 - Wireframes for empty states, limits, and upgrade prompts.
 - Research readouts synthesized into prioritized UX backlog items.
 
-![Trial flows](/images/work/openshift-trials.png)
 
 ## Outcome
 

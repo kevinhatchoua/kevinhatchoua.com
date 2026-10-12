@@ -25,7 +25,6 @@ Illustration-forward identity with templates for quick-turn social posts.
 - Logo explorations and color systems.
 - Print collateral and social templates.
 
-![DJ Dream Fund](/images/work/dj-dream-fund.jpg)
 
 ## Outcome
 

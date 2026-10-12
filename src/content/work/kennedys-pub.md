@@ -25,7 +25,6 @@ Front-end design, wireframes, and email campaigns grounded in neighborhood tone.
 - Site IA for hours, menus, and events.
 - Email templates for recurring promotions.
 
-![Kennedy's Pub](/images/work/kennedys-pub.jpg)
 
 ## Outcome
 

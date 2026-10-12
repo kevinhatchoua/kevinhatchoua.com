@@ -14,23 +14,22 @@ draft: false
 
 ## Context
 
-A promotional art piece highlighting Tanzania's landscapes and wildlife for a travel-themed visual series on my earlier portfolio.
+Promotional art for a travel-themed series on my earlier portfolio: Tanzania’s landscape and wildlife.
 
 ## Approach
 
-Flat silhouettes, sunset gradients, and bold headline typography to draw the eye across the composition.
+Flat silhouettes, sunset gradients, bold headline type. Lead with wonder, then the detail.
 
 ## Process
 
-- Sketched elephants, giraffe, and acacia forms as layered silhouettes.
-- Paired imagery with short invitation copy blocks.
+- Layered elephants, giraffe, and acacia as silhouettes.
+- Paired imagery with short invitation copy.
 
-![Tanzania poster](/images/work/tanzania-travel-poster.jpg)
 
 ## Outcome
 
-A standalone art artifact distinct from my UX strategy work for nonprofits.
+Standalone poster from my student visual work, separate from nonprofit UX case studies.
 
 ## Reflection
 
-Travel posters are exercises in wonder. Design the feeling first, the details second.
+Travel posters are about the feeling first. Facts can sit in the small type.

@@ -14,23 +14,22 @@ draft: false
 
 ## Context
 
-A personal visual study inspired by protest-poster energy and high-contrast graphic rhythm.
+Personal visual study: protest-poster energy, high contrast, limited palette.
 
 ## Approach
 
-Layered flat color fields, stencil-like figures, and annotated swatches to test how limited palettes carry emotion.
+Flat color fields, stencil-like figures, annotated swatches to test how far a small palette could go.
 
 ## Process
 
-- Composed silhouettes and microphone motifs in Illustrator.
-- Iterated color blocking for screen-print feasibility.
+- Silhouettes and microphone motifs in Illustrator.
+- Iterated color blocks for screen-print feasibility.
 
-![Poster study](/images/work/public-enemy-poster.png)
 
 ## Outcome
 
-A finished art piece that later lived on my legacy portfolio under visual design explorations.
+Finished print exploration from my legacy portfolio visual section.
 
 ## Reflection
 
-Sometimes the portfolio needs room for loud color that no enterprise console will ever allow.
+Sometimes you need loud color that no enterprise console will ship.

@@ -27,7 +27,6 @@ Built IA around programs, projects, and community. Paired the site with an activ
 - Visual design reflecting ecological mission.
 - SEO foundations for an established local institution.
 
-![Cuvilly website](/images/work/cuvilly.png)
 
 ## Outcome
 

@@ -58,7 +58,13 @@ const categoryFilterId = categoryToFilterId[entry.data.category] ?? 'ux-strategy
 				entry.data.externalUrl && (
 					<p class="mt-4">
 						<a href={entry.data.externalUrl} rel="noopener noreferrer" target="_blank">
-							{entry.data.externalUrl.includes('youtube') ? 'Watch on YouTube' : 'View live project'}
+							{
+								entry.data.externalUrl.includes('youtube')
+									? 'Watch on YouTube'
+									: entry.data.externalUrl.includes('behance.net')
+										? 'View on Behance'
+										: 'View live project'
+							}
 						</a>
 					</p>
 				)

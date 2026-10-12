@@ -27,7 +27,6 @@ Created template sitemaps and content types, detailed wireframes for engineering
 - Interactive wireframes for remote engineering partners.
 - JIVE CMS constraints shaped component decisions.
 
-![Dell EMC wireframes](/images/work/dell-emc.jpg)
 
 ## Outcome
 

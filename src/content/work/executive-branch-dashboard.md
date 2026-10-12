@@ -27,7 +27,6 @@ Partnered with HRD and the Governor's office on IA, chart selection, and accessi
 - Wireframes balancing attention-grabbing layout with WCAG expectations.
 - Iteration in Tableau and design tools with stakeholder reviews.
 
-![Employee dashboard](/images/work/executive-branch-dashboard.png)
 
 ## Outcome
 

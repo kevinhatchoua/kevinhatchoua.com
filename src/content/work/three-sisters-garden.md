@@ -25,7 +25,6 @@ Designed and built a lightweight site with testing on key conversion paths.
 - Information architecture for programs and seasonal content.
 - Front-end design and A/B learning on calls to action.
 
-![Three Sisters Garden](/images/work/three-sisters-garden.png)
 
 ## Outcome
 

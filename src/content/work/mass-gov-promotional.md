@@ -60,7 +60,6 @@ Responsive wireframes for a centered hero row with full-width background media, 
 
 **Technology careers** — photography-led hero with a centered card, job search, and stay-in-touch rows.
 
-![Technology Careers at the Commonwealth landing page](/images/work/mass-gov-promotional/technology-careers.jpg)
 
 [Visit Technology Careers at the Commonwealth](https://www.mass.gov/technology-careers-at-the-commonwealth-of-massachusetts)
 

@@ -56,7 +56,6 @@ Our team designed and developed a scalable design system (the Mayflower Design S
 
 This guide is an outline of the elements and strategies that make up the Mass.gov brand identity. Refer to it in order to help you create print or digital assets that will feel like they are in a similar style to Mass.gov and belong to the Commonwealth’s information ecosystem.
 
-![Mass.gov Style Guide cover](/images/work/mayflower/style-guide-cover.png)
 
 [Live demo (style guide PDF)](https://mayflower.digital.mass.gov/styleguide/Mayflower_styleguide.pdf)
 

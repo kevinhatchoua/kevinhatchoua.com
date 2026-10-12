@@ -14,7 +14,6 @@ tags:
 draft: false
 ---
 
-![FIT with Nina logo](/images/work/fit-with-nina/logo.png)
 
 ## Client
 

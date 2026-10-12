@@ -35,7 +35,6 @@ Exploration of console onboarding and navigation patterns from the Hybrid Cloud 
 - Content strategy for in-product guidance and cross-linking.
 - Iterative wireframes validated with internal stakeholders and open source contributors.
 
-![Console exploration](/images/work/hybrid-cloud-console.png)
 
 ## Outcome
 
