@@ -12,7 +12,7 @@ import { blogFilters } from '../../utils/site';
 		>
 			<div
 				id="blog-filter-indicator"
-				class="filter-indicator pointer-events-none absolute left-0 top-0 rounded-full bg-md-primary shadow-sm"
+				class="filter-indicator pointer-events-none absolute left-0 top-0"
 				aria-hidden="true"
 			>
 			</div>
@@ -43,9 +43,10 @@ import { blogFilters } from '../../utils/site';
 			const active = track.querySelector<HTMLElement>('[data-blog-filter][data-active="true"]');
 			if (!pill || !active) return;
 
+			const lineHeight = 2;
 			pill.style.width = `${active.offsetWidth}px`;
-			pill.style.height = `${active.offsetHeight}px`;
-			pill.style.transform = `translate3d(${active.offsetLeft}px, ${active.offsetTop}px, 0)`;
+			pill.style.height = `${lineHeight}px`;
+			pill.style.transform = `translate3d(${active.offsetLeft}px, ${active.offsetTop + active.offsetHeight - lineHeight}px, 0)`;
 		};
 
 		(window as Window & { syncBlogFilterIndicator?: () => void }).syncBlogFilterIndicator =

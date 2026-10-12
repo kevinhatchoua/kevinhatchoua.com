@@ -3,7 +3,7 @@ import { site } from '../../utils/site';
 import SiteBrand from '../site/SiteBrand.astro';
 import ThemeToggle from '../site/ThemeToggle.astro';
 
-type ActiveNav = 'projects' | 'blog' | 'contact' | 'about';
+type ActiveNav = 'projects' | 'studio' | 'blog' | 'contact' | 'about';
 
 interface Props {
 	active?: ActiveNav;
@@ -13,6 +13,7 @@ const { active = 'projects' } = Astro.props;
 
 const navItems: { key: ActiveNav; href: string; label: string; external?: boolean }[] = [
 	{ key: 'projects', href: '/', label: 'Projects' },
+	{ key: 'studio', href: '/studio', label: 'Studio' },
 	{ key: 'blog', href: '/blog', label: 'Blog' },
 	{ key: 'contact', href: '/contact', label: 'Contact' },
 ];

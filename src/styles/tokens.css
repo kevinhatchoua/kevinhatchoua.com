@@ -27,6 +27,14 @@
 	--color-border: #e0ddd8;
 	--color-focus: #b04a3a;
 
+	/* Studio accents (posters, ink, collage washes) */
+	--color-studio-ochre: #c9a227;
+	--color-studio-ochre-muted: color-mix(in srgb, var(--color-studio-ochre) 22%, transparent);
+	--color-studio-sage: #5c7a6b;
+	--color-studio-sage-muted: color-mix(in srgb, var(--color-studio-sage) 18%, transparent);
+	--color-studio-dusk: #4a5f8c;
+	--color-studio-dusk-muted: color-mix(in srgb, var(--color-studio-dusk) 16%, transparent);
+
 	--font-sans: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	--font-body: var(--font-sans);
 	--font-display: var(--font-sans);
@@ -78,6 +86,10 @@ html.dark {
 	--color-accent-soft: #5a2a22;
 	--color-border: #322f2d;
 	--color-focus: #e07a68;
+
+	--color-studio-ochre-muted: color-mix(in srgb, var(--color-studio-ochre) 14%, transparent);
+	--color-studio-sage-muted: color-mix(in srgb, var(--color-studio-sage) 12%, transparent);
+	--color-studio-dusk-muted: color-mix(in srgb, var(--color-studio-dusk) 14%, transparent);
 
 	--shadow-soft: 0 1px 2px rgb(0 0 0 / 0.28), 0 8px 24px rgb(0 0 0 / 0.38);
 }

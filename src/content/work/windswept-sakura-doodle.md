@@ -13,19 +13,6 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-Calmer page in the same sketchbook run: motion through petals instead of figures.
-
-## Approach
-
-Fine line on the trunk, stippling and scattered petals for the breeze. Tree leans right so wind has a direction.
-
-## Process
-
-- Petals dense near the branches, thinning as they travel across the page.
-
-
-## Outcome
-
-Quiet ink piece about impermanence. Good line-economy practice.
+Calmer page in the same sketchbook run: motion through petals instead of figures. Fine line on the trunk, stippling and scattered petals for the breeze. The tree leans right so wind has a direction. Petals stay dense near the branches and thin as they travel across the page.

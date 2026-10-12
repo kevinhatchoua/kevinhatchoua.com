@@ -1,0 +1,55 @@
+---
+import { studioGalleryPieces } from '../../data/siteArt';
+---
+
+<section class="art-gallery-strip editorial-bleed bg-md-on-surface py-16 text-md-surface sm:py-20" aria-labelledby="art-gallery-heading">
+	<div class="mx-auto max-w-7xl px-4 md:px-8">
+		<div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between" data-reveal>
+			<div>
+				<p class="text-xs font-semibold uppercase tracking-[0.28em] text-md-primary">Gallery scroll</p>
+				<h2 id="art-gallery-heading" class="mt-3 font-display text-3xl font-semibold sm:text-4xl">
+					Pieces that do not fit a Jira ticket.
+				</h2>
+			</div>
+			<a
+				href="/studio"
+				class="inline-flex min-h-12 shrink-0 items-center font-sans text-sm font-semibold uppercase tracking-[0.18em] text-md-surface no-underline hover:text-md-primary"
+			>
+				Full studio →
+			</a>
+		</div>
+	</div>
+
+	<div class="art-gallery-strip__scroller mt-10" data-reveal data-reveal-delay="1">
+		<ul class="art-gallery-strip__list" role="list">
+			{
+				studioGalleryPieces.map((piece, index) => (
+					<li class="art-gallery-strip__item">
+						<a href={piece.href} class="art-gallery-strip__card group block h-full no-underline">
+							<div class="art-gallery-strip__frame">
+								<img
+									src={piece.src}
+									alt={piece.alt}
+									class="art-gallery-strip__img"
+									loading={index < 2 ? 'eager' : 'lazy'}
+									decoding="async"
+								/>
+							</div>
+							<div class="art-gallery-strip__meta">
+								<p class="text-xs font-semibold uppercase tracking-[0.2em] text-md-primary">
+									{piece.kicker}
+								</p>
+								<h3 class="mt-1 font-display text-lg font-semibold text-md-surface group-hover:text-md-primary">
+									{piece.title}
+								</h3>
+								{piece.caption && (
+									<p class="mt-1 font-sans text-sm text-md-surface/75">{piece.caption}</p>
+								)}
+							</div>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>

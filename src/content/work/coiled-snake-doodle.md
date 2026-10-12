@@ -13,20 +13,6 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-Single-subject wildlife doodle: one coil, as much texture as I could fit on the page.
-
-## Approach
-
-Cross-hatching and short strokes for scales. Triangular head and forked tongue for a quick species read.
-
-## Process
-
-- Built one dark mass, lifted only where the pen skips.
-- Added small **Z** marks as a joke that the snake might be asleep.
-
-
-## Outcome
-
-Texture workout. Repetitive marks, steady progress.
+Single-subject wildlife doodle: one coil, as much texture as I could fit on the page. Cross-hatching and short strokes for scales; triangular head and forked tongue for a quick species read. Built one dark mass and lifted only where the pen skips. Small **Z** marks in the corner as a joke that the snake might be asleep.

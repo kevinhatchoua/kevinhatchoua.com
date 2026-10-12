@@ -13,20 +13,6 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-Portrait exercise: topography-like lines following the face, plus cap, shades, and chains.
-
-## Approach
-
-Black ink for structure. Blue ink only where I wanted accent (lenses, jewelry).
-
-## Process
-
-- Mapped the face with parallel contours instead of flat fill.
-- Left shirt and hat loose so the face carries the drawing.
-
-
-## Outcome
-
-Hand study. Same patience as spacing type on a grid.
+Portrait exercise: topography-like lines following the face, plus cap, shades, and chains. Black ink for structure; blue ink only on the lenses and jewelry. Mapped the face with parallel contours instead of flat fill, and left shirt and hat loose so the face carries the drawing.

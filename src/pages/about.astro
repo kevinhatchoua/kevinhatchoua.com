@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Masthead from '../components/home/Masthead.astro';
+import Breadcrumbs from '../components/site/Breadcrumbs.astro';
 import AboutPhoto from '../components/about/AboutPhoto.astro';
 import Button from '../components/ui/Button.astro';
-
+import { projectsCrumb, crumb } from '../utils/breadcrumbs';
 const photos = {
 	hero: '/images/about/devconf-speaking.jpg',
 	uxpa: '/images/about/uxpa-community.jpg',
@@ -20,7 +21,8 @@ const photos = {
 	<Masthead active="about" />
 
 	<article class="about-page">
-		<header class="about-hero mx-auto max-w-7xl px-4 pb-16 pt-10 md:px-8 md:pb-24 md:pt-14">
+		<header class="about-hero relative mx-auto max-w-7xl px-4 pb-16 pt-4 md:px-8 md:pb-24 md:pt-6">
+			<Breadcrumbs items={[projectsCrumb, crumb('About me')]} class="mb-8" />
 			<div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
 				<div class="lg:col-span-5" data-reveal>
 					<AboutPhoto

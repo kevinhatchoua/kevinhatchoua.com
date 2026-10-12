@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Masthead from '../components/home/Masthead.astro';
+import Breadcrumbs from '../components/site/Breadcrumbs.astro';
+import WorkGrid from '../components/home/WorkGrid.astro';
+import { projectsCrumb, crumb } from '../utils/breadcrumbs';
+import { getCollection } from 'astro:content';
+
+const artStudies = (await getCollection('work', ({ data }) => !data.draft && data.category === 'Art'))
+	.sort((a, b) => b.data.order - a.data.order || b.data.year - a.data.year);
+
+const artProjects = artStudies.map((study) => ({
+	id: study.id,
+	title: study.data.title,
+	description: study.data.description,
+	year: study.data.year,
+	role: study.data.role,
+	category: study.data.category,
+	href: `/work/${study.id}`,
+	heroImage: study.data.heroImage,
+}));
+
+const breadcrumbs = [projectsCrumb, crumb('Studio')];
+---
+
+<BaseLayout
+	title="Studio"
+	description="Ars gratia artis. Ink, doodles, motion, illustration, painting, and sketches by Kevin Hatchoua."
+	hideSiteHeader
+>
+	<Masthead active="studio" />
+
+	<header
+		class="relative overflow-hidden border-b border-md-outline-variant/60 bg-md-surface-container-low"
+	>
+		<div
+			class="pointer-events-none absolute inset-0 opacity-40"
+			aria-hidden="true"
+			style="background: radial-gradient(ellipse 90% 70% at 10% 0%, var(--color-studio-sage-muted), transparent 50%), radial-gradient(ellipse 60% 50% at 100% 100%, var(--color-studio-ochre-muted), transparent 45%);"
+		>
+		</div>
+		<div class="relative mx-auto max-w-7xl px-4 pb-16 pt-4 md:px-8 md:pb-24 md:pt-6">
+			<Breadcrumbs items={breadcrumbs} class="mb-8" />
+			<div data-reveal>
+				<p class="text-xs font-semibold uppercase tracking-[0.28em] text-md-primary">Studio</p>
+				<h1
+					class="mt-4 max-w-[16ch] font-display text-display-hero font-semibold italic leading-[1.05] text-md-primary"
+				>
+					Ars gratia artis.
+				</h1>
+				<p class="mt-8 max-w-2xl font-sans text-lg leading-relaxed text-md-on-surface-variant">
+					Every day ink to paper - Doodles, motions, illustration, painting, sketches.
+				</p>
+			</div>
+		</div>
+	</header>
+
+	<section class="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20" aria-label="Art projects">
+		{
+			artProjects.length === 0 ? (
+				<p class="text-md-on-surface-variant">No art projects published yet.</p>
+			) : (
+				<WorkGrid projects={artProjects} variant="studio" />
+			)
+		}
+	</section>
+</BaseLayout>

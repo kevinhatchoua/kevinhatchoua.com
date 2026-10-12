@@ -1,16 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/site/Breadcrumbs.astro';
+import { projectsCrumb, crumb } from '../../utils/breadcrumbs';
 import WorkSpread from '../../components/work/WorkSpread.astro';
 import { getCollection } from 'astro:content';
 
-const studies = (await getCollection('work', ({ data }) => !data.draft)).sort(
-	(a, b) => b.data.order - a.data.order || b.data.year - a.data.year,
-);
+const studies = (await getCollection('work', ({ data }) => !data.draft && data.category !== 'Art'))
+	.sort((a, b) => b.data.order - a.data.order || b.data.year - a.data.year);
 ---
 
 <BaseLayout title="Work" description="Selected design work and case studies by Kevin Hatchoua.">
-	<section class="relative overflow-hidden border-b border-border/80 bg-canvas pb-8 pt-20 sm:pt-28">
+	<section class="relative overflow-hidden border-b border-border/80 bg-canvas pb-8 pt-12 sm:pt-16">
 		<div class="editorial-shell">
+			<Breadcrumbs items={[projectsCrumb, crumb('Work')]} class="mb-8" />
 			<div class="grid grid-cols-12 gap-y-6" data-reveal>
 				<p class="col-span-12 text-sm font-semibold uppercase tracking-[0.28em] text-accent lg:col-span-3">
 					Selected work

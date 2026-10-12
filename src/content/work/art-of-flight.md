@@ -14,26 +14,8 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-A Photoshop assignment from school: a promotional poster in the same winter-sports lane as my Apex Predator work.
-
-## Approach
-
-Photo compositing, type, and contrast. Keep the read clear at poster scale.
-
-## Process
-
-- Built the hero composition in Photoshop.
-- Tuned typography and color for print and screen use.
-
+A Photoshop assignment from school: a promotional poster in the same winter-sports lane as my Apex Predator work. Photo compositing, type, and contrast, tuned for a clear read at poster scale. Built the hero composition in Photoshop and adjusted typography and color for print and screen.
 
 ![Detail crop](/images/work/art-of-flight/detail.jpg)
-
-## Outcome
-
-Finished poster piece posted to Behance alongside the rest of my student visual work.
-
-## Reflection
-
-Good training for the compositing muscle I still use when mocking console marketing pages.

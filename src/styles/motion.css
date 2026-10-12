@@ -85,6 +85,20 @@
 		transform: scale(1.015);
 	}
 
+	.home-art-collage__stamp {
+		animation: art-float 8s ease-in-out infinite;
+	}
+
+	@keyframes art-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--site-art-rotate, 0deg));
+		}
+		50% {
+			transform: translateY(-6px) rotate(calc(var(--site-art-rotate, 0deg) + 2deg));
+		}
+	}
+
 	@keyframes project-card-reveal {
 		from {
 			opacity: 0;
@@ -115,6 +129,10 @@
 	}
 
 	.project-card-reveal {
+		animation: none;
+	}
+
+	.home-art-collage__stamp {
 		animation: none;
 	}
 

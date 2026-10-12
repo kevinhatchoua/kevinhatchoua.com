@@ -12,24 +12,6 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-Personal visual study: protest-poster energy, high contrast, limited palette.
-
-## Approach
-
-Flat color fields, stencil-like figures, annotated swatches to test how far a small palette could go.
-
-## Process
-
-- Silhouettes and microphone motifs in Illustrator.
-- Iterated color blocks for screen-print feasibility.
-
-
-## Outcome
-
-Finished print exploration from my legacy portfolio visual section.
-
-## Reflection
-
-Sometimes you need loud color that no enterprise console will ship.
+Personal visual study: protest-poster energy, high contrast, limited palette. Flat color fields, stencil-like figures, annotated swatches to test how far a small palette could go. Silhouettes and microphone motifs in Illustrator; iterated color blocks for screen-print feasibility.

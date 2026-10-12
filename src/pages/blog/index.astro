@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/site/Breadcrumbs.astro';
+import { projectsCrumb, crumb } from '../../utils/breadcrumbs';
 import BlogFilterChips from '../../components/blog/BlogFilterChips.astro';
 import PostList from '../../components/blog/PostList.astro';
 import { getCollection } from 'astro:content';
@@ -26,6 +28,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <BaseLayout title="Blog" description="Writing on design, craft, and community.">
 	<section class="page-shell section-gap max-w-4xl">
+		<Breadcrumbs items={[projectsCrumb, crumb('Blog')]} class="mb-6" />
 		<header>
 			<h1 class="text-display-lg">Blog</h1>
 			<p class="mt-4 text-lg text-ink-muted">

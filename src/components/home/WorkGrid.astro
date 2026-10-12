@@ -16,9 +16,12 @@ export interface WorkGridProject {
 
 interface Props {
 	projects: WorkGridProject[];
+	/** Studio gallery: title-only cards */
+	variant?: 'default' | 'studio';
 }
 
-const { projects } = Astro.props;
+const { projects, variant = 'default' } = Astro.props;
+const studio = variant === 'studio';
 
 const fallbackThumb =
 	'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80';
@@ -65,31 +68,62 @@ function isLogoStyle(path: string) {
 										decoding="async"
 									/>
 								</a>
-								<div class="absolute left-3 top-3 z-10">
-									<FilterBadgeLink
-										href={homeProjectFilterHref(filterId)}
-										label={project.category}
-										variant="overlay"
-									/>
-								</div>
+								{
+									!studio && (
+										<div class="absolute left-3 top-3 z-10">
+											<FilterBadgeLink
+												href={homeProjectFilterHref(filterId)}
+												label={project.category}
+												variant="overlay"
+											/>
+										</div>
+									)
+								}
 							</div>
-							<a href={project.href} class="flex flex-1 flex-col p-5 no-underline text-inherit">
-								<p class="font-sans text-xs font-medium text-md-on-surface-variant">
-									{project.year}
-									<span class="mx-2 text-md-outline" aria-hidden="true">·</span>
-									{project.role}
-								</p>
-								<h3 class="mt-2 font-display text-xl font-semibold leading-snug text-md-on-surface group-hover:text-md-primary">
+							<a
+								href={project.href}
+								class:list={[
+									'flex flex-1 flex-col no-underline text-inherit',
+									studio ? 'items-center justify-center p-6 text-center' : 'p-5',
+								]}
+							>
+								{
+									!studio && (
+										<p class="font-sans text-xs font-medium text-md-on-surface-variant">
+											{project.year}
+											<span class="mx-2 text-md-outline" aria-hidden="true">·</span>
+											{project.role}
+										</p>
+									)
+								}
+								<h3
+									class:list={[
+										'font-display font-semibold leading-snug text-md-on-surface group-hover:text-md-primary',
+										studio ? 'text-xl' : 'mt-2 text-xl',
+									]}
+								>
 									{project.title}
 								</h3>
-								<p class="mt-2 flex-1 font-sans text-sm leading-relaxed text-md-on-surface-variant">
-									{project.description}
-								</p>
-								<span
-									class="mt-4 inline-flex min-h-12 w-fit items-center font-sans text-sm font-semibold text-md-primary"
-								>
-									Read →
-								</span>
+								{
+									studio ? (
+										<span
+											class="mt-4 inline-flex min-h-12 w-fit items-center font-sans text-sm font-semibold text-md-primary"
+										>
+											View →
+										</span>
+									) : (
+										<>
+											<p class="mt-2 flex-1 font-sans text-sm leading-relaxed text-md-on-surface-variant">
+												{project.description}
+											</p>
+											<span
+												class="mt-4 inline-flex min-h-12 w-fit items-center font-sans text-sm font-semibold text-md-primary"
+											>
+												View →
+											</span>
+										</>
+									)
+								}
 							</a>
 						</article>
 					</li>
@@ -111,6 +145,11 @@ function isLogoStyle(path: string) {
 
 		let activeFilter =
 			new URLSearchParams(window.location.search).get('filter')?.trim() || 'all';
+
+		if (activeFilter === 'art') {
+			window.location.replace('/studio');
+			return;
+		}
 
 		function syncFilterUrl(next: string) {
 			const url = new URL(window.location.href);

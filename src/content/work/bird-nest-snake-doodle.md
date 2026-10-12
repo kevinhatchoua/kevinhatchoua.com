@@ -13,20 +13,6 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-Nature sketch with tension: feeding time and a predator in the same frame.
-
-## Approach
-
-Blue ballpoint on white paper. Heavier scribble on the snake so it reads ahead of the tree line.
-
-## Process
-
-- Open-beak chicks in a woven nest.
-- Serpent above, tongue out, waiting.
-
-
-## Outcome
-
-Narrative doodle. Reads fast, rewards a second look.
+Nature sketch with tension: feeding time and a predator in the same frame. Blue ballpoint on white paper, heavier scribble on the snake so it reads ahead of the tree line. Open-beak chicks in a woven nest; serpent above, tongue out, waiting.

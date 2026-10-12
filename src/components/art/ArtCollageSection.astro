@@ -1,0 +1,133 @@
+---
+import type { SiteArtPiece } from '../../data/siteArt';
+import ArtCollageWall from './ArtCollageWall.astro';
+import Button from '../ui/Button.astro';
+
+interface Props {
+	id?: string;
+	kicker?: string;
+	title: string;
+	titleAccent?: string;
+	body?: string;
+	ctaHref?: string;
+	ctaLabel?: string;
+	pieces: SiteArtPiece[];
+	stamp?: SiteArtPiece;
+	layout?: 'default' | 'compact' | 'wall-only';
+	bleed?: boolean;
+	/** Home banner: no bottom border, extra padding */
+	banner?: boolean;
+}
+
+const {
+	id = 'art-collage-heading',
+	kicker,
+	title,
+	titleAccent,
+	body,
+	ctaHref,
+	ctaLabel,
+	pieces,
+	stamp,
+	layout = 'default',
+	bleed = true,
+	banner = false,
+} = Astro.props;
+
+const wallLayout = layout === 'compact' ? 'compact' : 'default';
+const showCopy = layout !== 'wall-only';
+---
+
+<section
+	class:list={[
+		'home-art-collage relative overflow-hidden bg-md-surface-container-low',
+		banner ? 'border-t border-md-outline-variant/60' : 'border-y border-md-outline-variant/60',
+		bleed && 'editorial-bleed',
+	]}
+	aria-labelledby={id}
+>
+	<div
+		class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_20%,var(--color-studio-ochre-muted),transparent_55%),radial-gradient(ellipse_70%_50%_at_90%_80%,var(--color-studio-dusk-muted),transparent_50%)]"
+		aria-hidden="true"
+	>
+	</div>
+
+	<div
+		class:list={[
+			'relative mx-auto max-w-7xl px-4 md:px-8',
+			layout === 'compact' ? 'py-10 md:py-12' : banner ? 'pb-10 pt-10 md:pb-12 md:pt-12 lg:pt-14' : 'py-12 md:py-16 lg:py-20',
+		]}
+	>
+		<div
+			class:list={[
+				'grid grid-cols-1 gap-10',
+				showCopy && 'lg:grid-cols-12',
+				showCopy && (banner ? 'lg:items-center' : 'lg:items-start'),
+			]}
+			data-reveal
+		>
+			{
+				showCopy && (
+					<div
+						class:list={[
+							layout === 'compact' ? 'lg:col-span-4' : 'lg:col-span-5',
+							banner && 'lg:self-center',
+						]}
+					>
+						{kicker && (
+							<p class="font-sans text-xs font-semibold uppercase tracking-[0.28em] text-md-primary">
+								{kicker}
+							</p>
+						)}
+						<h2
+							id={id}
+							class:list={[
+								'font-display font-semibold leading-[1.08] text-md-on-surface',
+								layout === 'compact'
+									? 'mt-2 text-3xl sm:text-4xl'
+									: kicker
+										? 'mt-3 text-display-statement'
+										: 'mt-0 text-display-statement',
+							]}
+						>
+							{title}
+							{titleAccent && (
+								<>
+									<br />
+									<span class="font-normal italic text-md-primary">{titleAccent}</span>
+								</>
+							)}
+						</h2>
+						{body && (
+							<p class="mt-5 max-w-md font-sans text-base leading-relaxed text-md-on-surface-variant">
+								{body}
+							</p>
+						)}
+						{ctaHref && ctaLabel && (
+							<div class="mt-6">
+								<Button href={ctaHref} class="min-h-12">
+									{ctaLabel}
+								</Button>
+							</div>
+						)}
+					</div>
+				)
+			}
+
+			<div
+				class:list={[
+					'relative lg:min-h-[22rem]',
+					showCopy
+						? layout === 'compact'
+							? 'lg:col-span-8'
+							: 'lg:col-span-7'
+						: 'mx-auto max-w-4xl',
+				]}
+				data-reveal
+				data-reveal-delay={showCopy ? '1' : undefined}
+			>
+				<ArtCollageWall pieces={pieces} stamp={stamp} layout={wallLayout} />
+			</div>
+		</div>
+	</div>
+</section>

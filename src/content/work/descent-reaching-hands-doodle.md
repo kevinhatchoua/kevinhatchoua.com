@@ -13,20 +13,6 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-Darker sketchbook page. Descent, storm sky, hands rising from below.
-
-## Approach
-
-Scratchy pen clouds and rain lines up top; spindly hands and grass strokes anchoring the bottom.
-
-## Process
-
-- Central falling figure with smaller fragments trailing off.
-- Crowded the lower half so the page feels tight.
-
-
-## Outcome
-
-Mood piece. Not every drawing is for the portfolio hero slot.
+Darker sketchbook page: descent, storm sky, hands rising from below. Scratchy pen clouds and rain lines up top; spindly hands and grass strokes anchoring the bottom. Central falling figure with smaller fragments trailing off; crowded the lower half so the page feels tight.

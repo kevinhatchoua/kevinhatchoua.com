@@ -13,20 +13,6 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-Sketchbook mashup: fruit and tentacles because the page was empty on a slow call.
-
-## Approach
-
-Cross-hatch the pineapple scales; contour lines on the tentacles and simple sucker loops.
-
-## Process
-
-- Grew tentacles from the crown instead of leaves.
-- Light grass strokes at the base so the creature stays the focus.
-
-
-## Outcome
-
-Whimsical ink study. Good texture drill.
+Sketchbook mashup on a slow call: fruit and tentacles because the page was empty. Cross-hatch the pineapple scales; contour lines on the tentacles and simple sucker loops. Grew tentacles from the crown instead of leaves, with light grass strokes at the base so the creature stays the focus.

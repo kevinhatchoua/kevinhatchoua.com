@@ -1,0 +1,14 @@
+---
+import ArtCollageSection from './ArtCollageSection.astro';
+import { homeCollagePieces, homeStampArt } from '../../data/siteArt';
+---
+
+<ArtCollageSection
+	title="Pixels by day."
+	titleAccent="Ink by night."
+	ctaHref="/studio"
+	ctaLabel="Explore Studio"
+	pieces={homeCollagePieces}
+	stamp={homeStampArt}
+	banner
+/>

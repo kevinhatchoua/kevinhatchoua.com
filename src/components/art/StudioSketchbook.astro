@@ -1,0 +1,39 @@
+---
+import { studioGalleryPieces } from '../../data/siteArt';
+---
+
+<ul class="studio-sketchbook grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+	{
+		studioGalleryPieces.map((piece, index) => (
+			<li class="studio-sketchbook__item" data-reveal data-reveal-delay={String(index % 3)}>
+				<a href={piece.href} class="studio-sketchbook__card group block h-full no-underline">
+					<div class="studio-sketchbook__frame">
+						<img
+							src={piece.src}
+							alt={piece.alt}
+							class="studio-sketchbook__img"
+							loading={index < 3 ? 'eager' : 'lazy'}
+							decoding="async"
+						/>
+					</div>
+					<div class="studio-sketchbook__body">
+						<p class="text-xs font-semibold uppercase tracking-[0.2em] text-md-primary">
+							{piece.kicker}
+						</p>
+						<h3 class="mt-2 font-display text-xl font-semibold text-md-on-surface group-hover:text-md-primary">
+							{piece.title}
+						</h3>
+						{piece.caption && (
+							<p class="mt-2 font-sans text-sm leading-relaxed text-md-on-surface-variant">
+								{piece.caption}
+							</p>
+						)}
+						<span class="mt-4 inline-flex font-sans text-sm font-semibold text-md-primary">
+							Open case study →
+						</span>
+					</div>
+				</a>
+			</li>
+		))
+	}
+</ul>

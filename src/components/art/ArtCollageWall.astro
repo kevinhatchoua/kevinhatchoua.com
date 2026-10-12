@@ -1,0 +1,59 @@
+---
+import type { SiteArtPiece } from '../../data/siteArt';
+import ArtPiece from './ArtPiece.astro';
+
+interface Props {
+	pieces: SiteArtPiece[];
+	stamp?: SiteArtPiece;
+	layout?: 'default' | 'compact';
+	class?: string;
+}
+
+const { pieces, stamp, layout = 'default', class: className } = Astro.props;
+const [hero, accent, poster, doodle] = pieces;
+const cells = [hero, accent, poster, doodle].filter(Boolean);
+---
+
+<div
+	class:list={[
+		'art-collage-wall',
+		layout === 'compact' && 'art-collage-wall--compact',
+		className,
+	]}
+>
+	<div class="home-art-collage__stack">
+		{
+			cells.map((piece, index) => (
+				<a
+					href={piece.href}
+					class:list={[
+						'home-art-collage__cell group block no-underline',
+						index === 0 && 'home-art-collage__cell--hero',
+						index === 1 && 'home-art-collage__cell--ink',
+						index === 2 && 'home-art-collage__cell--poster',
+						index === 3 && 'home-art-collage__cell--doodle',
+					]}
+				>
+					<img
+						src={piece.src}
+						alt={piece.alt}
+						class="home-art-collage__img"
+						loading={index === 0 ? 'eager' : 'lazy'}
+						decoding="async"
+					/>
+					{piece.kicker && <span class="home-art-collage__chip">{piece.kicker}</span>}
+				</a>
+			))
+		}
+	</div>
+	{
+		stamp && (
+			<ArtPiece
+				piece={stamp}
+				variant="foreground"
+				class="home-art-collage__stamp hidden sm:block"
+				rotate={-6}
+			/>
+		)
+	}
+</div>

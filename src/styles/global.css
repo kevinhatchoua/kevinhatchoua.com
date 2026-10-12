@@ -264,6 +264,26 @@
 		@apply overflow-hidden;
 	}
 
+	.breadcrumbs__list {
+		@apply flex flex-wrap items-center gap-x-2 gap-y-1 font-sans text-sm;
+	}
+
+	.breadcrumbs__item {
+		@apply inline-flex items-center gap-2;
+	}
+
+	.breadcrumbs__sep {
+		@apply text-md-outline;
+	}
+
+	.breadcrumbs__link {
+		@apply font-medium text-md-on-surface-variant no-underline transition-colors hover:text-md-primary;
+	}
+
+	.breadcrumbs__current {
+		@apply font-semibold text-md-on-surface;
+	}
+
 	.page-shell {
 		@apply mx-auto w-full max-w-6xl px-5 sm:px-8;
 	}
@@ -297,15 +317,15 @@
 	}
 
 	.filter-track {
-		@apply gap-0.5 rounded-full border border-md-outline-variant bg-md-surface-container-low p-1;
+		@apply gap-0 rounded-none border-0 border-b border-md-outline-variant bg-transparent p-0;
 	}
 
 	.filter-chip {
-		@apply relative z-10 inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-transparent bg-transparent px-4 py-2.5 font-sans text-sm font-medium transition-colors duration-200 md:min-w-0 md:flex-1 md:px-5 md:py-3;
+		@apply relative z-10 inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-none border-0 border-transparent bg-transparent px-4 py-2.5 font-sans text-sm font-medium transition-colors duration-200 md:min-w-0 md:flex-1 md:px-5 md:py-3;
 	}
 
 	.filter-chip[data-active='true'] {
-		@apply text-md-on-primary;
+		@apply font-semibold text-md-primary;
 	}
 
 	.filter-chip[data-active='false'] {
@@ -313,10 +333,10 @@
 	}
 
 	.filter-indicator {
+		@apply h-0.5 rounded-sm bg-md-primary shadow-none;
 		transition:
 			transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-			width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
-			height 0.2s ease;
+			width 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.about-photo__frame {
@@ -359,15 +379,168 @@
 	}
 
 	.home-intro__inner {
-		@apply max-w-3xl;
+		@apply max-w-4xl;
 	}
 
-	.home-intro__title {
-		@apply font-display text-lg font-semibold leading-snug text-md-on-surface sm:text-xl;
+	.site-art {
+		opacity: var(--site-art-opacity, 1);
 	}
 
-	.home-intro__lead {
-		@apply mt-2 font-sans text-sm leading-relaxed text-md-on-surface-variant sm:text-[0.9375rem];
+	.site-art--background {
+		@apply pointer-events-none absolute -z-10 select-none;
+	}
+
+	.site-art--foreground {
+		@apply z-20;
+	}
+
+	.site-art__img {
+		transform: rotate(var(--site-art-rotate, 0deg));
+		mix-blend-mode: var(--site-art-blend, normal);
+		@apply h-auto max-w-full rounded-lg shadow-md transition-transform duration-500;
+	}
+
+	.site-art--foreground:hover .site-art__img {
+		@apply scale-[1.02];
+	}
+
+	.site-art__label {
+		@apply mt-2 flex flex-col gap-0.5 font-sans text-xs;
+	}
+
+	.site-art__label-title {
+		@apply font-semibold text-md-on-surface;
+	}
+
+	.site-art__label-cta {
+		@apply text-md-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100;
+	}
+
+	.home-parallax__banner {
+		@apply sticky top-14 z-0 md:top-16;
+	}
+
+	.home-parallax__main {
+		@apply relative z-10 -mt-2 rounded-t-[1.75rem] bg-md-surface pt-2 shadow-[0_-16px_48px_color-mix(in_srgb,var(--color-md-on-surface)_8%,transparent)] md:-mt-4 md:rounded-t-[2rem];
+	}
+
+	.home-sidebar-art {
+		@apply -right-6 top-8 w-[min(100%,14rem)];
+	}
+
+	.home-art-collage__stack {
+		@apply relative mx-auto grid max-w-lg grid-cols-6 gap-3 sm:max-w-none sm:grid-cols-12 sm:gap-4;
+		min-height: 18rem;
+	}
+
+	.home-art-collage__cell {
+		@apply relative overflow-hidden rounded-xl bg-md-surface-container-high shadow-md ring-1 ring-md-outline-variant/60 transition-transform duration-500;
+	}
+
+	.home-art-collage__cell:hover {
+		@apply z-10 -translate-y-1 shadow-lg;
+	}
+
+	.home-art-collage__cell--hero {
+		@apply col-span-6 row-span-2 sm:col-span-7 sm:col-start-1 sm:row-span-2;
+	}
+
+	.home-art-collage__cell--ink {
+		@apply col-span-3 sm:col-span-5 sm:col-start-8 sm:row-start-1;
+	}
+
+	.home-art-collage__cell--poster {
+		@apply col-span-3 sm:col-span-4 sm:col-start-8 sm:row-start-2;
+	}
+
+	.home-art-collage__cell--doodle {
+		@apply col-span-6 sm:col-span-5 sm:col-start-4 sm:row-start-3;
+	}
+
+	.home-art-collage__img {
+		@apply h-full w-full object-cover transition-transform duration-700;
+	}
+
+	.home-art-collage__cell:hover .home-art-collage__img {
+		@apply scale-105;
+	}
+
+	.home-art-collage__chip {
+		@apply absolute bottom-2 left-2 rounded-full bg-md-surface/90 px-2.5 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-wider text-md-on-surface shadow-sm backdrop-blur-sm;
+	}
+
+	.home-art-collage__stamp {
+		@apply absolute -bottom-4 -left-2 z-30 w-28 sm:w-32;
+	}
+
+	.home-art-collage__stamp .site-art__img {
+		@apply rounded-2xl ring-2 ring-md-primary/20;
+	}
+
+	.art-collage-wall--compact .home-art-collage__stack {
+		min-height: 14rem;
+	}
+
+	.art-piece-prose > h2:first-child {
+		@apply mt-0 border-0 pb-0 text-display-md font-semibold text-md-on-surface;
+	}
+
+	.art-collage-wall--compact .home-art-collage__stamp {
+		@apply w-24;
+	}
+
+	.art-gallery-strip__scroller {
+		@apply overflow-x-auto pb-4 [scrollbar-width:thin];
+		scroll-snap-type: x mandatory;
+	}
+
+	.art-gallery-strip__list {
+		@apply flex gap-5 px-4 md:gap-6 md:px-8;
+		width: max-content;
+	}
+
+	.art-gallery-strip__item {
+		@apply w-[min(82vw,18rem)] shrink-0 snap-start sm:w-[20rem];
+	}
+
+	.art-gallery-strip__card {
+		@apply flex h-full flex-col;
+	}
+
+	.art-gallery-strip__frame {
+		@apply aspect-[4/5] overflow-hidden rounded-2xl bg-md-surface-container ring-1 ring-md-surface/10;
+	}
+
+	.art-gallery-strip__img {
+		@apply h-full w-full object-cover transition-transform duration-700;
+	}
+
+	.art-gallery-strip__card:hover .art-gallery-strip__img {
+		@apply scale-105;
+	}
+
+	.art-gallery-strip__meta {
+		@apply mt-4 px-1;
+	}
+
+	.studio-sketchbook__card {
+		@apply overflow-hidden rounded-2xl border border-md-outline-variant bg-md-surface-container-lowest shadow-sm transition-shadow duration-300 hover:shadow-md;
+	}
+
+	.studio-sketchbook__frame {
+		@apply aspect-[5/4] overflow-hidden bg-md-surface-container;
+	}
+
+	.studio-sketchbook__img {
+		@apply h-full w-full object-cover transition-transform duration-700;
+	}
+
+	.studio-sketchbook__card:hover .studio-sketchbook__img {
+		@apply scale-[1.03];
+	}
+
+	.studio-sketchbook__body {
+		@apply p-5 sm:p-6;
 	}
 
 	.scroll-jump {

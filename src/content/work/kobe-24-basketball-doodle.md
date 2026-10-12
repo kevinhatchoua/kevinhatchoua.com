@@ -13,19 +13,6 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-Sketchbook drawing: ball through the hoop, **KOBE 24** lettered on the rim.
-
-## Approach
-
-Pen contour only. Let overlapping lines stand in for shading.
-
-## Process
-
-- Froze the ball mid-swish so the net still reads in motion.
-
-
-## Outcome
-
-Personal ink piece, not a commission.
+Sketchbook drawing: ball through the hoop, **KOBE 24** lettered on the rim. Pen contour only, overlapping lines standing in for shading. Froze the ball mid-swish so the net still reads in motion.

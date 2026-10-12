@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/site/Breadcrumbs.astro';
 import ContactForm from '../components/contact/ContactForm.astro';
+import { projectsCrumb, crumb } from '../utils/breadcrumbs';
 ---
 
 <BaseLayout
@@ -8,6 +10,7 @@ import ContactForm from '../components/contact/ContactForm.astro';
 	description="Get in touch with Kevin Hatchoua — no public email or phone on this site."
 >
 	<section class="page-shell section-gap max-w-xl">
+		<Breadcrumbs items={[projectsCrumb, crumb('Contact')]} class="mb-6" />
 		<header>
 			<h1 class="text-display-lg">Contact</h1>
 			<p class="mt-4 text-lg text-ink-muted">

@@ -4,6 +4,7 @@ export const site = {
 	githubUrl: 'https://github.com/kevinhatchoua',
 	nav: [
 		{ href: '/', label: 'Projects' },
+		{ href: '/studio', label: 'Studio' },
 		{ href: '/blog', label: 'Blog' },
 		{ href: '/contact', label: 'Contact' },
 	],
@@ -12,7 +13,6 @@ export const site = {
 export const homeFilters = [
 	{ id: 'all', label: 'All' },
 	{ id: 'aix', label: 'AIX' },
-	{ id: 'art', label: 'Art' },
 	{ id: 'brand-design', label: 'Brand design' },
 	{ id: 'design-system', label: 'Design System' },
 	{ id: 'mentorship', label: 'Mentorship' },

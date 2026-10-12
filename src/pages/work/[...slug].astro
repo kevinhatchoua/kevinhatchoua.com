@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/site/Breadcrumbs.astro';
 import FilterBadgeLink from '../../components/ui/FilterBadgeLink.astro';
+import { projectsCrumb, crumb } from '../../utils/breadcrumbs';
 import SequentialNav from '../../components/nav/SequentialNav.astro';
 import { getCollection, render } from 'astro:content';
 import { homeProjectFilterHref } from '../../utils/filterLinks';
@@ -19,12 +21,20 @@ export async function getStaticPaths() {
 
 const { entry, entries } = Astro.props;
 const { Content } = await render(entry);
-const sequential = sequentialNeighbors(entries, entry.id, 'work');
+const isArt = entry.data.category === 'Art';
+const navEntries = entries.filter((item) =>
+	isArt ? item.data.category === 'Art' : item.data.category !== 'Art',
+);
+const sequential = sequentialNeighbors(navEntries, entry.id, 'work');
 const categoryFilterId = categoryToFilterId[entry.data.category] ?? 'ux-strategy';
+const breadcrumbs = isArt
+	? [projectsCrumb, crumb('Studio', '/studio'), crumb(entry.data.title)]
+	: [projectsCrumb, crumb(entry.data.title)];
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
 	<article class="page-shell section-gap max-w-4xl">
+		<Breadcrumbs items={breadcrumbs} class="mb-8" />
 		{
 			entry.data.heroImage && (
 				<div class="mb-10 overflow-hidden rounded-2xl border border-md-outline-variant shadow-sm">
@@ -38,41 +48,53 @@ const categoryFilterId = categoryToFilterId[entry.data.category] ?? 'ux-strategy
 				</div>
 			)
 		}
-		<header class="mb-10 border-b border-border pb-8">
-			<p class="text-sm font-medium uppercase tracking-widest text-ink-subtle">Case study</p>
-			<h1 class="mt-3 text-display-lg">{entry.data.title}</h1>
-			<p class="mt-4 text-lg text-ink-muted">{entry.data.description}</p>
-			<p class="mt-4 flex flex-wrap items-center gap-3 text-sm text-ink-subtle">
-				<span>
-					{entry.data.year}
-					<span class="mx-2" aria-hidden="true">·</span>
-					{entry.data.role}
-				</span>
-				<FilterBadgeLink
-					href={homeProjectFilterHref(categoryFilterId)}
-					label={entry.data.category}
-					variant="pill"
-				/>
-			</p>
-			{
-				entry.data.externalUrl && (
-					<p class="mt-4">
-						<a href={entry.data.externalUrl} rel="noopener noreferrer" target="_blank">
-							{
-								entry.data.externalUrl.includes('youtube')
-									? 'Watch on YouTube'
-									: entry.data.externalUrl.includes('behance.net')
-										? 'View on Behance'
-										: 'View live project'
-							}
-						</a>
+		{
+			isArt ? (
+				<header class="mb-8">
+					<h1 class="text-display-lg text-balance">{entry.data.title}</h1>
+				</header>
+			) : (
+				<header class="mb-10 border-b border-border pb-8">
+					<p class="text-sm font-medium uppercase tracking-widest text-ink-subtle">Case study</p>
+					<h1 class="mt-3 text-display-lg">{entry.data.title}</h1>
+					<p class="mt-4 text-lg text-ink-muted">{entry.data.description}</p>
+					<p class="mt-4 flex flex-wrap items-center gap-3 text-sm text-ink-subtle">
+						<span>
+							{entry.data.year}
+							<span class="mx-2" aria-hidden="true">·</span>
+							{entry.data.role}
+						</span>
+						<FilterBadgeLink
+							href={homeProjectFilterHref(categoryFilterId)}
+							label={entry.data.category}
+							variant="pill"
+						/>
 					</p>
-				)
-			}
-		</header>
-		<div class="prose prose-detail">
+					{
+						entry.data.externalUrl && (
+							<p class="mt-4">
+								<a href={entry.data.externalUrl} rel="noopener noreferrer" target="_blank">
+									{
+										entry.data.externalUrl.includes('youtube')
+											? 'Watch on YouTube'
+											: entry.data.externalUrl.includes('behance.net')
+												? 'View on Behance'
+												: 'View live project'
+									}
+								</a>
+							</p>
+						)
+					}
+				</header>
+			)
+		}
+		<div class:list={['prose prose-detail', isArt && 'art-piece-prose']}>
 			<Content />
 		</div>
-		<SequentialNav prev={sequential.prev} next={sequential.next} kind="project" />
+		<SequentialNav
+			prev={sequential.prev}
+			next={sequential.next}
+			kind={isArt ? 'studio' : 'project'}
+		/>
 	</article>
 </BaseLayout>

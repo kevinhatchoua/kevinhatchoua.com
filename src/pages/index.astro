@@ -7,14 +7,17 @@ import FilterChips from '../components/home/FilterChips.astro';
 import WorkGrid from '../components/home/WorkGrid.astro';
 import BlogSidebar from '../components/home/BlogSidebar.astro';
 import ContributionsSidebar from '../components/home/ContributionsSidebar.astro';
-import HomeIntro from '../components/home/HomeIntro.astro';
+import HomeArtCollage from '../components/art/HomeArtCollage.astro';
+import ArtGalleryStrip from '../components/art/ArtGalleryStrip.astro';
+import ArtPiece from '../components/art/ArtPiece.astro';
+import { homeSidebarArt } from '../data/siteArt';
 import { getCollection } from 'astro:content';
 import { getLatestContributions } from '../utils/github';
 import { resolveBlogThumbnail } from '../utils/blog';
 
-const studies = (await getCollection('work', ({ data }) => !data.draft)).sort(
-	(a, b) => b.data.order - a.data.order || b.data.year - a.data.year,
-);
+const studies = (await getCollection('work', ({ data }) => !data.draft))
+	.filter(({ data }) => data.category !== 'Art')
+	.sort((a, b) => b.data.order - a.data.order || b.data.year - a.data.year);
 
 const projects = studies.map((study) => ({
 	id: study.id,
@@ -42,22 +45,40 @@ const contributions = await getLatestContributions();
 
 <BaseLayout
 	title="Projects"
-	description="Selected UX strategy, mentorship, art, and brand design work by Kevin Hatchoua."
+	description="Selected UX strategy, mentorship, and brand design work by Kevin Hatchoua."
 	hideSiteHeader
 >
 	<Masthead active="projects" />
-	<HomeIntro />
 
-	<div class="mx-auto max-w-7xl px-4 pb-8 pt-0 md:px-8">
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-12">
-			<div class="flex w-full min-w-0 flex-col md:col-span-8">
-				<FilterChips />
-				<WorkGrid projects={projects} />
+	<div class="home-parallax">
+		<div class="home-parallax__banner">
+			<HomeArtCollage />
+		</div>
+
+		<div class="home-parallax__main">
+			<div class="mx-auto max-w-7xl px-4 pb-8 pt-8 md:px-8 md:pt-10">
+				<div class="grid grid-cols-1 gap-8 md:grid-cols-12">
+					<div class="flex w-full min-w-0 flex-col md:col-span-8">
+						<FilterChips />
+						<WorkGrid projects={projects} />
+					</div>
+					<div
+						class="relative flex flex-col gap-8 md:col-span-4 md:sticky md:top-[4.5rem] md:self-start"
+					>
+						<ArtPiece
+							piece={homeSidebarArt}
+							variant="background"
+							class="home-sidebar-art hidden md:block"
+							opacity={0.11}
+							rotate={8}
+						/>
+						<BlogSidebar posts={blogPosts} />
+						<ContributionsSidebar contributions={contributions} />
+					</div>
+				</div>
 			</div>
-			<div class="flex flex-col gap-8 md:col-span-4 md:sticky md:top-[4.5rem] md:self-start">
-				<BlogSidebar posts={blogPosts} />
-				<ContributionsSidebar contributions={contributions} />
-			</div>
+
+			<ArtGalleryStrip />
 		</div>
 	</div>
 </BaseLayout>

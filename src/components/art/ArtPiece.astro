@@ -1,0 +1,66 @@
+---
+import type { SiteArtPiece } from '../../data/siteArt';
+
+type Variant = 'background' | 'foreground' | 'inline';
+
+interface Props {
+	piece: SiteArtPiece;
+	variant?: Variant;
+	class?: string;
+	/** 0–1 */
+	opacity?: number;
+	rotate?: number;
+	blend?: 'normal' | 'multiply' | 'darken';
+	loading?: 'lazy' | 'eager';
+	decorative?: boolean;
+}
+
+const {
+	piece,
+	variant = 'inline',
+	class: className,
+	opacity = variant === 'background' ? 0.14 : 1,
+	rotate = 0,
+	blend = variant === 'background' ? 'multiply' : 'normal',
+	loading = 'lazy',
+	decorative = variant === 'background',
+} = Astro.props;
+
+const isLinked = variant !== 'background';
+const Tag = isLinked ? 'a' : 'div';
+const linkProps = isLinked
+	? { href: piece.href, class: 'site-art__link group block no-underline text-inherit' }
+	: {};
+---
+
+<Tag
+	{...linkProps}
+	class:list={[
+		'site-art',
+		`site-art--${variant}`,
+		isLinked && 'group',
+		className,
+	]}
+	style={{
+		'--site-art-opacity': String(opacity),
+		'--site-art-rotate': `${rotate}deg`,
+		'--site-art-blend': blend,
+	}}
+>
+	<img
+		src={piece.src}
+		alt={decorative ? '' : piece.alt}
+		class="site-art__img"
+		loading={loading}
+		decoding="async"
+		aria-hidden={decorative ? 'true' : undefined}
+	/>
+	{
+		isLinked && variant === 'foreground' && (
+			<span class="site-art__label">
+				<span class="site-art__label-title">{piece.title}</span>
+				<span class="site-art__label-cta">View piece →</span>
+			</span>
+		)
+	}
+</Tag>

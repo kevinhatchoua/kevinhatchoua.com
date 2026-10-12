@@ -12,24 +12,6 @@ tags:
 draft: false
 ---
 
-## Context
+## Approach and process
 
-A grassroots music initiative needed recognizable branding across print and social channels.
-
-## Approach
-
-Illustration-forward identity with templates for quick-turn social posts.
-
-## Process
-
-- Logo explorations and color systems.
-- Print collateral and social templates.
-
-
-## Outcome
-
-Visual kit volunteers could apply without designer support every week.
-
-## Reflection
-
-Community brands should be easy to remix. Templates are love.
+A grassroots music initiative needed recognizable branding across print and social channels. Illustration-forward identity with templates for quick-turn social posts: logo explorations, color systems, print collateral, and social templates volunteers could apply without designer support every week.
