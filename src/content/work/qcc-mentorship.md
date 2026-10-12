@@ -29,7 +29,3 @@ Office hours combine portfolio reviews, interview practice, and craft coaching t
 ## Outcome
 
 Students leave sessions with actionable next steps, not vague encouragement.
-
-## Reflection
-
-Mentorship is design work on people. Listen longer than you lecture.

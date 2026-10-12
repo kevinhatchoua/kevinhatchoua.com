@@ -29,7 +29,3 @@ Designed and built a lightweight site with testing on key conversion paths.
 ## Outcome
 
 A durable web presence that supported outreach beyond word of mouth.
-
-## Reflection
-
-Hyperlocal projects teach humility: design serves soil and neighbors, not portfolios.

@@ -12,7 +12,6 @@ tags:
   - Ink
 draft: false
 ---
-
-## Approach and process
+## Process
 
 Darker sketchbook page: descent, storm sky, hands rising from below. Scratchy pen clouds and rain lines up top; spindly hands and grass strokes anchoring the bottom. Central falling figure with smaller fragments trailing off; crowded the lower half so the page feels tight.

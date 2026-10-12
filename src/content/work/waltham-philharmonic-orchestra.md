@@ -13,7 +13,6 @@ tags:
   - Typography
 draft: false
 ---
-
-## Approach and process
+## Process
 
 The Waltham Philharmonic Orchestra ran a graphic design contest; I was a finalist with this promotional poster for concert promotion online and in print. Illustration, typography, and photo work in Photoshop and Illustrator. The poster had to read at a distance and still hold up as a social graphic. Composed the hero illustration and orchestral type hierarchy, then prepared a single layout for both print and digital crops.

@@ -78,7 +78,3 @@ Launched Nina's first social media accounts on LinkedIn, Facebook, and Instagram
 *About page with philosophy, blog highlights, and newsletter signup.*
 
 ![Home page deliverable](/images/work/fit-with-nina/deliverable-home.png)
-
-## Reflection
-
-Fitness brands live on motivation. Design should feel energetic, not noisy.

@@ -31,7 +31,3 @@ Built IA around programs, projects, and community. Paired the site with an activ
 ## Outcome
 
 Clear paths to program information and forms without relying on phone-only inquiries.
-
-## Reflection
-
-Small nonprofits deserve big craft. Clarity is kindness.

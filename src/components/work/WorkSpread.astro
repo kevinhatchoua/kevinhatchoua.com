@@ -2,6 +2,7 @@
 import FilterBadgeLink from '../ui/FilterBadgeLink.astro';
 import { homeProjectFilterHref } from '../../utils/filterLinks';
 import { categoryToFilterId } from '../../utils/site';
+import { isLogoStyleHero, resolveWorkHeroImage } from '../../utils/workHero';
 
 interface Props {
 	title: string;
@@ -19,9 +20,9 @@ const { title, description, year, role, href, category, tags = [], heroImage, in
 
 const categoryFilterId = category ? (categoryToFilterId[category] ?? 'ux-strategy') : null;
 
-const fallbackImage =
-	'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=2000&q=80';
-const image = heroImage ?? fallbackImage;
+const resolvedHero = resolveWorkHeroImage(heroImage);
+const logoStyle = isLogoStyleHero(resolvedHero);
+const image = resolvedHero;
 const reversed = index % 2 === 1;
 ---
 
@@ -41,11 +42,20 @@ const reversed = index % 2 === 1;
 				data-reveal
 			>
 				<div class="editorial-bleed lg:mx-0 lg:w-full" data-parallax data-parallax-rate="0.08">
-					<div class="relative aspect-[16/10] lg:aspect-[16/9]" data-parallax-inner>
+					<div
+						class:list={[
+							'relative aspect-[16/10] lg:aspect-[16/9]',
+							logoStyle && 'bg-md-surface-container',
+						]}
+						data-parallax-inner
+					>
 						<img
 							src={image}
 							alt=""
-							class="image-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+							class:list={[
+								'h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]',
+								logoStyle ? 'object-contain px-10 py-8' : 'image-cover',
+							]}
 							loading="lazy"
 							decoding="async"
 						/>

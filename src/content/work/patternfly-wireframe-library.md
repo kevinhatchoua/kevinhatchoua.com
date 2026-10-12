@@ -32,7 +32,3 @@ Authored wireframe patterns, annotated behaviors, and content notes tied to Patt
 ## Outcome
 
 Shorter time from problem framing to review-ready concepts, with fewer one-off layout surprises in build.
-
-## Reflection
-
-Wireframes are contracts. The library made those contracts reusable.

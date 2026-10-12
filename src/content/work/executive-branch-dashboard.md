@@ -31,7 +31,3 @@ Partnered with HRD and the Governor's office on IA, chart selection, and accessi
 ## Outcome
 
 Design recommendations that made trends easier to read while meeting accessibility requirements.
-
-## Reflection
-
-Public data visuals carry ethical weight: show truth, avoid spectacle.

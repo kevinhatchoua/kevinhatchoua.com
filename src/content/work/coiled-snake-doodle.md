@@ -12,7 +12,6 @@ tags:
   - Ink
 draft: false
 ---
-
-## Approach and process
+## Process
 
 Single-subject wildlife doodle: one coil, as much texture as I could fit on the page. Cross-hatching and short strokes for scales; triangular head and forked tongue for a quick species read. Built one dark mass and lifted only where the pen skips. Small **Z** marks in the corner as a joke that the snake might be asleep.

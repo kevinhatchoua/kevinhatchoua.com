@@ -1,0 +1,122 @@
+---
+import {
+	openshiftPrototypeAreas,
+	openshiftPrototypeUrl,
+} from '../../data/openshiftPrototypeAreas';
+---
+
+<div class="openshift-areas-table not-prose">
+	<div class="openshift-areas-table__scroll" tabindex="0" role="region" aria-label="OpenShift console areas and prototype links">
+		<table class="openshift-areas-table__table">
+			<caption class="sr-only">
+				OpenShift console areas covered in the platform prototype, with short descriptions and links to
+				interactive screens.
+			</caption>
+			<thead>
+				<tr>
+					<th scope="col">Area</th>
+					<th scope="col">Description</th>
+					<th scope="col">Case study</th>
+					<th scope="col">Prototype</th>
+				</tr>
+			</thead>
+			<tbody>
+				{
+					openshiftPrototypeAreas.map((row) => (
+						<tr class:list={[row.isSubArea && 'openshift-areas-table__subrow']}>
+							<th scope="row" class:list={[row.isSubArea && 'openshift-areas-table__subarea']}>
+								{row.name}
+							</th>
+							<td>{row.description}</td>
+							<td class="openshift-areas-table__link">
+								{row.caseStudySlug ? (
+									<a href={`/work/${row.caseStudySlug}`}>Read case study</a>
+								) : (
+									<span class="openshift-areas-table__muted">—</span>
+								)}
+							</td>
+							<td class="openshift-areas-table__link">
+								<a href={openshiftPrototypeUrl(row.prototypePath)} rel="noopener noreferrer" target="_blank">
+									Open in prototype
+									<span class="sr-only"> ({row.name})</span>
+								</a>
+							</td>
+						</tr>
+					))
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<style>
+	.openshift-areas-table {
+		margin-block: 1.75rem 0.5rem;
+	}
+
+	.openshift-areas-table__scroll {
+		overflow-x: auto;
+		border: 1px solid var(--color-md-outline-variant, #cac4d0);
+		border-radius: 0.75rem;
+		background: var(--color-surface, #fff);
+		box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+	}
+
+	.openshift-areas-table__table {
+		width: 100%;
+		min-width: 36rem;
+		border-collapse: collapse;
+		font-size: 0.9375rem;
+		line-height: 1.5;
+	}
+
+	.openshift-areas-table__table th,
+	.openshift-areas-table__table td {
+		padding: 0.75rem 1rem;
+		text-align: left;
+		vertical-align: top;
+		border-bottom: 1px solid var(--color-md-outline-variant, #cac4d0);
+	}
+
+	.openshift-areas-table__table tr:last-child th,
+	.openshift-areas-table__table tr:last-child td {
+		border-bottom: none;
+	}
+
+	.openshift-areas-table__table thead th {
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--color-ink-subtle, #5c5c5c);
+		background: var(--color-surface-dim, #f5f5f5);
+	}
+
+	.openshift-areas-table__table tbody th[scope='row'] {
+		font-weight: 600;
+		color: var(--color-ink, #1a1a1a);
+		white-space: nowrap;
+	}
+
+	.openshift-areas-table__subarea {
+		padding-left: 1.75rem;
+		font-weight: 500;
+		white-space: normal;
+	}
+
+	.openshift-areas-table__subrow {
+		background: rgb(0 0 0 / 0.015);
+	}
+
+	.openshift-areas-table__link {
+		white-space: nowrap;
+	}
+
+	.openshift-areas-table__link a {
+		font-weight: 500;
+	}
+
+	.openshift-areas-table__muted {
+		color: var(--color-ink-subtle, #5c5c5c);
+	}
+</style>

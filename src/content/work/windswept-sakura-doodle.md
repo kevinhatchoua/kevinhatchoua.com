@@ -1,6 +1,6 @@
 ---
 title: Windswept sakura
-description: Ink tree on a rocky ledge, petals blowing off in the wind.
+description: "Calmer sketchbook page from the same run as the doodles: an ink tree on a ledge with petals in the wind."
 year: 2025
 role: Illustrator
 category: Art
@@ -12,7 +12,8 @@ tags:
   - Ink
 draft: false
 ---
+## Process
 
-## Approach and process
-
-Calmer page in the same sketchbook run: motion through petals instead of figures. Fine line on the trunk, stippling and scattered petals for the breeze. The tree leans right so wind has a direction. Petals stay dense near the branches and thin as they travel across the page.
+- Fine line on the trunk; stippling and scattered petals for the breeze.
+- Leaned the tree right so wind has a clear direction.
+- Kept petals dense near the branches, thinning as they travel across the page.

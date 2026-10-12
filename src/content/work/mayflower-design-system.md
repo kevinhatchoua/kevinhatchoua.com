@@ -74,7 +74,3 @@ Mayflower-react is a React component library under the enterprise design system 
 ![Mayflower React Storybook welcome page](/images/work/mayflower/mayflower-react-storybook.png)
 
 [Live demo (Mayflower React)](https://mayflower.digital.mass.gov/react/)
-
-## Reflection
-
-Government design systems are public infrastructure. When brand, code, and documentation align, constituents get experiences that feel official, understandable, and trustworthy.

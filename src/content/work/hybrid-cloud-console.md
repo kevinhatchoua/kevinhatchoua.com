@@ -39,7 +39,3 @@ Exploration of console onboarding and navigation patterns from the Hybrid Cloud 
 ## Outcome
 
 Clearer narrative for how users discover, launch, and manage hybrid cloud capabilities from a single console frame, with measurable emphasis on successful first sessions and continued adoption.
-
-## Reflection
-
-Hybrid cloud UX is an exercise in translation: the same mental model must work for a seasoned SRE and a developer on day one—and analytics should tell us when it does not.

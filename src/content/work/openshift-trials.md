@@ -31,7 +31,3 @@ Mapped trial states, error paths, and upgrade moments. Paired UX with content st
 ## Outcome
 
 More legible trial journey with fewer dead-end moments at activation and upgrade.
-
-## Reflection
-
-Trials are a promise. Design has to spell out the promise in plain language.

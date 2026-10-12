@@ -2,6 +2,7 @@
 import FilterBadgeLink from '../ui/FilterBadgeLink.astro';
 import { homeProjectFilterHref } from '../../utils/filterLinks';
 import { categoryToFilterId } from '../../utils/site';
+import { isLogoStyleHero, resolveWorkHeroImage } from '../../utils/workHero';
 
 export interface WorkGridProject {
 	id: string;
@@ -23,18 +24,12 @@ interface Props {
 const { projects, variant = 'default' } = Astro.props;
 const studio = variant === 'studio';
 
-const fallbackThumb =
-	'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80';
-const imageVersion = '3';
+const imageVersion = '4';
 
 function heroSrc(path?: string) {
-	if (!path) return fallbackThumb;
-	const joiner = path.includes('?') ? '&' : '?';
-	return `${path}${joiner}v=${imageVersion}`;
-}
-
-function isLogoStyle(path: string) {
-	return path.endsWith('.svg') || path.includes('-logo.');
+	const resolved = resolveWorkHeroImage(path);
+	const joiner = resolved.includes('?') ? '&' : '?';
+	return `${resolved}${joiner}v=${imageVersion}`;
 }
 ---
 
@@ -43,8 +38,9 @@ function isLogoStyle(path: string) {
 		{
 			projects.map((project) => {
 				const filterId = categoryToFilterId[project.category] ?? 'ux-strategy';
+				const resolvedHero = resolveWorkHeroImage(project.heroImage);
 				const image = heroSrc(project.heroImage);
-				const logoStyle = project.heroImage ? isLogoStyle(project.heroImage) : false;
+				const logoStyle = isLogoStyleHero(resolvedHero);
 				return (
 					<li
 						class="project-card-wrapper"

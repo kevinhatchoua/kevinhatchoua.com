@@ -13,8 +13,7 @@ tags:
   - Photoshop
 draft: false
 ---
-
-## Approach and process
+## Process
 
 A Photoshop assignment from school: a promotional poster in the same winter-sports lane as my Apex Predator work. Photo compositing, type, and contrast, tuned for a clear read at poster scale. Built the hero composition in Photoshop and adjusted typography and color for print and screen.
 

@@ -40,7 +40,3 @@ Product screens from the KBE experience, highlighting lesson structure and in-fl
 ## Outcome
 
 A durable template system for new lessons and a clearer learning loop from reading to doing, aligned with how practitioners actually pick up Kubernetes skills.
-
-## Reflection
-
-Teaching UX is still UX: respect cognitive load, celebrate small wins, and measure whether people finish a lesson feeling capable—not just informed.

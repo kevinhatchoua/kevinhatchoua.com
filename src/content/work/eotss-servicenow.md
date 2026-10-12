@@ -90,7 +90,3 @@ Use Simplified Technical English (STE) and a minimalist approach to writing how-
 ![ServiceNow tips documentation example](/images/work/eotss-servicenow/servicenow-tips-documentation.png)
 
 *Tips series with step-by-step screenshots for profile and everyday tasks.*
-
-## Reflection
-
-Enterprise migrations are UX projects. The UI is where trust is won or lost.

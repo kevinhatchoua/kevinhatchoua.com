@@ -13,8 +13,7 @@ tags:
   - Storyboard
 draft: false
 ---
-
-## Approach and process
+## Process
 
 After the November 2015 Paris attacks I made this as a dedication to the beauty and resiliency of the city and the French people. Minimal line work, a fixed Eiffel Tower anchor, and layered motion (clouds, sun, moon, birds, city, and fireworks) move from daylight into night: a quiet day-to-night cycle rather than spectacle for its own sake.
 

@@ -18,13 +18,13 @@ const navLabel =
 {
 	(prev || next) && (
 		<nav
-			class="mt-12 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-stretch sm:justify-between sm:gap-6"
+			class="mt-12 grid gap-4 border-t border-border pt-8 sm:grid-cols-2 sm:gap-6"
 			aria-label={`${navLabel} navigation`}
 		>
 			{prev ? (
 				<a
 					href={prev.href}
-					class="group flex min-w-0 flex-1 flex-col rounded-xl border border-border bg-canvas-elevated px-4 py-3 no-underline transition-colors hover:border-accent hover:text-accent sm:max-w-[48%]"
+					class="group flex min-w-0 flex-col rounded-xl border border-border bg-canvas-elevated px-4 py-3 no-underline transition-colors hover:border-accent hover:text-accent"
 				>
 					<span class="text-xs font-semibold uppercase tracking-widest text-ink-subtle group-hover:text-accent">
 						← Previous {kindLabel}
@@ -33,13 +33,15 @@ const navLabel =
 						{prev.title}
 					</span>
 				</a>
-			) : (
-				<div class="hidden flex-1 sm:block" aria-hidden="true" />
-			)}
+			) : null}
 			{next ? (
 				<a
 					href={next.href}
-					class="group flex min-w-0 flex-1 flex-col rounded-xl border border-border bg-canvas-elevated px-4 py-3 text-right no-underline transition-colors hover:border-accent hover:text-accent sm:max-w-[48%] sm:ml-auto"
+					class:list={[
+						'group flex min-w-0 flex-col rounded-xl border border-border bg-canvas-elevated px-4 py-3 text-right no-underline transition-colors hover:border-accent hover:text-accent',
+						prev && 'sm:col-start-2',
+						!prev && 'sm:col-span-2 sm:max-w-md sm:ml-auto',
+					]}
 				>
 					<span class="text-xs font-semibold uppercase tracking-widest text-ink-subtle group-hover:text-accent">
 						Next {kindLabel} →
@@ -48,9 +50,7 @@ const navLabel =
 						{next.title}
 					</span>
 				</a>
-			) : (
-				<div class="hidden flex-1 sm:block" aria-hidden="true" />
-			)}
+			) : null}
 		</nav>
 	)
 }

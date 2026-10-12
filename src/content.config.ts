@@ -40,6 +40,8 @@ const work = defineCollection({
 		order: z.number().int().default(0),
 		draft: z.boolean().default(false),
 		externalUrl: z.string().url().optional(),
+		/** Umbrella OpenShift portfolio case study (breadcrumb parent). */
+		parentCaseStudy: z.string().optional(),
 	}),
 });
 

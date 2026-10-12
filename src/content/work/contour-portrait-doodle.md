@@ -12,7 +12,6 @@ tags:
   - Portrait
 draft: false
 ---
-
-## Approach and process
+## Process
 
 Portrait exercise: topography-like lines following the face, plus cap, shades, and chains. Black ink for structure; blue ink only on the lenses and jewelry. Mapped the face with parallel contours instead of flat fill, and left shirt and hat loose so the face carries the drawing.

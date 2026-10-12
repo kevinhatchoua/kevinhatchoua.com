@@ -11,7 +11,6 @@ tags:
   - Social
 draft: false
 ---
-
-## Approach and process
+## Process
 
 A grassroots music initiative needed recognizable branding across print and social channels. Illustration-forward identity with templates for quick-turn social posts: logo explorations, color systems, print collateral, and social templates volunteers could apply without designer support every week.

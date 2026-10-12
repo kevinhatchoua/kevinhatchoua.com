@@ -46,7 +46,3 @@ Research the category, lock a mark and type treatment, then stress-test the syst
 ## Outcome
 
 A complete student brand book I still point to when people ask how I think about systems, not single logos.
-
-## Reflection
-
-Fictional clients are useful. You can push tone further when nobody’s legal team is in the room.

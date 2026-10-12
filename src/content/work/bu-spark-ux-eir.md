@@ -33,7 +33,3 @@ Public program bio notes my work at Red Hat on discover-learn-try-onboard journe
 ## Outcome
 
 Teams ship sharper narratives and more testable concepts within semester timelines.
-
-## Reflection
-
-Teaching founders and students to show their thinking is as important as polishing pixels.

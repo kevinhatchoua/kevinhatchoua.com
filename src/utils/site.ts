@@ -1,3 +1,6 @@
+/** Default hero when a project card has no custom artwork (Red Hat employer work). */
+export const redHatPlaceholderHero = '/images/work/red-hat-logo.svg';
+
 export const site = {
 	name: 'Kevin Hatchoua',
 	tagline: 'Community, craft, and design that stays human.',

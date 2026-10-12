@@ -32,7 +32,3 @@ Clarity-first UX for mission, programs, and calls to support. The goal was trust
 ## Outcome
 
 A maintainable web presence organizers could share with partners, paired with governance work that keeps digital inclusion central to the mission.
-
-## Reflection
-
-Nonprofit UX is stewardship. The site should feel as caring as the people behind it.

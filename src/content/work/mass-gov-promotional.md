@@ -62,7 +62,3 @@ Responsive wireframes for a centered hero row with full-width background media, 
 
 
 [Visit Technology Careers at the Commonwealth](https://www.mass.gov/technology-careers-at-the-commonwealth-of-massachusetts)
-
-## Reflection
-
-Flexibility without chaos means tight component rules and fearless editors.

@@ -5,7 +5,7 @@ year: 2026
 role: Senior UX designer
 category: UX Strategy
 order: 100
-heroImage: /images/work/openshift-logo.svg
+heroImage: /images/work/red-hat-logo.svg
 externalUrl: https://openshift-platform-prototype.vercel.app
 tags:
   - OpenShift
@@ -13,10 +13,6 @@ tags:
   - Prototyping
 draft: false
 ---
-
-## Context
-
-After joining Red Hat, my work centers on the OpenShift hybrid cloud console: helping administrators and developers reason about clusters, networking, and application delivery without drowning in raw configuration.
 
 ## Approach
 
@@ -31,9 +27,3 @@ I partner with UX, engineering, and documentation peers to translate fuzzy probl
 ## Outcome
 
 Shared vocabulary across design and engineering earlier in the cycle. Prototypes became the reference for spacing, component choice, and copy tone in downstream implementation conversations.
-
-## Reflection
-
-Console UX rewards patience: the win is rarely a flashy screen. It is an operator trusting that the next click will make sense.
-
-*Note: Screens show sanitized mock data only. No customer information, production telemetry, or confidential roadmap details are included.*

@@ -55,7 +55,3 @@ The proposed **Employee Demographics – Executive Branch** layout groups quarte
 *Final version: unified dashboard with filters, map, and accessible color system.*
 
 [View the live State Employee Diversity Dashboard](https://www.mass.gov/info-details/state-employee-diversity-dashboard)
-
-## Reflection
-
-When data is about people, tone matters as much as typography. Attention-grabbing should mean easier to understand, not louder for its own sake.

@@ -1,0 +1,81 @@
+---
+import { openshiftAreaCaseStudies } from '../../data/openshiftAreaCaseStudies';
+---
+
+<div class="openshift-deep-dives not-prose">
+	<h3 class="openshift-deep-dives__title">Area deep dives</h3>
+	<p class="openshift-deep-dives__intro text-sm text-ink-subtle">
+		Case studies for console areas with in-flight design work. Each links to a project card on the home grid
+		and a detailed write-up.
+	</p>
+	<ul class="openshift-deep-dives__list" role="list">
+		{
+			openshiftAreaCaseStudies.map((study) => (
+				<li>
+					<a class="openshift-deep-dives__link" href={`/work/${study.slug}`}>
+						<span class="openshift-deep-dives__link-title">{study.title}</span>
+						<span class="openshift-deep-dives__link-summary">{study.summary}</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</div>
+
+<style>
+	.openshift-deep-dives {
+		margin-top: 2rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-md-outline-variant, #cac4d0);
+	}
+
+	.openshift-deep-dives__title {
+		font-size: 1.125rem;
+		font-weight: 600;
+		margin: 0 0 0.5rem;
+	}
+
+	.openshift-deep-dives__intro {
+		margin: 0 0 1.25rem;
+		max-width: 65ch;
+	}
+
+	.openshift-deep-dives__list {
+		display: grid;
+		gap: 1rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.openshift-deep-dives__link {
+		display: block;
+		padding: 1rem 1.25rem;
+		border: 1px solid var(--color-md-outline-variant, #cac4d0);
+		border-radius: 0.75rem;
+		text-decoration: none;
+		color: inherit;
+		transition:
+			border-color 0.15s ease,
+			box-shadow 0.15s ease;
+	}
+
+	.openshift-deep-dives__link:hover {
+		border-color: var(--color-md-primary, #ba1a1a);
+		box-shadow: 0 2px 8px rgb(0 0 0 / 0.06);
+	}
+
+	.openshift-deep-dives__link-title {
+		display: block;
+		font-weight: 600;
+		margin-bottom: 0.35rem;
+	}
+
+	.openshift-deep-dives__link-summary {
+		display: block;
+		font-size: 0.9375rem;
+		color: var(--color-ink-muted, #444);
+		line-height: 1.45;
+	}
+
+</style>

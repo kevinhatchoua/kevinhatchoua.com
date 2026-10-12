@@ -29,7 +29,3 @@ Wireframes, market research, and front-end design emphasizing product storytelli
 ## Outcome
 
 A browsable catalog experience aligned with the shop's voice.
-
-## Reflection
-
-Retail UX is theater. Pace the reveal like a good window display.

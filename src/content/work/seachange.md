@@ -76,7 +76,3 @@ Additional UI explorations for consumer experiences: coupons, program guide, mod
 ![AssetFlow application deliverable](/images/work/seachange/deliverable-2.jpg)
 
 ![SeaChange CMS deliverable](/images/work/seachange/deliverable-3.jpg)
-
-## Reflection
-
-Legacy CMS UX is archaeology. You earn trust by respecting expert users while fixing sharp edges.

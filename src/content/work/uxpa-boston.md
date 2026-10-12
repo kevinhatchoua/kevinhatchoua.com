@@ -32,7 +32,3 @@ Public bio highlights: volunteering with Virtual Activism and AfriHope, BU Spark
 ## Outcome
 
 More welcoming, predictable chapter experiences for members across career stages.
-
-## Reflection
-
-Community design is service design. The audience is your neighbor.

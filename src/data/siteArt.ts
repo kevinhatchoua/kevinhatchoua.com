@@ -96,7 +96,7 @@ export const studioGalleryPieces: SiteArtPiece[] = [
 	{
 		id: 'la-parisienne',
 		src: '/images/work/la-parisienne.png',
-		alt: 'La Parisienne animation still, Paris skyline at dusk',
+		alt: 'La Parisienne animation still, blue line-drawn Eiffel Tower',
 		title: 'La Parisienne',
 		href: '/work/la-parisienne',
 		caption: 'Storyboarded motion for Paris.',

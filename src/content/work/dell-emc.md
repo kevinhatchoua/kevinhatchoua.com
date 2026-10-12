@@ -31,7 +31,3 @@ Created template sitemaps and content types, detailed wireframes for engineering
 ## Outcome
 
 Repeatable site architecture and UI specs that accelerated development across groups.
-
-## Reflection
-
-Distributed teams need obsessive documentation. Wireframes are the timezone bridge.

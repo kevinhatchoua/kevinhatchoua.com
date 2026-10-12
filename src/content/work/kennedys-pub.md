@@ -29,7 +29,3 @@ Front-end design, wireframes, and email campaigns grounded in neighborhood tone.
 ## Outcome
 
 Consistent digital touchpoints that matched the room's personality.
-
-## Reflection
-
-Hospitality design should feel like a welcome, not a billboard.

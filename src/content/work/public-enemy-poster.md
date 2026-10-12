@@ -11,7 +11,6 @@ tags:
   - Print
 draft: false
 ---
-
-## Approach and process
+## Process
 
 Personal visual study: protest-poster energy, high contrast, limited palette. Flat color fields, stencil-like figures, annotated swatches to test how far a small palette could go. Silhouettes and microphone motifs in Illustrator; iterated color blocks for screen-print feasibility.

@@ -8,6 +8,10 @@ import { getCollection, render } from 'astro:content';
 import { homeProjectFilterHref } from '../../utils/filterLinks';
 import { sequentialNeighbors } from '../../utils/sequentialNav';
 import { categoryToFilterId } from '../../utils/site';
+import { isLogoStyleHero, resolveWorkHeroImage } from '../../utils/workHero';
+import OpenShiftPrototypeContext from '../../components/work/OpenShiftPrototypeContext.astro';
+
+const OPENSHIFT_PROTOTYPES_SLUG = 'openshift-console-platform-prototypes';
 
 export async function getStaticPaths() {
 	const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
@@ -25,18 +29,30 @@ const isArt = entry.data.category === 'Art';
 const navEntries = entries.filter((item) =>
 	isArt ? item.data.category === 'Art' : item.data.category !== 'Art',
 );
-const sequential = sequentialNeighbors(navEntries, entry.id, 'work');
+const sequential = sequentialNeighbors(navEntries, entry.id, 'work', { loop: isArt });
 const categoryFilterId = categoryToFilterId[entry.data.category] ?? 'ux-strategy';
+const isOpenshiftPrototypes = entry.id === OPENSHIFT_PROTOTYPES_SLUG;
+const heroImage = resolveWorkHeroImage(entry.data.heroImage);
+const heroIsLogo = isLogoStyleHero(heroImage);
+const parentCaseStudy = entry.data.parentCaseStudy;
+const parentEntry = parentCaseStudy ? entries.find((item) => item.id === parentCaseStudy) : undefined;
+
 const breadcrumbs = isArt
 	? [projectsCrumb, crumb('Studio', '/studio'), crumb(entry.data.title)]
-	: [projectsCrumb, crumb(entry.data.title)];
+	: parentEntry
+		? [
+				projectsCrumb,
+				crumb(parentEntry.data.title, `/work/${parentCaseStudy}`),
+				crumb(entry.data.title),
+			]
+		: [projectsCrumb, crumb(entry.data.title)];
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.description}>
 	<article class="page-shell section-gap max-w-4xl">
 		<Breadcrumbs items={breadcrumbs} class="mb-8" />
 		{
-			entry.data.heroImage && (
+			isArt && entry.data.heroImage && (
 				<div class="mb-10 overflow-hidden rounded-2xl border border-md-outline-variant shadow-sm">
 					<img
 						src={entry.data.heroImage}
@@ -49,9 +65,43 @@ const breadcrumbs = isArt
 			)
 		}
 		{
+			!isArt && (
+				<div
+					class:list={[
+						'mb-10 overflow-hidden rounded-2xl border border-md-outline-variant shadow-sm',
+						heroIsLogo && 'bg-md-surface-container',
+					]}
+				>
+					<img
+						src={heroImage}
+						alt=""
+						class:list={['w-full', heroIsLogo ? 'object-contain px-8 py-10 max-h-48' : 'object-cover']}
+						loading="eager"
+						decoding="async"
+					/>
+				</div>
+			)
+		}
+		{
 			isArt ? (
-				<header class="mb-8">
+				<header class="mb-10">
 					<h1 class="text-display-lg text-balance">{entry.data.title}</h1>
+					<p class="mt-4 text-lg leading-relaxed text-ink-muted">{entry.data.description}</p>
+					{
+						entry.data.externalUrl && (
+							<p class="mt-4">
+								<a href={entry.data.externalUrl} rel="noopener noreferrer" target="_blank">
+									{
+										entry.data.externalUrl.includes('youtube')
+											? 'Watch on YouTube'
+											: entry.data.externalUrl.includes('behance.net')
+												? 'View on Behance'
+												: 'View live project'
+									}
+								</a>
+							</p>
+						)
+					}
 				</header>
 			) : (
 				<header class="mb-10 border-b border-border pb-8">
@@ -79,7 +129,9 @@ const breadcrumbs = isArt
 											? 'Watch on YouTube'
 											: entry.data.externalUrl.includes('behance.net')
 												? 'View on Behance'
-												: 'View live project'
+												: entry.data.externalUrl.includes('openshift-platform-prototype')
+													? 'Open hosted prototype'
+													: 'View live project'
 									}
 								</a>
 							</p>
@@ -89,6 +141,7 @@ const breadcrumbs = isArt
 			)
 		}
 		<div class:list={['prose prose-detail', isArt && 'art-piece-prose']}>
+			{isOpenshiftPrototypes && <OpenShiftPrototypeContext />}
 			<Content />
 		</div>
 		<SequentialNav
