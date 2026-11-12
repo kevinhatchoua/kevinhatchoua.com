@@ -44,7 +44,3 @@ export const openshiftAreaCaseStudies: OpenshiftAreaCaseStudyMeta[] = [
 		areas: ['Administration search'],
 	},
 ];
-
-export function caseStudyBySlug(slug: string): OpenshiftAreaCaseStudyMeta | undefined {
-	return openshiftAreaCaseStudies.find((item) => item.slug === slug);
-}

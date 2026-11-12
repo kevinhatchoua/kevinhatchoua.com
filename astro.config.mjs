@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -8,6 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://kevinhatchou.com',
   adapter: vercel(),
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },

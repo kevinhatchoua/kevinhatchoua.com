@@ -1,6 +1,6 @@
 ---
-title: Octo-pineapple
-description: "Sketchbook mashup on a slow call: a pineapple body with octopus tentacles and heavy cross-hatching."
+title: Inkborn from the book
+description: "Ink creature erupting from an open sketchbook, tentacles and maze-textured body built from cross-hatching."
 year: 2025
 role: Illustrator
 category: Art
@@ -15,6 +15,4 @@ draft: false
 
 ## Process
 
-- Cross-hatch the pineapple scales; contour lines on the tentacles and simple sucker loops.
-- Grew tentacles from the crown instead of leaves.
-- Light grass strokes at the base so the creature stays the focus.
+Slow-call sketch: let the thing crawl out of the gutter of an open book. Maze-like hatching on the body, loose sucker loops on the tentacles, and a hard crop at the page edge so the drawing still feels mid-escape.

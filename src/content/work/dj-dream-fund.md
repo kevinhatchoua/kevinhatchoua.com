@@ -1,6 +1,6 @@
 ---
 title: DJ Dream Fund art
-description: Illustration-led brand visuals and social artwork for a grassroots music community project.
+description: "Hand-drawn DJ at turntables with bold DJ DREAM lettering for the grassroots music project."
 year: 2013
 role: Visual designer
 category: Art

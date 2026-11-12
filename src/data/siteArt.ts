@@ -40,8 +40,8 @@ export const homeCollagePieces: SiteArtPiece[] = [
 	{
 		id: 'octo',
 		src: '/images/work/octo-pineapple-doodle.jpg',
-		alt: 'Whimsical octopus and pineapple ink doodle',
-		title: 'Octo-pineapple',
+		alt: 'Ink creature rising from an open sketchbook with curling tentacles',
+		title: 'Inkborn from the book',
 		href: '/work/octo-pineapple-doodle',
 		kicker: 'Play',
 	},
@@ -132,10 +132,10 @@ export const studioGalleryPieces: SiteArtPiece[] = [
 	{
 		id: 'octo-gallery',
 		src: '/images/work/octo-pineapple-doodle.jpg',
-		alt: 'Octo-pineapple doodle',
-		title: 'Octo-pineapple',
+		alt: 'Ink creature rising from an open sketchbook',
+		title: 'Inkborn from the book',
 		href: '/work/octo-pineapple-doodle',
-		caption: 'Weird friends welcome.',
+		caption: 'Sketchbook escape velocity.',
 		kicker: 'Doodle',
 	},
 ];

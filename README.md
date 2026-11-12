@@ -39,6 +39,14 @@ Open [http://localhost:4321](http://localhost:4321).
 
 The home page (`/`) is server-rendered on Vercel so **Latest contributions** stays in sync with your public GitHub activity. All other routes remain static.
 
+**GoDaddy cutover checklist:** [docs/godaddy-migration.md](docs/godaddy-migration.md)
+
+## Security
+
+- Response headers: `src/middleware.ts` + `vercel.json` (HSTS, frame denial, MIME sniffing protection, referrer policy).
+- Secrets only in Vercel env (no `PUBLIC_` prefix for `GITHUB_TOKEN`).
+- `@astrojs/sitemap` generates `sitemap-index.xml` for crawlers; `public/robots.txt` points to it.
+
 ## Privacy
 
 No email, phone, or resume file is rendered on the site. Contact is form-only.
